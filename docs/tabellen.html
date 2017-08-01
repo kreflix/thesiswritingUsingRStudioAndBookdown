@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Abschlussarbeit in RStudio mit bookdown - A Minimal Book Example</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a thesis in German.">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Abschlussarbeit in RStudio mit bookdown - A Minimal Book Example" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a thesis in German." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Abschlussarbeit in RStudio mit bookdown - A Minimal Book Example" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a thesis in German." />
+  <meta name="twitter:image" content="img/cover.png" />
+
+<meta name="author" content="Felix Kretschmer">
+
+
+<meta name="date" content="2017-07-29">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+<link rel="prev" href="abbildungen.html">
+<link rel="next" href="verfassen.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<script src="libs/datatables-binding-0.2/datatables.js"></script>
+<link href="libs/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Abschlussarbeit mit bookdown</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Vorbereitung und Vorwort</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contribute"><i class="fa fa-check"></i>Contribute!</a></li>
+<li class="chapter" data-level="" data-path="get-started.html"><a href="get-started.html"><i class="fa fa-check"></i>Get started</a><ul>
+<li class="chapter" data-level="" data-path="get-started.html"><a href="get-started.html#rstudio-und-packrat"><i class="fa fa-check"></i>RStudio und Packrat</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="links-und-tipps.html"><a href="links-und-tipps.html"><i class="fa fa-check"></i>Links und Tipps</a><ul>
+<li class="chapter" data-level="" data-path="links-und-tipps.html"><a href="links-und-tipps.html#auswertungsskript-ausfuhren"><i class="fa fa-check"></i>Auswertungsskript ausführen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="components.html"><a href="components.html"><i class="fa fa-check"></i><b>1</b> Buchbestandteile</a><ul>
+<li class="chapter" data-level="1.1" data-path="uberschriften-labels-und-absatze.html"><a href="uberschriften-labels-und-absatze.html"><i class="fa fa-check"></i><b>1.1</b> Überschriften, Labels und Absätze</a></li>
+<li class="chapter" data-level="1.2" data-path="abbildungen.html"><a href="abbildungen.html"><i class="fa fa-check"></i><b>1.2</b> Abbildungen</a></li>
+<li class="chapter" data-level="1.3" data-path="tabellen.html"><a href="tabellen.html"><i class="fa fa-check"></i><b>1.3</b> Tabellen</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="tabellen.html"><a href="tabellen.html#knitr-tabelle"><i class="fa fa-check"></i><b>1.3.1</b> knitr-Tabelle</a></li>
+<li class="chapter" data-level="1.3.2" data-path="tabellen.html"><a href="tabellen.html#complexTables"><i class="fa fa-check"></i><b>1.3.2</b> komplexere (LaTeX-)Tabellen</a></li>
+<li class="chapter" data-level="1.3.3" data-path="tabellen.html"><a href="tabellen.html#xTable"><i class="fa fa-check"></i><b>1.3.3</b> xTable()</a></li>
+<li class="chapter" data-level="1.3.4" data-path="tabellen.html"><a href="tabellen.html#interactiveTable"><i class="fa fa-check"></i><b>1.3.4</b> interaktive Tabellen</a></li>
+<li class="chapter" data-level="1.3.5" data-path="tabellen.html"><a href="tabellen.html#inline-r-code"><i class="fa fa-check"></i><b>1.3.5</b> Inline R-Code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="verfassen.html"><a href="verfassen.html"><i class="fa fa-check"></i><b>2</b> Verfassen</a><ul>
+<li class="chapter" data-level="2.1" data-path="zitationen.html"><a href="zitationen.html"><i class="fa fa-check"></i><b>2.1</b> Zitationen</a></li>
+<li class="chapter" data-level="2.2" data-path="text-wiederholen-und-blockquote.html"><a href="text-wiederholen-und-blockquote.html"><i class="fa fa-check"></i><b>2.2</b> Text wiederholen und Blockquote</a></li>
+<li class="chapter" data-level="2.3" data-path="spracheinstellungen.html"><a href="spracheinstellungen.html"><i class="fa fa-check"></i><b>2.3</b> Spracheinstellungen</a></li>
+<li class="chapter" data-level="2.4" data-path="spell-check.html"><a href="spell-check.html"><i class="fa fa-check"></i><b>2.4</b> Spell Check</a></li>
+<li class="chapter" data-level="2.5" data-path="collaboration.html"><a href="collaboration.html"><i class="fa fa-check"></i><b>2.5</b> Collaboration</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="tbd.html"><a href="tbd.html"><i class="fa fa-check"></i><b>3</b> To Be Done</a></li>
+<li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Abschlussarbeit in RStudio mit bookdown - A Minimal Book Example</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tabellen" class="section level2">
+<h2><span class="header-section-number">1.3</span> Tabellen</h2>
+<!----------------------------------------------------------------------------->
+<div id="knitr-tabelle" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> knitr-Tabelle</h3>
+<p>Similarly to figures, you can reference tables generated from <code>knitr::kable()</code>, e.g., see Table <a href="tabellen.html#tab:knitrTable">1.1</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr::<span class="kw">kable</span>(
+  <span class="kw">head</span>(iris, <span class="dv">5</span>), <span class="dt">caption =</span> <span class="st">&#39;This knitr::kable() table looks great in any output format.&#39;</span>,
+  <span class="dt">booktabs =</span> <span class="ot">TRUE</span>
+)</code></pre></div>
+<table>
+<caption><span id="tab:knitrTable">Tabelle 1.1: </span>This knitr::kable() table looks great in any output format.</caption>
+<thead>
+<tr class="header">
+<th align="right">Sepal.Length</th>
+<th align="right">Sepal.Width</th>
+<th align="right">Petal.Length</th>
+<th align="right">Petal.Width</th>
+<th align="left">Species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.7</td>
+<td align="right">3.2</td>
+<td align="right">1.3</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.6</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.0</td>
+<td align="right">3.6</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+</tbody>
+</table>
+<!----------------------------------------------------------------------------->
+</div>
+<div id="complexTables" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> komplexere (LaTeX-)Tabellen</h3>
+<p><code>knitr:::kable()</code> erlaubt leider kein row- oder colspan, also keine Tabellenzellen, die über mehrere Reihen oder Spalten gehen. Ebenso gehen Markdown-Tabellen mit Span nicht, da dies in <a href="http://www.pandoc.org/MANUAL.html#tables">Pandoc</a> flavored markdown nicht unterstützt wird.</p>
+<pre><code>Table: (\#tab:rmdTable) Broken Table.
+
+| One    | Two | Three | Four    | Five  | Six 
+| -
+| Span &lt;td colspan=3&gt;triple  &lt;td colspan=2&gt;double</code></pre>
+<p>Ergibt eine kaputte Tabelle <a href="tabellen.html#tab:rmdTable">1.2</a>:</p>
+<table>
+<caption><span id="tab:rmdTable">Tabelle 1.2: </span> Broken Table.</caption>
+<thead>
+<tr class="header">
+<th>One</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+| Span
+<td colspan=3>
+triple
+<td colspan=2>
+<p>double</p>
+<p>Möchte man eine Tabelle ohne <code>knitr:::kable()</code> und ohne Pandoc erstellen, kann das Buch nicht mehr automatisch in jedes Output-Format kompiliert werden. Man kann aber selbst die Bedingung schreiben, bei welchem Output-Format welches Tabellenformat gewählt werden soll.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if( knitr:::<span class="kw">is_latex_output</span>() ) { ... }</code></pre></div>
+<p>Dies kann man nutzen, um zumindest in PDF komplexe LaTeX-Tabellen zu erzeugen, während in HTML und Co. eine nicht ganz so schöne Tabelle dargestellt wird. Beachtet die R-Chunk-Optionen <code>results='asis</code> und <code>comment=''</code> sowie kleine Syntaxanpassungen im R-Befehl <code>cat()</code> wie <code>\\</code> und <code>\n</code>, um in LaTeX kompilierbaren Output aus R heraus zu generieren.</p>
+<pre><code>{r latexTable, fig.cap=&#39;latexTable&#39;, results=&#39;asis&#39;, comment=&#39;&#39;}</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if( knitr:::<span class="kw">is_latex_output</span>() ) {
+  <span class="co">#erstelle LaTeX-Tabelle über R-Output</span>
+    <span class="co">#(beachte die Syntaxanpassung &quot;cat()&quot;, &quot;\\&quot; und &quot;\n&quot;, um LaTeX-Output aus R zu erzeugen):</span>
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">begin{table}[]</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">centering</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">caption{(</span><span class="ch">\\</span><span class="st">#tab:latexTable) Pure LaTeX-Table}</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">label{latexTable}</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">begin{tabular}{lllll}</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(<span class="st">&quot;            &amp; </span><span class="ch">\\</span><span class="st">textbf{c1}  &amp; </span><span class="ch">\\</span><span class="st">textbf{c2} &amp; </span><span class="ch">\\</span><span class="st">textbf{c3}  &amp; </span><span class="ch">\\</span><span class="st">textbf{c4} </span><span class="ch">\\\\\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">textit{r1} &amp; </span><span class="ch">\\</span><span class="st">multicolumn{2}{c}{r1c1c2} &amp; r1c3         &amp; r1c4        </span><span class="ch">\\\\\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">textit{r2} &amp; r2c1         &amp; r2c2        &amp; </span><span class="ch">\\</span><span class="st">multicolumn{2}{c}{r2c3c4}</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">end{tabular}</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">end{table}</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    
+    <span class="co">#erzeugt folgenden in LaTeX kompilierbaren Output:</span>
+    <span class="co"># \begin{table}[]</span>
+    <span class="co"># \centering</span>
+    <span class="co"># \caption{caption=&quot;(\\#tab:xTable) An xtable table&quot;)Pure LaTeX-Table}</span>
+    <span class="co"># \label{latexTable}</span>
+    <span class="co"># \begin{tabular}{lllll}</span>
+    <span class="co">#             &amp; \textbf{c1}  &amp; \textbf{c2} &amp; \textbf{c3}  &amp; \textbf{c4} \\</span>
+    <span class="co"># \textit{r1} &amp; \multicolumn{2}{c}{r1c1c2} &amp; r1c3         &amp; r1c4        \\</span>
+    <span class="co"># \textit{r2} &amp; r2c1         &amp; r2c2        &amp; \multicolumn{2}{c}{r2c3c4}</span>
+    <span class="co"># \end{tabular}</span>
+    <span class="co"># \end{table}</span>
+} else {
+  <span class="co">#erstelle Tabelle für alle anderen Outputformate:</span>
+    rcMatrix &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">data.frame</span>(<span class="kw">c</span>(<span class="st">&quot;r1c1c2&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;r1c3&quot;</span>, <span class="st">&quot;r1c4&quot;</span>),
+                             <span class="kw">c</span>(<span class="st">&quot;r2c1&quot;</span>, <span class="st">&quot;r2c2&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;r2c3c4&quot;</span>) ))
+      <span class="kw">colnames</span>(rcMatrix) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;c1&quot;</span>, <span class="st">&quot;c2&quot;</span>, <span class="st">&quot;c3&quot;</span>, <span class="st">&quot;c4&quot;</span>)
+      <span class="kw">rownames</span>(rcMatrix) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;r1&quot;</span>, <span class="st">&quot;r2&quot;</span>)
+    
+    knitr::<span class="kw">kable</span>(
+      rcMatrix, <span class="dt">caption =</span> <span class="st">&#39;This table would be a pure LaTeX table with proper colspan in PDF&#39;</span>,
+      <span class="dt">booktabs =</span> <span class="ot">TRUE</span>
+    )
+}</code></pre></div>
+<table>
+<caption><span id="tab:latexTable">Tabelle 1.3: </span>This table would be a pure LaTeX table with proper colspan in PDF</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="left">c1</th>
+<th align="left">c2</th>
+<th align="left">c3</th>
+<th align="left">c4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>r1</td>
+<td align="left">r1c1c2</td>
+<td align="left"></td>
+<td align="left">r1c3</td>
+<td align="left">r1c4</td>
+</tr>
+<tr class="even">
+<td>r2</td>
+<td align="left">r2c1</td>
+<td align="left">r2c2</td>
+<td align="left"></td>
+<td align="left">r2c3c4</td>
+</tr>
+</tbody>
+</table>
+<p>As <a href="https://bookdown.org/yihui/bookdown/tables.html">Yihui</a> mentions “[if] you decide to use other R packages to generate tables, you have to make sure the label for the table environment appears in the beginning of the table caption in the form <code>(\#label)</code> (again, label must have the prefix tab:):”<br />
+Since <code>\</code> (backslash) is an escape sequence, we have to write <code>(\\#tab:Beschriftung)</code> here.</p>
+<p>Da der R-Chunk die Option <code>fig.cap='latexTable'</code> beinhaltet und der Tabellenüberschrifts-LaTeX-Befehl <code>(\\#tab:latexTable))</code> enthält, kann man in beiden Output-Bedingungen per <code>\@ref(tab:latexTable)</code> auf die Tabelle referenzieren: Siehe Tabelle <a href="tabellen.html#tab:latexTable">1.3</a>.</p>
+<!----------------------------------------------------------------------------->
+</div>
+<div id="xTable" class="section level3">
+<h3><span class="header-section-number">1.3.3</span> xTable()</h3>
+<p>Ein beliebtes R-package zur Erstellung von LaTeX-Tabellen ist <code>xtable</code>. Auch wenn Tabelle <a href="tabellen.html#tab:xTable">1.4</a> aussieht wie jede anderen, wurde sie mit xtable erstellt.<br />
+xtable unterstützt nur die Outputformate PDF (default) und HTML (<code>type='html'</code>), die aber nicht automatisch je nach gewähltem Outputformat ausgegeben werden. So muss, wie schon in Abschnitt <a href="tabellen.html#complexTables">1.3.2</a> gezeigt, für jede Output-Bedingung eine eigene Tabelle erstellt werden.<br />
+Die R-Chunk-Option <code>results='asis'</code> sowie <code>print.xtable(..., comment=FALSE)</code> sorgen dafür, dass der R-Output in LaTeX kompilierbar ist.</p>
+<pre><code>{r xTable, fig.cap=&#39;xTable&#39;, echo=TRUE, results=&#39;asis&#39;}</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if( knitr:::<span class="kw">is_latex_output</span>() ) {
+  <span class="co">#PDF</span>
+  <span class="kw">library</span>(xtable)
+  <span class="kw">print.xtable</span>(
+    <span class="kw">xtable</span>(mtcars[<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">1</span>:<span class="dv">4</span>], <span class="dt">label=</span><span class="st">&quot;xTableInternLabel&quot;</span>, <span class="dt">caption=</span><span class="st">&quot;(</span><span class="ch">\\</span><span class="st">#tab:xTable) An xtable table&quot;</span>), <span class="dt">comment=</span><span class="ot">FALSE</span>)
+} else if ( knitr:::<span class="kw">is_html_output</span>() ) {
+  <span class="co">#HTML</span>
+  <span class="kw">library</span>(xtable)
+  <span class="kw">print.xtable</span>(
+    <span class="kw">xtable</span>(mtcars[<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">1</span>:<span class="dv">4</span>], <span class="dt">label=</span><span class="st">&quot;xTableInternLabel&quot;</span>, <span class="dt">caption=</span><span class="st">&quot;(</span><span class="ch">\\</span><span class="st">#tab:xTable) An xtable table&quot;</span>), <span class="dt">comment=</span><span class="ot">FALSE</span>,
+    <span class="dt">type=</span><span class="st">&#39;html&#39;</span>) <span class="co">#only &#39;latex&#39; (default) or &#39;html&#39;</span>
+} else {
+  <span class="co">#Word und andere Outputformate  </span>
+  knitr::<span class="kw">kable</span>(
+    mtcars[<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">1</span>:<span class="dv">4</span>], <span class="dt">caption =</span> <span class="st">&#39;In other output formats than PDF and HTML we cannot use xtable&#39;</span>,
+    <span class="dt">booktabs =</span> <span class="ot">TRUE</span>
+    )
+}</code></pre></div>
+<table border="1">
+<caption align="bottom">
+<span id="tab:xTable">Tabelle 1.4: </span> An xtable table
+</caption>
+<tr>
+<th>
+</th>
+<th>
+mpg
+</th>
+<th>
+cyl
+</th>
+<th>
+disp
+</th>
+<th>
+hp
+</th>
+</tr>
+<tr>
+<td align="right">
+Mazda RX4
+</td>
+<td align="right">
+21.00
+</td>
+<td align="right">
+6.00
+</td>
+<td align="right">
+160.00
+</td>
+<td align="right">
+110.00
+</td>
+</tr>
+<tr>
+<td align="right">
+Mazda RX4 Wag
+</td>
+<td align="right">
+21.00
+</td>
+<td align="right">
+6.00
+</td>
+<td align="right">
+160.00
+</td>
+<td align="right">
+110.00
+</td>
+</tr>
+<tr>
+<td align="right">
+Datsun 710
+</td>
+<td align="right">
+22.80
+</td>
+<td align="right">
+4.00
+</td>
+<td align="right">
+108.00
+</td>
+<td align="right">
+93.00
+</td>
+</tr>
+<a name=xTableInternLabel></a>
+</table>
+
+<div class="rmdcaution">
+Only HTML and PDF are supported output formats in xtable().
+</div>
+<p></p>
+<!----------------------------------------------------------------------------->
+</div>
+<div id="interactiveTable" class="section level3">
+<h3><span class="header-section-number">1.3.4</span> interaktive Tabellen</h3>
+<p>Es können auch interaktive Tabellen eingefügt werden. Diese ergeben natürlich in statischen Dokumenten wie PDF keinen Sinn. In PDF kann aber ein <strong>Screenshot</strong> der dynamischen Tabelle/Abbildung automatisch eingefügt werden.</p>
+<p>Problematisch beim Erstellen von Tabellen mit anderen Paketen ist die korrekte <em>Tabellennummerierung</em>! HTML-Widgets sind meistens Plots, weswegen Yihui vorerst auch die <code>DT</code>-Widgets nur als “Abbildung” bezeichnen und nummerieren lassen wird. Siehe <a href="https://github.com/rstudio/bookdown/issues/313">issue 313</a> auf GitHub.<br />
+Um immerhin die Nummerierung als Abbild hinzubekommen, benötigt der R-Code-Chunk, der die Tabelle(ngrafik) erstellt, die Option <code>fig.cap</code>. Für einen schönen Screenshot gibt es etliche Chunk-Options via <code>screenshot.opts</code>.</p>
+<pre><code>{r dynamicTableWebshot, fig.cap=&#39;dynamicTableWebshot&#39;, dev=&#39;png&#39;, cache=TRUE, cache.extra=packageVersion(&#39;DT&#39;), screenshot.opts=list(zoom=2)}</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#library(webshot)</span>
+  <span class="co">#webshot::install_phantomjs()  #muss für Screenshot installiert werden</span>
+  DT::<span class="kw">datatable</span>(
+    <span class="kw">head</span>(iris, <span class="dv">20</span>), <span class="dt">caption =</span> <span class="st">&#39;This table is a screenshot in PDF, but interactive in HTML.&#39;</span>)</code></pre></div>
+<div class="figure"><span id="fig:dynamicTableWebshot"></span>
+<div id="htmlwidget-460de936bb3f4ffd2407" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-460de936bb3f4ffd2407">{"x":{"filter":"none","caption":"<caption>This table is a screenshot in PDF, but interactive in HTML.<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9,5.4,4.8,4.8,4.3,5.8,5.7,5.4,5.1,5.7,5.1],[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1,3.7,3.4,3,3,4,4.4,3.9,3.5,3.8,3.8],[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5,1.5,1.6,1.4,1.1,1.2,1.5,1.3,1.4,1.7,1.5],[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1,0.2,0.2,0.1,0.1,0.2,0.4,0.4,0.3,0.3,0.3],["setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Abbildung 1.3: dynamicTableWebshot
+</p>
+</div>
+<pre class="text"><code>1. See Table \@ref(tab:dynamicTableWebshot) (Tabellenreferenz-Syntax)
+1. See Table \@ref(fig:dynamicTableWebshot) (Abbildungsreferenz-Syntax)
+1. See Table \@ref(dynamicTableWebshot) (Überschriftsreferenz-Syntax)</code></pre>
+<ol style="list-style-type: decimal">
+<li>See Table <a href="#tab:dynamicTableWebshot"><strong>??</strong></a> (Tabellenreferenz-Syntax)</li>
+<li>See Table <a href="tabellen.html#fig:dynamicTableWebshot">1.3</a> (Abbildungsreferenz-Syntax)</li>
+<li>See Table <a href="#dynamicTableWebshot"><strong>??</strong></a> (Überschriftsreferenz-Syntax)</li>
+</ol>
+
+<div class="rmdcaution">
+HTML-Widgets, müssen als <strong>Abbildung</strong> (<code>\@ref(fig:BeschriftungstextFigCap</code>) referenziert werden, auch wenn es sich um eine DT-Tabelle handelt.
+</div>
+<p></p>
+<!----------------------------------------------------------------------------->
+</div>
+<div id="inline-r-code" class="section level3">
+<h3><span class="header-section-number">1.3.5</span> Inline R-Code</h3>
+<div id="referenzieren-mit-inline-bedingung" class="section level4">
+<h4><span class="header-section-number">1.3.5.1</span> Referenzieren mit Inline-Bedingung</h4>
+<p><em>Kann ich nicht je nach Outputformat eine statische oder interaktive Tabelle erzeugen?</em></p>
+<p>Leider kann das Vorgehen wie unter Abschnitt <a href="tabellen.html#complexTables">1.3.2</a> beschrieben für DT-Tabellen (HTML-Widget) nicht empfohlen werden. Da in HTML die interaktive htmlwidget-Tabelle als Abbildung aufgefasst wird, aber als Tabelle in PDF, ergeben sich unterschiedliche Nummerierungen in HTML und PDF. Zwar sind die Nummerierungen innerhalb eines Dokuments konsistent, aber man muss stets darauf achten, ob man die Tabelle mit <code>\@ref(tab:Tabellenbezeichnung)</code> (HTML) oder mit <code>\@ref(fig:Tabellenbezeichnung)</code> (PDF) referenziert.</p>
+
+<div class="rmdimportant">
+HTML-Widgets werden auch dann als Abbildung geführt, wenn es sich um eine DT-Tabelle handelt.
+</div>
+<p></p>
+<p>Wie referenziere ich nun auf die Tabelle, wenn sie einmal eine Tabelle und einmal eine Abbildung ist? Probieren wir es anhand der folgenden Tabelle aus.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if( knitr:::<span class="kw">is_html_output</span>() ) {
+  <span class="co">#interactives HTML-Widget</span>
+  <span class="co">#library(webshot)</span>
+  <span class="co">#webshot::install_phantomjs()  #muss für Screenshot installiert werden</span>
+  DT::<span class="kw">datatable</span>(
+    mtcars[<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">1</span>:<span class="dv">4</span>], <span class="dt">caption =</span> <span class="st">&#39;This table is a screenshot in PDF, but interactive in HTML.&#39;</span>)
+} else {
+  <span class="co">#statische Tabelle in allen anderen Outputformaten  </span>
+  knitr::<span class="kw">kable</span>(
+    mtcars[<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">1</span>:<span class="dv">4</span>], <span class="dt">caption =</span> <span class="st">&#39;This table would be interactive in HTML.&#39;</span>,
+    <span class="dt">booktabs =</span> <span class="ot">TRUE</span>
+    )
+}</code></pre></div>
+<div class="figure"><span id="fig:htmlWidgetTableCondition"></span>
+<div id="htmlwidget-35173549182777fe1e28" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-35173549182777fe1e28">{"x":{"filter":"none","caption":"<caption>This table is a screenshot in PDF, but interactive in HTML.<\/caption>","data":[["Mazda RX4","Mazda RX4 Wag","Datsun 710"],[21,21,22.8],[6,6,4],[160,160,108],[110,110,93]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mpg<\/th>\n      <th>cyl<\/th>\n      <th>disp<\/th>\n      <th>hp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Abbildung 1.4: htmlWidgetTableCondition
+</p>
+</div>
+<p>Folgende Markdown-Textschnipsel ergeben zum Teil unterschiedlichen Text in PDF und HTML.</p>
+<pre class="text"><code>1. See Table \@ref(tab:htmlWidgetTableCondition) will work in PDF, but not in HTML.
+1. See Table \@ref(fig:htmlWidgetTableCondition) will work in HTML (and Word btw.), but not in PDF.
+1. See Table \@ref(htmlWidgetTableCondition) is just not correct here.
+1. See Table `r ifelse ( knitr:::is_html_output(), &#39;\\@ref(fig:htmlWidgetTableCondition)&#39;, &#39;\\@ref(tab:htmlWidgetTableCondition)&#39; )` will work in any Output, but is a bit monstrous.</code></pre>
+<ol style="list-style-type: decimal">
+<li>See Table <a href="#tab:htmlWidgetTableCondition"><strong>??</strong></a> will work in PDF, but not in HTML.</li>
+<li>See Table <a href="tabellen.html#fig:htmlWidgetTableCondition">1.4</a> will work in HTML (and Word btw.), but not in PDF.</li>
+<li>See Table <a href="#htmlWidgetTableCondition"><strong>??</strong></a> is just not correct here.</li>
+<li>See Table <a href="tabellen.html#fig:htmlWidgetTableCondition">1.4</a> will work in any Output, but is a bit monstrous.</li>
+</ol>
+</div>
+<div id="inline-r-output-und-bedingte-textanzeige" class="section level4">
+<h4><span class="header-section-number">1.3.5.2</span> Inline R-Output und bedingte Textanzeige</h4>
+<p>Letztlich können wir mithilfe von Inline-R-Code auf jede R-Variable zurückgreifen und überall bedingte Textbausteine in die Thesis einfügen, was vor allem beim Report statistische Analysen sehr nütztlich ist.</p>
+<div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown">Fahrzeuge mit Automatikgetriebe haben 
+<span class="bn">`r if (t.test(gear~am, data=mtcars)$p.value &gt; 0.05) &#39;nicht&#39;`</span> 
+signifikant mehr oder weniger Gänge als Autos mit manuellem Schaltgetriebe.</code></pre></div>
+<p>Fahrzeuge mit Automatikgetriebe haben signifikant mehr oder weniger Gänge als Autos mit manuellem Schaltgetriebe.<br />
+Im Schnitt haben alle Autos des <code>mtcars</code>-Datensatzes <code>mean(mtcars$hp)=</code> 146.6875PS.</p>
+
+<div class="rmdimportant">
+Mithilfe von Inline-R-Code <code>`r R-Code`</code> können wir auf jede R-Variable und gewohnte R-Funktionalitäten wie bedingte Textanzeigen zurückgreifen.
+</div>
+<p></p>
+
+</div>
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="abbildungen.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="verfassen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["_main_bookdownAbschlussarbeit.pdf", "_main_bookdownAbschlussarbeit.docx", "_main_bookdownAbschlussarbeit.zip"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+# To Be Done {#tbd}
+
+Notwendig:
+
+- best practice: Wann cachen? Und weitere sinnvolle R-Chunk-Options. https://yihui.name/knitr/options/
+- "References" statt "Literatur" unter HTML-Seite
+- LaTeX Übersetzung
+- Dezimaltrennzeichen vor allem von inline r-Code: Komma statt Punkt
+- LaTeX Float
+- LaTeX nocite
+- LaTeX Code schreibt über Seitenränder -> manuell Zeilen ab Spalte 90 umbrechen
+- Word zentriertes Bild ist linksbündig
+- `'r format(Sys.time(), '%d. %B %Y')'` verursacht LaTeX Probleme
+- custom block icons und favicon werden online nicht angezeigt
+- Zitieren von Yihui. Bib-file entschlacken.
+
+Zukünftig:
+
+- LaTeX Text ist zentriert nach kaputter Tabelle
+- autocompletion für `\@ref`
+    - Atom-Editor kann das vielleicht https://discuss.atom.io/t/autocompletion-of-citeproc-references-in-markdown/28177 ?
+- xtable bzw. generell LaTeX-Tabellen in Word und co möglich? Per Screenshot?
+- citr geht nicht mehr
+- mehrere Literaturverzeichnisse
+- Packrat offline restore
+- hunspell und Umlaute
+- R-Code in Custom Block
+
+Im Moment noch nicht möglich:
+
+- continuous spell checking in RStudio
+- autocomplete @ref https://github.com/rstudio/rmarkdown/issues/958
+- htmlwidget / DT-table als "Tabelle" statt als "Abbildung"
+
+
+<!-- Ein paar falsch geschriebene Wörter für das Spellchecking-Beispiel -->
+```{r wrongWords, eval=FALSE, include=FALSE}
+"Worng eglish word."
+"Falsches deutshes Wort."
+```
+

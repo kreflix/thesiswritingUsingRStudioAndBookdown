@@ -1,0 +1,140 @@
+--- 
+title: "Abschlussarbeit in RStudio mit bookdown - A Minimal Tech Example"
+author: "Felix Kretschmer"
+date: "`r Sys.Date()`" #`r format(Sys.time(), '%d. %B %Y')`
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [bibliography.bib, packages.bib]#, "C:/Users/Felix/OneDrive/Studium/0 Masterarbeit/Literatur/Hauptliteratur/Literatur_MA.bib"]
+biblio-style: apalike
+link-citations: yes #internal link to bib-entry
+csl: citationstyle.csl
+lot: yes #Tabellenverzeichnis
+lof: yes #list of figures
+github-repo: rstudio/bookdown-demo
+description: "This is a minimal example of using the bookdown package to write a thesis in German."
+cover-image: img/cover.png
+favicon: 'img/favicon.png'
+#nicht zitierte Quellen müssen (leider) hier eingegeben werden, um im Literaturverzeichnis zu erscheinen
+#nocite klappt über natbib nur für HTML und Word, nicht aber PDF -> vllt den default pandoc-citeproc nehmen
+nocite: |
+  @Welsh2014, @Atkinson2014 
+
+---
+
+# Vorbereitung und Vorwort {-}
+
+```{r cover, fig.align='center', out.width='32.8%', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'), fig.link='http://felixkretschmer.de/'}
+knitr::include_graphics('img/cover.png', dpi = NA)
+```
+
+I really much appreciate what the RStudio Team and people like [Yihui Xie](https://yihui.name/) are doing to push reproducible research and our all effiency working with R. And I would love this book making their accomplishments more accessible for students and every scientist, who is about to set up her or his next R project.
+
+----
+
+**Why should I read this book?**
+
+1. _Fully dynamic reports_: You have added some new observations? Don't worry! All graphics, tables and values will have changed automatically after compiling the thesis again. You won't have to copy results from your R console and paste it to your word or presentation processing program any longer, since 
+    a. R-Chunks allow you to insert tables and graphics using the R code you are familiar.
+    a. You can use inline R code directly in your thesis text, allowing you to have R output in your sentences. Just store a result in a variable and let R and Markdown print it's value within a sentence.
+1. _Be a good scientist!_ You are doing real reproducible research as we all should do^[I'd really wish publisher would reward this!].
+    a. Having a dynamic report means every single result you report is traceable, so youre reader could see, where every specific value comes from. 
+    a. Everything, even the used R packages, are stored within one folder. So you can easily share the project and lastly it should compile correctly even some years in the future.
+    a. _Collaborate_: Since your are manipulating plain text files, you can use your favorite version control system (e.g. your University's GitLab) and collaborate easily with colleagues.
+
+----
+
+<!----------------------------------------------------------------------------->
+### Contribute! {-}
+
+I put a lot of completely unpaid effort and time (since I'm a student hardcore procrastinating his thesis writing) into making this book and I give it to you for free, hoping it will save you a lot of time and make you a better or at least a more efficient researcher. 
+    <!-- Spendenbutton https://www.paypal.com/de/cgi-bin/webscr?cmd=_donate-intro-outside -->
+
+I though have on request for you: Everyone whom this book helped I want to invite to contribute to this project as ideas and resolutions, that would make this book continously better come during actual thesis writing.
+
+**Objective**
+
+This book and it's corresponding R project shall become a great starting point for other student's thesises and scientist's statistical reports. It shall contain everything you usually need while writing a thesis (especially in Psychology) out of the box, so you can use/copy this R project folder whenever you start your next R project. Thoug it shall still be a minimal project and it shall _not_ become another bookdown or R manual.
+Ferner und von einer nicht zu unterschätzenden Schwierigkeit (in Details wie Dezimaltrennzeichen etc.) soll dieses R-Projekt Abschlussarbeiten auf Deutsch ermöglichen.  
+See [To be done] if you want to help, but don't know where to start.
+
+----
+
+As this book is written in order to prepare writing a thesis in German, you will be confronted with a mixture of languages.^[Auch mein Fließtext ist noch work in progress und ich springe zwischen direkter und indirekter Anrede, vllt auch zwischen den Anreden Du und Sie.] Feel free to translate and optimize this book, so it could become a great starting point for other student's thesises.
+
+This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.  
+
+```{block2, tbdImportant, type='rmdcaution'}
+*tbd*: Dieses Beispielbuch ist noch nicht voll funktionsfähig. Manches, was in HTML funktioniert, klappt noch nicht im PDF-Output. Manches davon ist eine Frage der korrekten LaTeX-Einstellungen, manches wird von bookdown und/oder pandoc nicht unterstützt. Eine Übersicht findet ihr unter [To Be Done].
+```
+
+
+<!----------------------------------------------------------------------------->
+## Get started {-}
+
+You have to install the `bookdown`-package in R or could install the development versions of **bookdown** from Github:
+
+```{r installBookdown, eval=FALSE}
+install.packages("bookdown")
+library(bookdown)
+#devtools::install_github("rstudio/bookdown")
+```
+
+Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
+
+To compile this example to PDF, you need to install XeLaTeX.
+
+
+<!----------------------------------------------------------------------------->
+### RStudio und Packrat {-}
+
+Wenn du den Projektordner dieses Buches heruntergeladen hast (siehe [Links und Tipps]), verwendest du automatisch [Packrat](https://rstudio.github.io/packrat/), da die entsprechende Projekt-Option bereits aktiviert ist. Das bedeutet, dass sich die für dieses Buch verwendeten R-Pakete in einer private library direkt im Projektordner installieren (somit hat jedes Projekt seine eigenen Pakete). 
+
+Da die Pakete auf jedem Computer neu installiert werden müssen, beinhaltet der Unterordner `/packrat` anfangs nur die Infos, welche Pakete du benötigst (einen sogenannten Snapshot). Der Ordner `/src` beinhaltet die package tarballs und sollte der Versionskontrolle unterliegen, wenn du z.B. Git verwendest, sodass das Projekt auch langfristig reproduzierbar bleibt, selbst dann, wenn die Pakete nicht mehr online zur Verfügung stehen. ^[_tbd_: Packrat lädt in meinem Falle trotz hinterlegter tarballs die Pakete aus dem Internet.] Mit den folgenden Packrat-Befehlen installierst du alle benötigten Pakete auf deinem Computer (aufgrund der dependencies der Pakete ist die Liste recht lang).
+
+```{block2, packratImportant, type='rmdcaution'}
+Beim erstmaligen Start des Projektes wird R versuchen, Packrat und alle notwendigen Pakete auf deinem Computer zu installieren. Dies kann einige Minuten dauern und eine Internetverbindung benötigen. Beobachte währenddessen die Meldungen in der Console.
+Sollte es nicht automatisch klappen, dann installiere Packrat manuell. Nutze anschließend folgende Befehle, um die Pakete zu installieren oder schaue in `_Auswertungsskript.r`, welche Pakete für dieses Buch geladen werden müssen.
+```
+
+
+```{r packrat, eval=FALSE}
+#packrat::init()  #Initializes the current working directory as a Packrat project.
+packrat::status()
+packrat::restore()
+packrat::clean() #löscht scheinbar nicht benötigte Pakete (erkennt Pakete an library() und require() )
+packrat::get_opts()  #aktuelle Packrat-Einstellungen
+```
+
+
+<!----------------------------------------------------------------------------->
+## Links und Tipps {-}
+
+- To open and use this book's project just download it's source files (`zip` from toolbar on top)^[GitHub links will follow (_tbd_)] and open the `.Rproj`-file in RStudio (of course you need R and RStudio).
+
+- After successfully installing bookdown (see [Rstudio und Packrat]) you should find the button "Build Book" in the "Build"-tab in RStudio. "Build Book" creates the book in all output formats. You can find the `index.html`, `pdf` etc. in the `docs`-folder.
+    - For PDF-Output you also need to install LaTeX.
+
+- Yihui Xie wrote a great book, explaining all you need to know about bookdown. (https://bookdown.org/yihui/bookdown/) 
+    - Actually I edited his Minimal Book Example to create this book. See his original book here: https://bookdown.org/yihui/bookdown-demo/ (or download it from [GitHub](https://github.com/rstudio/bookdown-demo)).
+    - See how the Bookdown-book works under the hood or to follow Yihui's example: https://github.com/rstudio/bookdown/tree/master/inst/examples 
+    
+- I agree with Sean Kross who says "getting started with bookdown is not yet a totally straightforward process". Read his [How to Start a Bookdown Book](http://seankross.com/2016/11/17/How-to-Start-a-Bookdown-Book.html) here!
+    - Actually he provides a [minimal bookdown example](http://seankross.com/bookdown-start/diving-in.html) as well, but for some reasons his didn't work for me. You can download it from [GitHub](https://github.com/seankross/bookdown-start).
+    
+- There are some cool addins for RStudio, e. g.
+    - `citr` Just install it like any other R-package and then you can easily insert citations browsing your bib-file within Rstudio.
+    - `ggThemeAssist` or `ggedit`
+    - Find more https://github.com/daattali/addinslist
+
+- Annotations: [hypothes.is](https://web.hypothes.is/) lets you easily and in collaboration with others (or several supervisors) annotate text on any website. Of course PDF annotations, (Online-)Word's markups, an HTML comment area (e.g. [Disqus](https://disqus.com/)) or Git issues could fit your needs as well.
+
+
+<!----------------------------------------------------------------------------->
+### Auswertungsskript ausführen {-}
+
+Damit alle Ergebnisse, Grafiken und Variablen vorhanden sind, müssen erst die Berechnungen in R vorgenommen werden. Theoretisch könnten alle R-Berechnungn auch in einem R-Chunk im Buch ausgeführt werden. Da das aber bei langen Skripten sehr unüblich werden kann, habe ich ein klassischen R-Skript zur Auswertung erstellt, dass vor dem Kompilieren des Buches (ggf. mit Dummy-Daten) ausgeführt werden muss. Entweder per Hand oder per Source-Befehl.
+
+```{r sourceAuswertung, eval=FALSE}
+source('_Auswertungsskript.r')
+```

@@ -1,0 +1,21 @@
+bookdown::gitbook:
+  css: style.css
+  split_by: section
+  config:
+    toc:
+      collapse: none #subsection
+      before: |
+        <li><a href="./">Abschlussarbeit mit bookdown</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    #edit: https://..../bookdownAbschlussarbeit/edit/master/%s
+    download: ["pdf", "docx", "zip"] # book_filename.zip muss händisch in den docs-Ordner gespeichert werden
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib #biblatex funktioniert bei mir nicht
+  keep_tex: yes
+  #toc_depth: 3
+#bookdown::epub_book: default
+bookdown::word_document2: default

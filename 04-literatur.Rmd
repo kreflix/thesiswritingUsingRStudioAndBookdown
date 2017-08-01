@@ -1,0 +1,19 @@
+`r if (knitr:::is_html_output()) '# Literatur {-}'`
+  <!-- 
+  Das Literaturverzeichnis wird automatisch auf der letzten Seite (PDF) bzw. 
+  unten auf jeder Website, die Referenzen enthält, erstellt.
+  
+  Nicht zitierte Quellen, die dennoch im Literaturverzeichnis erscheinen sollen,
+  müssen in der index.Rmd im YAML header block 'nocite:' eingetragen werden.
+  -->
+
+```{r include=FALSE}
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'htmlwidgets', 'webshot', 'DT',
+  'miniUI', 'tufte', 'servr', 'citr', 'rticles'
+), 'packages.bib')
+```
+
+```{r sessionInfo}
+sessionInfo()
+```

@@ -1,0 +1,260 @@
+<!----------------------------------------------------------------------------->
+# Buchbestandteile {#components}
+
+In vermutlich jeder Thesis gibt es neben Text mindestens auch Abbildungen und Tabellen. Wie diese eingefügt werden, sodass am Ende immernoch jedes Output-Format korrekt dargestellt wird, schauen wir uns im Folgenden an. 
+
+Ich versuche, Fußnoten, Links, Listen, Aufzählungen etc. nebenher beispielhaft mit einfließen zu lassen, ohne konkret darauf einzugehen.^[Für mehr Details sei noch einmal auf Yihui Xie's [Bookdown-Buch](https://bookdown.org/yihui/bookdown/components.html) hingewiesen!]
+
+<!----------------------------------------------------------------------------->
+## Überschriften, Labels und Absätze
+
+You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(components). If you do not manually label them, there will be automatic labels anyway (always in lowercase), e.g., Chapter \@ref(abbildungen).
+
+Ein neuer Absatz beginnt, wenn eine Leerzeile in Markdown gelassen wurde.  
+Soll ein Satz in einer neuen Zeile, aber im selben Absatz beginnen, so müssen nach dem vorhergehenden Satz mehrere Leerzeichen stehen.
+
+
+<!----------------------------------------------------------------------------->
+## Abbildungen
+
+Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+
+```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
+par(mar = c(4, 4, .1, .1))
+plot(pressure, type = 'b', pch = 19)
+```
+
+Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig).
+
+Externe Grafiken müssen über `knitr::include_graphics()` eingefügt werden, um in PDF, HTML etc. automatisch korrekt referenziert werden zu können. Fußnoten können überall per `^[Fußnotentext]` eingefügt werden -- so wie hier in der Bildunterschrift. 
+
+```{r externalImage, out.width='32.8%', fig.show='hold', fig.align='center', fig.cap='Zentriertes Bild aus externer PNG-Datei.^[http://statistify.de]'}
+knitr::include_graphics('img/important.png')
+```
+
+<!----------------------------------------------------------------------------->
+## Tabellen
+
+<!----------------------------------------------------------------------------->
+### knitr-Tabelle
+
+Similarly to figures, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:knitrTable).
+
+```{r knitrTable, tidy=FALSE}
+knitr::kable(
+  head(iris, 5), caption = 'This knitr::kable() table looks great in any output format.',
+  booktabs = TRUE
+)
+```
+
+<!----------------------------------------------------------------------------->
+### komplexere (LaTeX-)Tabellen {#complexTables}
+
+`knitr:::kable()` erlaubt leider kein row- oder colspan, also keine Tabellenzellen, die über mehrere Reihen oder Spalten gehen. Ebenso gehen Markdown-Tabellen mit Span nicht, da dies in [Pandoc](http://www.pandoc.org/MANUAL.html#tables) flavored markdown nicht unterstützt wird.
+
+
+```
+Table: (\#tab:rmdTable) Broken Table.
+
+| One    | Two | Three | Four    | Five  | Six 
+| -
+| Span <td colspan=3>triple  <td colspan=2>double
+```
+
+Ergibt eine kaputte Tabelle \@ref(tab:rmdTable):
+
+Table: (\#tab:rmdTable) Broken Table.
+
+| One    | Two | Three | Four    | Five  | Six 
+| -
+| Span <td colspan=3>triple  <td colspan=2>double
+
+
+Möchte man eine Tabelle ohne `knitr:::kable()` und ohne Pandoc erstellen, kann das Buch nicht mehr automatisch in jedes Output-Format kompiliert werden. Man kann aber selbst die Bedingung schreiben, bei welchem Output-Format welches Tabellenformat gewählt werden soll.
+
+```{r outputBedingung, eval=FALSE}
+if( knitr:::is_latex_output() ) { ... }
+```
+
+Dies kann man nutzen, um zumindest in PDF komplexe LaTeX-Tabellen zu erzeugen, während in HTML und Co. eine nicht ganz so schöne Tabelle dargestellt wird. Beachtet die R-Chunk-Optionen `results='asis` und `comment=''` sowie kleine Syntaxanpassungen im R-Befehl `cat()` wie `\\` und `\n`, um in LaTeX kompilierbaren Output aus R heraus zu generieren.
+
+```
+{r latexTable, fig.cap='latexTable', results='asis', comment=''}
+```
+```{r latexTable, fig.cap='latexTable', results='asis', comment=''}
+if( knitr:::is_latex_output() ) {
+  #erstelle LaTeX-Tabelle über R-Output
+    #(beachte die Syntaxanpassung "cat()", "\\" und "\n", um LaTeX-Output aus R zu erzeugen):
+    cat("\\begin{table}[]\n")
+    cat("\\centering\n")
+    cat("\\caption{(\\#tab:latexTable) Pure LaTeX-Table}\n")
+    cat("\\label{latexTable}\n")
+    cat("\\begin{tabular}{lllll}\n")
+    cat("            & \\textbf{c1}  & \\textbf{c2} & \\textbf{c3}  & \\textbf{c4} \\\\\n")
+    cat("\\textit{r1} & \\multicolumn{2}{c}{r1c1c2} & r1c3         & r1c4        \\\\\n")
+    cat("\\textit{r2} & r2c1         & r2c2        & \\multicolumn{2}{c}{r2c3c4}\n")
+    cat("\\end{tabular}\n")
+    cat("\\end{table}\n")
+    
+    #erzeugt folgenden in LaTeX kompilierbaren Output:
+    # \begin{table}[]
+    # \centering
+    # \caption{caption="(\\#tab:xTable) An xtable table")Pure LaTeX-Table}
+    # \label{latexTable}
+    # \begin{tabular}{lllll}
+    #             & \textbf{c1}  & \textbf{c2} & \textbf{c3}  & \textbf{c4} \\
+    # \textit{r1} & \multicolumn{2}{c}{r1c1c2} & r1c3         & r1c4        \\
+    # \textit{r2} & r2c1         & r2c2        & \multicolumn{2}{c}{r2c3c4}
+    # \end{tabular}
+    # \end{table}
+} else {
+  #erstelle Tabelle für alle anderen Outputformate:
+    rcMatrix <- t(data.frame(c("r1c1c2", "", "r1c3", "r1c4"),
+                             c("r2c1", "r2c2", "", "r2c3c4") ))
+      colnames(rcMatrix) <- c("c1", "c2", "c3", "c4")
+      rownames(rcMatrix) <- c("r1", "r2")
+    
+    knitr::kable(
+      rcMatrix, caption = 'This table would be a pure LaTeX table with proper colspan in PDF',
+      booktabs = TRUE
+    )
+}
+```
+
+As [Yihui](https://bookdown.org/yihui/bookdown/tables.html) mentions "[if] you decide to use other R packages to generate tables, you have to make sure the label for the table environment appears in the beginning of the table caption in the form `(\#label)` (again, label  must have the prefix tab:):"  
+Since `\` (backslash) is an escape sequence, we have to write `(\\#tab:Beschriftung)` here.  
+
+Da der R-Chunk die Option `fig.cap='latexTable'` beinhaltet und der Tabellenüberschrifts-LaTeX-Befehl `(\\#tab:latexTable))` enthält, kann man in beiden Output-Bedingungen per `\@ref(tab:latexTable)` auf die Tabelle referenzieren: Siehe Tabelle \@ref(tab:latexTable).
+
+<!----------------------------------------------------------------------------->
+### xTable() {#xTable}
+
+Ein beliebtes R-package zur Erstellung von LaTeX-Tabellen ist `xtable`. Auch wenn Tabelle \@ref(tab:xTable) aussieht wie jede anderen, wurde sie mit xtable erstellt.  
+xtable unterstützt nur die Outputformate PDF (default) und HTML (`type='html'`), die aber nicht automatisch je nach gewähltem Outputformat ausgegeben werden. So muss, wie schon in Abschnitt \@ref(complexTables) gezeigt, für jede Output-Bedingung eine eigene Tabelle erstellt werden.  
+Die R-Chunk-Option `results='asis'` sowie `print.xtable(..., comment=FALSE)` sorgen dafür, dass der R-Output in LaTeX kompilierbar ist.
+
+```
+{r xTable, fig.cap='xTable', echo=TRUE, results='asis'}
+```
+```{r xTable, fig.cap='xTable', echo=TRUE, results='asis'}
+if( knitr:::is_latex_output() ) {
+  #PDF
+  library(xtable)
+  print.xtable(
+    xtable(mtcars[1:3,1:4], label="xTableInternLabel", caption="(\\#tab:xTable) An xtable table"), comment=FALSE)
+} else if ( knitr:::is_html_output() ) {
+  #HTML
+  library(xtable)
+  print.xtable(
+    xtable(mtcars[1:3,1:4], label="xTableInternLabel", caption="(\\#tab:xTable) An xtable table"), comment=FALSE,
+    type='html') #only 'latex' (default) or 'html'
+} else {
+  #Word und andere Outputformate  
+  knitr::kable(
+    mtcars[1:3,1:4], caption = 'In other output formats than PDF and HTML we cannot use xtable',
+    booktabs = TRUE
+    )
+}
+```
+
+```{block2, xtableImportant, type='rmdcaution'}
+Only HTML and PDF are supported output formats in xtable().
+```
+
+
+<!----------------------------------------------------------------------------->
+### interaktive Tabellen {#interactiveTable}
+
+Es können auch interaktive Tabellen eingefügt werden. Diese ergeben natürlich in statischen Dokumenten wie PDF keinen Sinn. 
+In PDF kann aber ein **Screenshot** der dynamischen Tabelle/Abbildung automatisch eingefügt werden.
+
+Problematisch beim Erstellen von Tabellen mit anderen Paketen ist die korrekte _Tabellennummerierung_! HTML-Widgets sind meistens Plots, weswegen Yihui vorerst auch die `DT`-Widgets nur als "Abbildung" bezeichnen und nummerieren lassen wird. Siehe [issue 313](https://github.com/rstudio/bookdown/issues/313) auf GitHub.  
+Um immerhin die Nummerierung als Abbild hinzubekommen, benötigt der R-Code-Chunk, der die Tabelle(ngrafik) erstellt, die Option `fig.cap`. Für einen schönen Screenshot gibt es etliche Chunk-Options via `screenshot.opts`.
+
+```
+{r dynamicTableWebshot, fig.cap='dynamicTableWebshot', dev='png', cache=TRUE, cache.extra=packageVersion('DT'), screenshot.opts=list(zoom=2)}
+```
+```{r dynamicTableWebshot, fig.cap='dynamicTableWebshot', dev='png', cache=TRUE, cache.extra=packageVersion('DT'), screenshot.opts=list(zoom=2)}
+  #library(webshot)
+  #webshot::install_phantomjs()  #muss für Screenshot installiert werden
+  DT::datatable(
+    head(iris, 20), caption = 'This table is a screenshot in PDF, but interactive in HTML.')
+```
+
+```text
+1. See Table \@ref(tab:dynamicTableWebshot) (Tabellenreferenz-Syntax)
+1. See Table \@ref(fig:dynamicTableWebshot) (Abbildungsreferenz-Syntax)
+1. See Table \@ref(dynamicTableWebshot) (Überschriftsreferenz-Syntax)
+```
+1. See Table \@ref(tab:dynamicTableWebshot) (Tabellenreferenz-Syntax)
+1. See Table \@ref(fig:dynamicTableWebshot) (Abbildungsreferenz-Syntax)
+1. See Table \@ref(dynamicTableWebshot) (Überschriftsreferenz-Syntax)
+
+```{block2, dynamicTableWebshotImportant, type='rmdcaution'}
+HTML-Widgets, müssen als **Abbildung** (`\@ref(fig:BeschriftungstextFigCap`) referenziert werden, auch wenn es sich um eine DT-Tabelle handelt.
+```
+
+<!----------------------------------------------------------------------------->
+### Inline R-Code
+
+#### Referenzieren mit Inline-Bedingung
+
+_Kann ich nicht je nach Outputformat eine statische oder interaktive Tabelle erzeugen?_
+
+Leider kann das Vorgehen wie unter Abschnitt \@ref(complexTables) beschrieben für DT-Tabellen (HTML-Widget) nicht empfohlen werden. 
+Da in HTML die interaktive htmlwidget-Tabelle als Abbildung aufgefasst wird, aber als Tabelle in PDF, ergeben sich unterschiedliche Nummerierungen in HTML und PDF. Zwar sind die Nummerierungen innerhalb eines Dokuments konsistent, aber man muss stets darauf achten, ob man die Tabelle mit `\@ref(tab:Tabellenbezeichnung)` (HTML) oder mit `\@ref(fig:Tabellenbezeichnung)` (PDF) referenziert. 
+
+```{block2, dynamicTableImportant, type='rmdimportant'}
+HTML-Widgets werden auch dann als Abbildung geführt, wenn es sich um eine DT-Tabelle handelt. 
+```
+
+
+Wie referenziere ich nun auf die Tabelle, wenn sie einmal eine Tabelle und einmal eine Abbildung ist? Probieren wir es anhand der folgenden Tabelle aus.
+
+```{r htmlWidgetTableCondition, fig.cap='htmlWidgetTableCondition', dev='png', cache=TRUE, cache.extra=packageVersion('DT'), screenshot.opts=list(zoom=2)}
+if( knitr:::is_html_output() ) {
+  #interactives HTML-Widget
+  #library(webshot)
+  #webshot::install_phantomjs()  #muss für Screenshot installiert werden
+  DT::datatable(
+    mtcars[1:3,1:4], caption = 'This table is a screenshot in PDF, but interactive in HTML.')
+} else {
+  #statische Tabelle in allen anderen Outputformaten  
+  knitr::kable(
+    mtcars[1:3,1:4], caption = 'This table would be interactive in HTML.',
+    booktabs = TRUE
+    )
+}
+```
+
+Folgende Markdown-Textschnipsel ergeben zum Teil unterschiedlichen Text in PDF und HTML.
+
+```text
+1. See Table \@ref(tab:htmlWidgetTableCondition) will work in PDF, but not in HTML.
+1. See Table \@ref(fig:htmlWidgetTableCondition) will work in HTML (and Word btw.), but not in PDF.
+1. See Table \@ref(htmlWidgetTableCondition) is just not correct here.
+1. See Table ``r ''`r ifelse ( knitr:::is_html_output(), '\\@ref(fig:htmlWidgetTableCondition)', '\\@ref(tab:htmlWidgetTableCondition)' )` will work in any Output, but is a bit monstrous.
+```
+1. See Table \@ref(tab:htmlWidgetTableCondition) will work in PDF, but not in HTML.
+1. See Table \@ref(fig:htmlWidgetTableCondition) will work in HTML (and Word btw.), but not in PDF.
+1. See Table \@ref(htmlWidgetTableCondition) is just not correct here.
+1. See Table `r ifelse ( knitr:::is_html_output(), '\\@ref(fig:htmlWidgetTableCondition)',
+'\\@ref(tab:htmlWidgetTableCondition)' )` will work in any Output, but is a bit monstrous.
+
+
+#### Inline R-Output und bedingte Textanzeige
+
+Letztlich können wir mithilfe von Inline-R-Code auf jede R-Variable zurückgreifen und überall bedingte Textbausteine in die Thesis einfügen, was vor allem beim Report statistische Analysen sehr nütztlich ist.
+
+```markdown
+Fahrzeuge mit Automatikgetriebe haben 
+``r ''`r if (t.test(gear~am, data=mtcars)$p.value > 0.05) 'nicht'` 
+signifikant mehr oder weniger Gänge als Autos mit manuellem Schaltgetriebe.
+```
+
+Fahrzeuge mit Automatikgetriebe haben  `r if (t.test(gear~am, data=mtcars)$p.value > 0.05) 'nicht'` signifikant mehr oder weniger Gänge als Autos mit manuellem Schaltgetriebe.  
+Im Schnitt haben alle Autos des `mtcars`-Datensatzes `mean(mtcars$hp)=` `r mean(mtcars$hp)`PS.
+
+```{block2, inlineRCode, type='rmdimportant'}
+Mithilfe von Inline-R-Code ``` `r R-Code` ``` können wir auf jede R-Variable und gewohnte R-Funktionalitäten wie bedingte Textanzeigen zurückgreifen.
+```

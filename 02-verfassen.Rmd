@@ -1,0 +1,113 @@
+# Verfassen
+
+Neben Überschriften, Abbildungen und Co. besteht eine Thesis nun mal hauptsächlich aus Text.  
+Leider unterstützen in einigen Punkten andere Editoren den Schreiber etwas besser. Microsoft Word hat eine gute as-you-type Rechtschreibung- und Grammatik-Prüfung inkl. Synonymfunktion. U.a. beim Atom-Editor scheint man eine Autocompletion nicht nur für Variablen, sondern auch für Referenzschlüssel (bibtexkeys) aus der `.bib`-Literaturliste zu haben.
+Im Folgenden wollen wir uns Kleinigkeiten anschauen, die uns das Schreiben und Argumentieren in RStudio erleichtern.  
+
+
+<!----------------------------------------------------------------------------->
+## Zitationen
+
+You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
+
+Um die genutzten R-Pakete zu zitieren, kann wie folgt eine bib-Datei erstellt werden, die als bibliography ausgegeben werden kann:
+
+```{r packagesBib, include=TRUE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+Mit dem RStudio Addin `citr` lässt sich, möchte man einen Autor zitieren, der passende bibtexkey per Klick heraussuchen. Dabei durchsucht `citr` die im YAML-Bereich der `index.Rmd` angegebenen bibliography-files (siehe `.bib`-Dateien im Projektordner).
+
+```{r citrDemogif, fig.align='center', out.width='32.8%', echo=FALSE, , fig.link='https://github.com/crsh/citr/blob/master/tools/images/addin_demo.gif'}
+if( knitr:::is_html_output() ) {
+  knitr::include_graphics("https://raw.githubusercontent.com/crsh/citr/master/tools/images/addin_demo.gif")
+}
+```
+
+```{r citrLaden}
+#install.packages("citr")
+library(citr)
+```
+
+- `[@xie2015]` ergibt: ... [@xie2015] ...
+- `Xie [-xie2015]` ergibt: ... Xie [-@xie2015] ...
+- `@xie2015` ergibt: ... @xie2015 ...
+
+Der Zitationsstil übernimmt auch, wenn Autoren das erste Mal anders zitiert werden sollen [@Cole2012] als beim zweiten Mal [@Cole2012], was bei mehreren Autoren üblich ist.
+
+Und man kann mehrere Autoren gleichzeitig zitieren.  
+`[Vergleiche @xie2015, Kapitel 1; und auch @Cole2012, S. 33-35 und 41]` ergibt: ... [Vergleiche @xie2015, Kapitel 1; und auch @Cole2012, S. 33-35 und 41] ...
+
+
+<!----------------------------------------------------------------------------->
+## Text wiederholen und Blockquote
+
+Man kann ganze Textabschnitte wiederholen. Für dieses Beispiel habe ich mich selbst in einem block qoute zitiert, ohne den Text noch einmal tippen zu müssen.
+
+```
+(ref:textwiederholung) Zu wiederholender Text.
+
+Wie ich vorher schon schrieb:
+
+> (ref:textwiederholung)
+>
+> --- me
+```
+(ref:textwiederholung) Zu wiederholender Text.
+
+Wie ich vorher schon schrieb:
+
+> (ref:textwiederholung)
+>
+> --- me
+
+
+<!----------------------------------------------------------------------------->
+## Spracheinstellungen
+
+In HTML werden die Tabellen korrekt nummeriert und auch die Übersetzung ("Abbildung" statt "Figure") kann über die `_bookdown.yml` eingestellt werden.
+_tbd:_ Der Output in LaTeX stimmt leider noch nicht.
+
+
+<!----------------------------------------------------------------------------->
+## Spell Check
+
+RStudio nutzt die Hunspell Rechtschreibprüfung. Diese kann man pro Wort, bei dem man sich unsicher ist, oder über ein ganzes Dokument anwenden. Ich habe die Sprachdateien für Englisch und Deutsch bereits unter `/dictionaries` abgespeichert^[für mehr Infos siehe https://support.rstudio.com/hc/en-us/articles/200551916-Spelling-Dictionaries]. 
+
+Spell-Checking whole Text-Document in English and German:
+
+```{r spellCheckDocument}
+#install.packages('hunspell')
+library(hunspell)
+#dic - und aff - files aus C:\Users\Username\AppData\Local\RStudio-Desktop\dictionaries\languages-system
+#hunspell_info()
+
+deutsch <- dictionary("./dictionaries/de_DE_neu.dic")
+english <- dictionary("./dictionaries/en_US.dic")
+
+text <- readLines("03-tbd.Rmd", warn = FALSE)
+bad_words_english <- hunspell(text, format = "text", dict = english)
+bad_words_deutsch <- hunspell(text, format = "text", dict = deutsch)
+
+bad_words_list <- sort(c(unique(unlist(bad_words_deutsch)), unique(unlist(bad_words_english))))
+bad_words_list <- bad_words_list[duplicated(bad_words_list)]
+bad_words_list
+#hunspell_suggest(bad_words_list, dict = deutsch) #gibt Verbesserungsvorschläge
+```
+
+Ich persönlich finde es aber einfacher, die Vorteile von Pandoc/bookdown/knitr zu nutzen und würde die Word-Version meines Dokuments gegenlesen, wo direkt im Text unterstrichen wird, wenn ein Wort falsch oder ein Satz grammatikalisch fehlerhaft ist.
+
+
+<!----------------------------------------------------------------------------->
+## Collaboration
+
+Since your are manipulating plain text files, you can use your favorite version control system (e.g. your University's GitLab) and collaborate easily with colleagues.
+
+An einer Abschlussarbeit schreibt man aber in der Regel allein, möchte aber regelmäßig Verbesserungsvorschläge von BetreuerInnen oder FreundInnen bekommen. Neben den Word- oder PDF-Versionen, die herumgeschickt und von den meisten Nutzern für Annotationen verwendet werden können, sind vielleicht folgende Dienste noch interessant:
+
+- [hypothes.is](https://web.hypothes.is/) lets you easily and in collaboration with others (or several supervisors) annotate text on any website. 
+- [Disqus](https://disqus.com/)
+- Git issues

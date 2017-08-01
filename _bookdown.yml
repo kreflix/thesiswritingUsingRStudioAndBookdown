@@ -1,0 +1,22 @@
+book_filename: "_main_thesisBookdown"
+language:
+  label:
+    fig: 'Abbildung '
+    tab: 'Tabelle '
+    eq: 'Equation '
+    thm: 'Theorem '
+    lem: 'Lemma '
+    def: 'Definition '
+    cor: 'Corollary '
+    prp: 'Proposition '
+    ex: 'Example '
+    proof: 'Proof. '
+    remark: 'Remark. '
+  ui:
+    edit: Edit
+    chapter_name: ''
+output_dir: docs
+#repo: https://.../bookdownAbschlussarbeit
+#rmd_files: ["index.Rmd", "01-Introduction.Rmd", "02-Diving-In.Rmd"] #um manuell zu bestimmen, welche Rmd-Files eingelesen werden sollen. Generell werden "_Dateiname.Rmd"-Dateien, die mit einem _ beginnen, ausgeschlossen.
+clean: [packages.bib, bookdown.bbl]
+#newsession: yes
