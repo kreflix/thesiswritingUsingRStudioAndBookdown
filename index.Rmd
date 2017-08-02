@@ -1,5 +1,5 @@
 --- 
-title: "Abschlussarbeit in RStudio mit bookdown - A Minimal Tech Example"
+title: "Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example"
 author: "Felix Kretschmer"
 date: "`r Sys.Date()`" #`r format(Sys.time(), '%d. %B %Y')`
 site: bookdown::bookdown_site
@@ -28,7 +28,8 @@ nocite: |
 knitr::include_graphics('img/cover.png', dpi = NA)
 ```
 
-I really much appreciate what the RStudio Team and people like [Yihui Xie](https://yihui.name/) are doing to push reproducible research and our all effiency working with R. And I would love this book making their accomplishments more accessible for students and every scientist, who is about to set up her or his next R project.
+Become a more efficient scientist and collaborate more easily with colleagues!  
+I really much appreciate what the RStudio Team and people like [Yihui Xie](https://yihui.name/) are doing to push reproducible research and our all effiency working with R. And I would love if this book makes their accomplishments more accessible for students and every scientist, who is about to set up her or his next R project.
 
 ----
 
@@ -47,10 +48,40 @@ I really much appreciate what the RStudio Team and people like [Yihui Xie](https
 <!----------------------------------------------------------------------------->
 ### Contribute! {-}
 
-I put a lot of completely unpaid effort and time (since I'm a student hardcore procrastinating his thesis writing) into making this book and I give it to you for free, hoping it will save you a lot of time and make you a better or at least a more efficient researcher. 
-    <!-- Spendenbutton https://www.paypal.com/de/cgi-bin/webscr?cmd=_donate-intro-outside -->
+I put a lot of completely unpaid effort and time (since I'm a student hardcore procrastinating writing his thesis) into making this book and I give it to you for free, hoping it will save you a lot of time and make you a better or at least a more efficient researcher. 
 
-I though have on request for you: Everyone whom this book helped I want to invite to contribute to this project as ideas and resolutions, that would make this book continously better come during actual thesis writing.
+I though have on request for you: Everyone whom this book helped I want to invite to contribute to this project as ideas and resolutions, that would make this book continously better, come during actual thesis writing or while coding in R.
+
+<!-- Spendenbutton https://www.paypal.com/de/cgi-bin/webscr?cmd=_donate-intro-outside -->
+Maybe you simply want to say "Thank you!". Whether my project saved you time worth 1,000EUR (because you are of the rare species of a well paid scientist) or you just grant me an after work beer, I would really appreciate your donation!^[Depending on the way your are reading this, you might visit https://kreflix.github.io/thesiswritingUsingRStudioAndBookdown/index.html#contribute to see how to donate.]
+
+```{r donationbutton, comment='', results='asis', echo=FALSE}
+if ( knitr:::is_html_output() ) {
+  
+#```{block2, donationbuttonBlock, type='rmdimportant'}
+  #<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+  #<input type="hidden" name="cmd" value="_s-xclick">
+  #<input type="hidden" name="hosted_button_id" value="LVX6YJXGVD3MW">
+  #<input type="image" src="https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal.">
+  #<img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
+  #</form>
+
+  cat("<form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\">\n")
+  cat("<input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\n")
+  cat("<input type=\"hidden\" name=\"hosted_button_id\" value=\"LVX6YJXGVD3MW\">\n")
+  cat("<input type=\"image\" src=\"https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif\" border=\"0\" name=\"submit\" alt=\"Jetzt einfach, schnell und sicher online bezahlen – mit PayPal.\">\n")
+  cat("<img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/de_DE/i/scr/pixel.gif\" width=\"1\" height=\"1\">\n")
+  cat("</form>\n")
+  cat("<br>\n")
+
+#```
+
+} else {
+  cat("Visit ")
+}
+```
+
+----
 
 **Objective**
 
@@ -62,7 +93,6 @@ See [To be done] if you want to help, but don't know where to start.
 
 As this book is written in order to prepare writing a thesis in German, you will be confronted with a mixture of languages.^[Auch mein Fließtext ist noch work in progress und ich springe zwischen direkter und indirekter Anrede, vllt auch zwischen den Anreden Du und Sie.] Feel free to translate and optimize this book, so it could become a great starting point for other student's thesises.
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.  
 
 ```{block2, tbdImportant, type='rmdcaution'}
 *tbd*: Dieses Beispielbuch ist noch nicht voll funktionsfähig. Manches, was in HTML funktioniert, klappt noch nicht im PDF-Output. Manches davon ist eine Frage der korrekten LaTeX-Einstellungen, manches wird von bookdown und/oder pandoc nicht unterstützt. Eine Übersicht findet ihr unter [To Be Done].
@@ -71,6 +101,31 @@ This is a _sample_ book written in **Markdown**. You can use anything that Pando
 
 <!----------------------------------------------------------------------------->
 ## Get started {-}
+
+----
+
+__*tl;dr:*__
+
+- To open and use this book's project just download it's source files from GitHub http://statistify.de/thesiswritingUsingRStudioAndBookdown_repo or the `zip` from the toolbar on top of the book's html-version and open the `.Rproj`-file in RStudio (of course you need R and RStudio).
+
+- After successfully installing bookdown (see [Rstudio und Packrat]) you should find the button "Build Book" in the "Build"-tab in RStudio. "Build Book" creates the book in all output formats. You can find the `index.html`, `pdf` etc. in the `docs`-folder.
+    - For PDF-Output you also need to install LaTeX.
+    
+----
+
+__*beta:*__
+
+In theory the only thing you need to do is to download the .zip-folder of this RProject from my [Github Repository](https://github.com/kreflix/thesiswritingUsingRStudioAndBookdown) (or clone or fork it if your familiar with GitHub) and open the `.RProject`-file. As the R packages contained in the folder need to be installed for your machine (see [RStudio und Packrat] ), opening the RProject may take a few seconds or actually even some minutes. If you move or share your own project, it migth be a good idea to delete the folder `/packrat/lib/` before starting the RProject on a new machine in order to have a clean installation of the packages.  
+There is also a zip-file containing the RProject downloadable via the download button on top of this book, if your reading it online. As I haven't been implementing a routine creating the latter zip automatically or figured out how to link to my GitHub repo for now, I cannot promise that it will be the current version of this project.
+
+```{block2, startRProject, type='rmdimportant'}
+Direct link to the RProject:  
+https://github.com/kreflix/thesiswritingUsingRStudioAndBookdown/archive/master.zip  
+Be patient while opening the project the first time. Also you might need an internet connection. Check R Console for what is happening.
+```
+
+
+__*stable:*__
 
 You have to install the `bookdown`-package in R or could install the development versions of **bookdown** from Github:
 
@@ -84,13 +139,17 @@ Remember each Rmd file contains one and only one chapter, and a chapter is defin
 
 To compile this example to PDF, you need to install XeLaTeX.
 
+I assume you have already installed R and RStudio and you know how to install any other package this RProject may need (see `_Auswertungsskript.r`).
+
+
 
 <!----------------------------------------------------------------------------->
 ### RStudio und Packrat {-}
 
 Wenn du den Projektordner dieses Buches heruntergeladen hast (siehe [Links und Tipps]), verwendest du automatisch [Packrat](https://rstudio.github.io/packrat/), da die entsprechende Projekt-Option bereits aktiviert ist. Das bedeutet, dass sich die für dieses Buch verwendeten R-Pakete in einer private library direkt im Projektordner installieren (somit hat jedes Projekt seine eigenen Pakete). 
 
-Da die Pakete auf jedem Computer neu installiert werden müssen, beinhaltet der Unterordner `/packrat` anfangs nur die Infos, welche Pakete du benötigst (einen sogenannten Snapshot). Der Ordner `/src` beinhaltet die package tarballs und sollte der Versionskontrolle unterliegen, wenn du z.B. Git verwendest, sodass das Projekt auch langfristig reproduzierbar bleibt, selbst dann, wenn die Pakete nicht mehr online zur Verfügung stehen. ^[_tbd_: Packrat lädt in meinem Falle trotz hinterlegter tarballs die Pakete aus dem Internet.] Mit den folgenden Packrat-Befehlen installierst du alle benötigten Pakete auf deinem Computer (aufgrund der dependencies der Pakete ist die Liste recht lang).
+Da die Pakete auf jedem Computer neu installiert werden müssen, beinhaltet der Unterordner `/packrat` anfangs nur die Infos, welche Pakete du benötigst (einen sogenannten Snapshot). Der Ordner `/src` beinhaltet die package tarballs und sollte der Versionskontrolle unterliegen, wenn du z.B. Git verwendest, sodass das Projekt auch langfristig reproduzierbar bleibt, selbst dann, wenn die Pakete nicht mehr online zur Verfügung stehen. ^[_tbd_: Packrat lädt in meinem Falle trotz hinterlegter tarballs die Pakete aus dem Internet.] Die Pakete werden in den Ordner `/packrat/lib` installiert, sodass du bei jedem Umzug des Projektes auf einen neuen PC diesen Ordner zunächst löschen solltest.  
+Mit den folgenden Packrat-Befehlen installierst du alle benötigten Pakete auf deinem Computer (aufgrund der dependencies der Pakete ist die Liste recht lang).
 
 ```{block2, packratImportant, type='rmdcaution'}
 Beim erstmaligen Start des Projektes wird R versuchen, Packrat und alle notwendigen Pakete auf deinem Computer zu installieren. Dies kann einige Minuten dauern und eine Internetverbindung benötigen. Beobachte währenddessen die Meldungen in der Console.
@@ -106,14 +165,11 @@ packrat::clean() #löscht scheinbar nicht benötigte Pakete (erkennt Pakete an l
 packrat::get_opts()  #aktuelle Packrat-Einstellungen
 ```
 
-
+After successfully installing R, RStudio, all R packages and LaTeX^[How to correctly install and set up LaTeX is another chapter, that I can't cover by now, because it is still some sort of a mystery for me, why some things work while others don't.] (if you want to create PDF files), you should find the button "Build Book" in the "Build"-tab in RStudio. "Build Book" creates the book in all output formats. You can find the `index.html`, `pdf` etc. in the `docs`-folder.
+    - For PDF-Output you also need to install LaTeX.
+    
 <!----------------------------------------------------------------------------->
 ## Links und Tipps {-}
-
-- To open and use this book's project just download it's source files (`zip` from toolbar on top)^[GitHub links will follow (_tbd_)] and open the `.Rproj`-file in RStudio (of course you need R and RStudio).
-
-- After successfully installing bookdown (see [Rstudio und Packrat]) you should find the button "Build Book" in the "Build"-tab in RStudio. "Build Book" creates the book in all output formats. You can find the `index.html`, `pdf` etc. in the `docs`-folder.
-    - For PDF-Output you also need to install LaTeX.
 
 - Yihui Xie wrote a great book, explaining all you need to know about bookdown. (https://bookdown.org/yihui/bookdown/) 
     - Actually I edited his Minimal Book Example to create this book. See his original book here: https://bookdown.org/yihui/bookdown-demo/ (or download it from [GitHub](https://github.com/rstudio/bookdown-demo)).
@@ -121,6 +177,8 @@ packrat::get_opts()  #aktuelle Packrat-Einstellungen
     
 - I agree with Sean Kross who says "getting started with bookdown is not yet a totally straightforward process". Read his [How to Start a Bookdown Book](http://seankross.com/2016/11/17/How-to-Start-a-Bookdown-Book.html) here!
     - Actually he provides a [minimal bookdown example](http://seankross.com/bookdown-start/diving-in.html) as well, but for some reasons his didn't work for me. You can download it from [GitHub](https://github.com/seankross/bookdown-start).
+    
+- If you move or share your own project, it migth be a good idea to delete the folder `/packrat/lib/` before starting the RProject on a new machine in order to have a clean installation of the packages.
     
 - There are some cool addins for RStudio, e. g.
     - `citr` Just install it like any other R-package and then you can easily insert citations browsing your bib-file within Rstudio.

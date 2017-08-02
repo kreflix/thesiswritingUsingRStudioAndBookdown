@@ -17,6 +17,7 @@ Notwendig:
 Zukünftig:
 
 - LaTeX Text ist zentriert nach kaputter Tabelle
+- auto create .zip RProject (vllt via makeZip.bat oder zip())
 - autocompletion für `\@ref`
     - Atom-Editor kann das vielleicht https://discuss.atom.io/t/autocompletion-of-citeproc-references-in-markdown/28177 ?
 - xtable bzw. generell LaTeX-Tabellen in Word und co möglich? Per Screenshot?

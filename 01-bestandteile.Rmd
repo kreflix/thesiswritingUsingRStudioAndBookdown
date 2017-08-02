@@ -3,6 +3,8 @@
 
 In vermutlich jeder Thesis gibt es neben Text mindestens auch Abbildungen und Tabellen. Wie diese eingefügt werden, sodass am Ende immernoch jedes Output-Format korrekt dargestellt wird, schauen wir uns im Folgenden an. 
 
+This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.  
+
 Ich versuche, Fußnoten, Links, Listen, Aufzählungen etc. nebenher beispielhaft mit einfließen zu lassen, ohne konkret darauf einzugehen.^[Für mehr Details sei noch einmal auf Yihui Xie's [Bookdown-Buch](https://bookdown.org/yihui/bookdown/components.html) hingewiesen!]
 
 <!----------------------------------------------------------------------------->
@@ -63,7 +65,7 @@ Table: (\#tab:rmdTable) Broken Table.
 
 Ergibt eine kaputte Tabelle \@ref(tab:rmdTable):
 
-Table: (\#tab:rmdTable) Broken Table.
+Table: (\#tab:rmdTable)Broken Table.
 
 | One    | Two | Three | Four    | Five  | Six 
 | -

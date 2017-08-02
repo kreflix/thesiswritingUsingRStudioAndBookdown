@@ -17,3 +17,23 @@ knitr::write_bib(c(
 ```{r sessionInfo}
 sessionInfo()
 ```
+
+
+<!-- add .zip to book's download area, so that the RProject (and not only the compiled book) can be downloaded -->
+
+```{r makeZip}
+#zipfilename <- paste0("RProject_thesiswritingUsingRStudioAndBookdown_",
+#                      Sys.Date())
+#zipfiles <- list.files(getwd())
+#zipextras <- list("-x .git")
+#dest_path <- paste0(getwd(), zip)
+##zip(zipfile = zipfilename, 
+##    files = zipfiles,
+##    extra = zipextras)
+#tar(tarfile = zipfilename, 
+#    files = zipfiles) #how to exclude packrat/lib ?
+#    
+#system("for /d %%a in (*) do (ECHO zip -r -p \"%%~na.zip\" \".\%%a\*\")")
+#shell.exec("makeZip.bat")
+```
+

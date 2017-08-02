@@ -16,7 +16,7 @@ language:
     edit: Edit
     chapter_name: ''
 output_dir: docs
-#repo: https://.../bookdownAbschlussarbeit
+#repo: https://github.com/kreflix/thesiswritingUsingRStudioAndBookdown
 #rmd_files: ["index.Rmd", "01-Introduction.Rmd", "02-Diving-In.Rmd"] #um manuell zu bestimmen, welche Rmd-Files eingelesen werden sollen. Generell werden "_Dateiname.Rmd"-Dateien, die mit einem _ beginnen, ausgeschlossen.
 clean: [packages.bib, bookdown.bbl]
 #newsession: yes
