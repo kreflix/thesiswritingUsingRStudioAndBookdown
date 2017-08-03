@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Abschlussarbeit in RStudio mit bookdown - A Minimal Book Example</title>
+  <title>Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a thesis in German.">
   <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Abschlussarbeit in RStudio mit bookdown - A Minimal Book Example" />
+  <meta property="og:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="img/cover.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Abschlussarbeit in RStudio mit bookdown - A Minimal Book Example" />
+  <meta name="twitter:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a thesis in German." />
   <meta name="twitter:image" content="img/cover.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Felix Kretschmer">
 
 
-<meta name="date" content="2017-07-29">
+<meta name="date" content="2017-08-03">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -149,7 +149,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Abschlussarbeit in RStudio mit bookdown - A Minimal Book Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</a>
           </h1>
         </div>
 
@@ -191,6 +191,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## [13] miniUI_0.1.1     rstudioapi_0.6   rmarkdown_1.6    tools_3.4.0     
 ## [17] stringr_1.2.0    shiny_1.0.3      httpuv_1.3.3     yaml_2.1.14     
 ## [21] compiler_3.4.0   htmltools_0.3.6  knitr_1.16</code></pre>
+<!-- add .zip to book's download area, so that the RProject (and not only the compiled book) can be downloaded -->
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#zipfilename &lt;- paste0(&quot;RProject_thesiswritingUsingRStudioAndBookdown_&quot;,</span>
+<span class="co">#                      Sys.Date())</span>
+<span class="co">#zipfiles &lt;- list.files(getwd())</span>
+<span class="co">#zipextras &lt;- list(&quot;-x .git&quot;)</span>
+<span class="co">#dest_path &lt;- paste0(getwd(), zip)</span>
+##zip(zipfile = zipfilename, 
+##    files = zipfiles,
+##    extra = zipextras)
+<span class="co">#tar(tarfile = zipfilename, </span>
+<span class="co">#    files = zipfiles) #how to exclude packrat/lib ?</span>
+<span class="co">#    </span>
+<span class="co">#system(&quot;for /d %%a in (*) do (ECHO zip -r -p \&quot;%%~na.zip\&quot; \&quot;.\%%a\*\&quot;)&quot;)</span>
+<span class="co">#shell.exec(&quot;makeZip.bat&quot;)</span></code></pre></div>
 
 <div id="refs" class="references">
 <div>
@@ -210,6 +224,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 </div>
 </div>
+
 
 
 
@@ -260,7 +275,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main_bookdownAbschlussarbeit.pdf", "_main_bookdownAbschlussarbeit.docx", "_main_bookdownAbschlussarbeit.zip"],
+"download": ["_main_thesisBookdown.pdf", "_main_thesisBookdown.docx", "_main_thesisBookdown.zip"],
 "toc": {
 "collapse": "none"
 }

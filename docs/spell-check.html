@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Abschlussarbeit in RStudio mit bookdown - A Minimal Book Example</title>
+  <title>Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a thesis in German.">
   <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Abschlussarbeit in RStudio mit bookdown - A Minimal Book Example" />
+  <meta property="og:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="img/cover.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Abschlussarbeit in RStudio mit bookdown - A Minimal Book Example" />
+  <meta name="twitter:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a thesis in German." />
   <meta name="twitter:image" content="img/cover.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Felix Kretschmer">
 
 
-<meta name="date" content="2017-07-29">
+<meta name="date" content="2017-08-03">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -149,7 +149,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Abschlussarbeit in RStudio mit bookdown - A Minimal Book Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</a>
           </h1>
         </div>
 
@@ -159,7 +159,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="spell-check" class="section level2">
 <h2><span class="header-section-number">2.4</span> Spell Check</h2>
-<p>RStudio nutzt die Hunspell Rechtschreibprüfung. Diese kann man pro Wort, bei dem man sich unsicher ist, oder über ein ganzes Dokument anwenden. Ich habe die Sprachdateien für Englisch und Deutsch bereits unter <code>/dictionaries</code> abgespeichert<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a>.</p>
+<p>RStudio nutzt die Hunspell Rechtschreibprüfung. Diese kann man pro Wort, bei dem man sich unsicher ist, oder über ein ganzes Dokument anwenden. Ich habe die Sprachdateien für Englisch und Deutsch bereits unter <code>/dictionaries</code> abgespeichert<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a>.</p>
 <p>Spell-Checking whole Text-Document in English and German:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&#39;hunspell&#39;)</span>
 <span class="kw">library</span>(hunspell)</code></pre></div>
@@ -185,20 +185,21 @@ bad_words_list</code></pre></div>
 ##  [9] &quot;deutshes&quot;       &quot;DT&quot;             &quot;eglish&quot;         &quot;eval&quot;          
 ## [13] &quot;fÃ&quot;             &quot;favicon&quot;        &quot;github&quot;         &quot;htmlwidget&quot;    
 ## [17] &quot;https&quot;          &quot;hunspell&quot;       &quot;io&quot;             &quot;knitr&quot;         
-## [21] &quot;linksbÃ&quot;        &quot;mÃ&quot;             &quot;nder&quot;           &quot;ndig&quot;          
-## [25] &quot;nftig&quot;          &quot;nocite&quot;         &quot;Packrat&quot;        &quot;rmarkdown&quot;     
-## [29] &quot;rstudio&quot;        &quot;RStudio&quot;        &quot;rter&quot;           &quot;SeitenrÃ&quot;      
-## [33] &quot;Spellchecking&quot;  &quot;Sys&quot;            &quot;tbd&quot;            &quot;WÃ&quot;            
-## [37] &quot;Worng&quot;          &quot;wrongWords&quot;     &quot;xtable&quot;         &quot;yihui&quot;         
-## [41] &quot;Yihui&quot;          &quot;ZukÃ&quot;</code></pre>
+## [21] &quot;linksbÃ&quot;        &quot;mÃ&quot;             &quot;makeZip&quot;        &quot;nder&quot;          
+## [25] &quot;ndig&quot;           &quot;nftig&quot;          &quot;nocite&quot;         &quot;Packrat&quot;       
+## [29] &quot;rmarkdown&quot;      &quot;RProject&quot;       &quot;rstudio&quot;        &quot;RStudio&quot;       
+## [33] &quot;rter&quot;           &quot;SeitenrÃ&quot;       &quot;Spellchecking&quot;  &quot;Sys&quot;           
+## [37] &quot;tbd&quot;            &quot;vllt&quot;           &quot;WÃ&quot;             &quot;Worng&quot;         
+## [41] &quot;wrongWords&quot;     &quot;xtable&quot;         &quot;yihui&quot;          &quot;Yihui&quot;         
+## [45] &quot;ZukÃ&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#hunspell_suggest(bad_words_list, dict = deutsch) #gibt Verbesserungsvorschläge</span></code></pre></div>
 <p>Ich persönlich finde es aber einfacher, die Vorteile von Pandoc/bookdown/knitr zu nutzen und würde die Word-Version meines Dokuments gegenlesen, wo direkt im Text unterstrichen wird, wenn ein Wort falsch oder ein Satz grammatikalisch fehlerhaft ist.</p>
 <!----------------------------------------------------------------------------->
 </div>
 <div class="footnotes">
 <hr />
-<ol start="7">
-<li id="fn7"><p>für mehr Infos siehe <a href="https://support.rstudio.com/hc/en-us/articles/200551916-Spelling-Dictionaries" class="uri">https://support.rstudio.com/hc/en-us/articles/200551916-Spelling-Dictionaries</a><a href="spell-check.html#fnref7">↩</a></p></li>
+<ol start="8">
+<li id="fn8"><p>für mehr Infos siehe <a href="https://support.rstudio.com/hc/en-us/articles/200551916-Spelling-Dictionaries" class="uri">https://support.rstudio.com/hc/en-us/articles/200551916-Spelling-Dictionaries</a><a href="spell-check.html#fnref8">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -239,7 +240,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main_bookdownAbschlussarbeit.pdf", "_main_bookdownAbschlussarbeit.docx", "_main_bookdownAbschlussarbeit.zip"],
+"download": ["_main_thesisBookdown.pdf", "_main_thesisBookdown.docx", "_main_thesisBookdown.zip"],
 "toc": {
 "collapse": "none"
 }

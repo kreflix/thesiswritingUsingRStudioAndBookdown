@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Abschlussarbeit in RStudio mit bookdown - A Minimal Book Example</title>
+  <title>Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a thesis in German.">
   <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Abschlussarbeit in RStudio mit bookdown - A Minimal Book Example" />
+  <meta property="og:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="img/cover.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Abschlussarbeit in RStudio mit bookdown - A Minimal Book Example" />
+  <meta name="twitter:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a thesis in German." />
   <meta name="twitter:image" content="img/cover.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Felix Kretschmer">
 
 
-<meta name="date" content="2017-07-29">
+<meta name="date" content="2017-08-03">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -149,7 +149,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Abschlussarbeit in RStudio mit bookdown - A Minimal Book Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</a>
           </h1>
         </div>
 
@@ -159,17 +159,40 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="get-started" class="section level2 unnumbered">
 <h2>Get started</h2>
+<hr />
+<p><strong><em>tl;dr:</em></strong></p>
+<ul>
+<li><p>To open and use this book’s project just download it’s source files from GitHub <a href="http://statistify.de/thesiswritingUsingRStudioAndBookdown_repo" class="uri">http://statistify.de/thesiswritingUsingRStudioAndBookdown_repo</a> or the <code>zip</code> from the toolbar on top of the book’s html-version and open the <code>.Rproj</code>-file in RStudio (of course you need R and RStudio).</p></li>
+<li>After successfully installing bookdown (see <a href="get-started.html#rstudio-und-packrat">Rstudio und Packrat</a>) you should find the button “Build Book” in the “Build”-tab in RStudio. “Build Book” creates the book in all output formats. You can find the <code>index.html</code>, <code>pdf</code> etc. in the <code>docs</code>-folder.
+<ul>
+<li>For PDF-Output you also need to install LaTeX.</li>
+</ul></li>
+</ul>
+<hr />
+<p><strong><em>beta:</em></strong></p>
+<p>In theory the only thing you need to do is to download the .zip-folder of this RProject from my <a href="https://github.com/kreflix/thesiswritingUsingRStudioAndBookdown">Github Repository</a> (or clone or fork it if your familiar with GitHub) and open the <code>.RProject</code>-file. As the R packages contained in the folder need to be installed for your machine (see <a href="get-started.html#rstudio-und-packrat">RStudio und Packrat</a> ), opening the RProject may take a few seconds or actually even some minutes. If you move or share your own project, it migth be a good idea to delete the folder <code>/packrat/lib/</code> before starting the RProject on a new machine in order to have a clean installation of the packages.<br />
+There is also a zip-file containing the RProject downloadable via the download button on top of this book, if your reading it online. As I haven’t been implementing a routine creating the latter zip automatically or figured out how to link to my GitHub repo for now, I cannot promise that it will be the current version of this project.</p>
+
+<div class="rmdimportant">
+Direct link to the RProject:<br />
+<a href="https://github.com/kreflix/thesiswritingUsingRStudioAndBookdown/archive/master.zip" class="uri">https://github.com/kreflix/thesiswritingUsingRStudioAndBookdown/archive/master.zip</a><br />
+Be patient while opening the project the first time. Also you might need an internet connection. Check R Console for what is happening.
+</div>
+<p></p>
+<p><strong><em>stable:</em></strong></p>
 <p>You have to install the <code>bookdown</code>-package in R or could install the development versions of <strong>bookdown</strong> from Github:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)
 <span class="kw">library</span>(bookdown)
 <span class="co">#devtools::install_github(&quot;rstudio/bookdown&quot;)</span></code></pre></div>
 <p>Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading <code>#</code>.</p>
 <p>To compile this example to PDF, you need to install XeLaTeX.</p>
+<p>I assume you have already installed R and RStudio and you know how to install any other package this RProject may need (see <code>_Auswertungsskript.r</code>).</p>
 <!----------------------------------------------------------------------------->
 <div id="rstudio-und-packrat" class="section level3 unnumbered">
 <h3>RStudio und Packrat</h3>
 <p>Wenn du den Projektordner dieses Buches heruntergeladen hast (siehe <a href="links-und-tipps.html#links-und-tipps">Links und Tipps</a>), verwendest du automatisch <a href="https://rstudio.github.io/packrat/">Packrat</a>, da die entsprechende Projekt-Option bereits aktiviert ist. Das bedeutet, dass sich die für dieses Buch verwendeten R-Pakete in einer private library direkt im Projektordner installieren (somit hat jedes Projekt seine eigenen Pakete).</p>
-<p>Da die Pakete auf jedem Computer neu installiert werden müssen, beinhaltet der Unterordner <code>/packrat</code> anfangs nur die Infos, welche Pakete du benötigst (einen sogenannten Snapshot). Der Ordner <code>/src</code> beinhaltet die package tarballs und sollte der Versionskontrolle unterliegen, wenn du z.B. Git verwendest, sodass das Projekt auch langfristig reproduzierbar bleibt, selbst dann, wenn die Pakete nicht mehr online zur Verfügung stehen.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> Mit den folgenden Packrat-Befehlen installierst du alle benötigten Pakete auf deinem Computer (aufgrund der dependencies der Pakete ist die Liste recht lang).</p>
+<p>Da die Pakete auf jedem Computer neu installiert werden müssen, beinhaltet der Unterordner <code>/packrat</code> anfangs nur die Infos, welche Pakete du benötigst (einen sogenannten Snapshot). Der Ordner <code>/src</code> beinhaltet die package tarballs und sollte der Versionskontrolle unterliegen, wenn du z.B. Git verwendest, sodass das Projekt auch langfristig reproduzierbar bleibt, selbst dann, wenn die Pakete nicht mehr online zur Verfügung stehen.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> Die Pakete werden in den Ordner <code>/packrat/lib</code> installiert, sodass du bei jedem Umzug des Projektes auf einen neuen PC diesen Ordner zunächst löschen solltest.<br />
+Mit den folgenden Packrat-Befehlen installierst du alle benötigten Pakete auf deinem Computer (aufgrund der dependencies der Pakete ist die Liste recht lang).</p>
 
 <div class="rmdcaution">
 Beim erstmaligen Start des Projektes wird R versuchen, Packrat und alle notwendigen Pakete auf deinem Computer zu installieren. Dies kann einige Minuten dauern und eine Internetverbindung benötigen. Beobachte währenddessen die Meldungen in der Console. Sollte es nicht automatisch klappen, dann installiere Packrat manuell. Nutze anschließend folgende Befehle, um die Pakete zu installieren oder schaue in <code>_Auswertungsskript.r</code>, welche Pakete für dieses Buch geladen werden müssen.
@@ -180,13 +203,15 @@ packrat::<span class="kw">status</span>()
 packrat::<span class="kw">restore</span>()
 packrat::<span class="kw">clean</span>() <span class="co">#löscht scheinbar nicht benötigte Pakete (erkennt Pakete an library() und require() )</span>
 packrat::<span class="kw">get_opts</span>()  <span class="co">#aktuelle Packrat-Einstellungen</span></code></pre></div>
+<p>After successfully installing R, RStudio, all R packages and LaTeX<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a> (if you want to create PDF files), you should find the button “Build Book” in the “Build”-tab in RStudio. “Build Book” creates the book in all output formats. You can find the <code>index.html</code>, <code>pdf</code> etc. in the <code>docs</code>-folder. - For PDF-Output you also need to install LaTeX.</p>
 <!----------------------------------------------------------------------------->
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="3">
-<li id="fn3"><p><em>tbd</em>: Packrat lädt in meinem Falle trotz hinterlegter tarballs die Pakete aus dem Internet.<a href="get-started.html#fnref3">↩</a></p></li>
+<ol start="4">
+<li id="fn4"><p><em>tbd</em>: Packrat lädt in meinem Falle trotz hinterlegter tarballs die Pakete aus dem Internet.<a href="get-started.html#fnref4">↩</a></p></li>
+<li id="fn5"><p>How to correctly install and set up LaTeX is another chapter, that I can’t cover by now, because it is still some sort of a mystery for me, why some things work while others don’t.<a href="get-started.html#fnref5">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -227,7 +252,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main_bookdownAbschlussarbeit.pdf", "_main_bookdownAbschlussarbeit.docx", "_main_bookdownAbschlussarbeit.zip"],
+"download": ["_main_thesisBookdown.pdf", "_main_thesisBookdown.docx", "_main_thesisBookdown.zip"],
 "toc": {
 "collapse": "none"
 }
