@@ -197,9 +197,9 @@ HTML-Widgets, müssen als **Abbildung** (`\@ref(fig:BeschriftungstextFigCap`) re
 ```
 
 <!----------------------------------------------------------------------------->
-### Inline R-Code
+## Inline R-Code
 
-#### Referenzieren mit Inline-Bedingung
+### Referenzieren mit Inline-Bedingung
 
 _Kann ich nicht je nach Outputformat eine statische oder interaktive Tabelle erzeugen?_
 
@@ -244,7 +244,7 @@ Folgende Markdown-Textschnipsel ergeben zum Teil unterschiedlichen Text in PDF u
 '\\@ref(tab:htmlWidgetTableCondition)' )` will work in any Output, but is a bit monstrous.
 
 
-#### Inline R-Output und bedingte Textanzeige
+### Inline R-Output und bedingte Textanzeige
 
 Letztlich können wir mithilfe von Inline-R-Code auf jede R-Variable zurückgreifen und überall bedingte Textbausteine in die Thesis einfügen, was vor allem beim Report statistische Analysen sehr nütztlich ist.
 

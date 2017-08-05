@@ -3,6 +3,8 @@
 Notwendig:
 
 - best practice: Wann cachen? Und weitere sinnvolle R-Chunk-Options. https://yihui.name/knitr/options/
+    - ich cache erstmal alles, damit knitting schnell geht
+- Pandoc assumes some LaTeX packages to be availabe. See http://pandoc.org/MANUAL.html#creating-a-pdf.
 - "References" statt "Literatur" unter HTML-Seite
 - LaTeX Übersetzung
 - Dezimaltrennzeichen vor allem von inline r-Code: Komma statt Punkt
@@ -16,6 +18,7 @@ Notwendig:
 
 Zukünftig:
 
+- Grafik in custom block wird auf git pages nicht angezeigt
 - LaTeX Text ist zentriert nach kaputter Tabelle
 - auto create .zip RProject (vllt via makeZip.bat oder zip())
 - autocompletion für `\@ref`
@@ -25,12 +28,13 @@ Zukünftig:
 - mehrere Literaturverzeichnisse
 - Packrat offline restore
 - hunspell und Umlaute
-- R-Code in Custom Block
+- R-Code in Custom Block und umgekehrt
+- github-Links zu statistify.de-Links wandeln/umleiten
 
 Im Moment noch nicht möglich:
 
 - continuous spell checking in RStudio
-- autocomplete @ref https://github.com/rstudio/rmarkdown/issues/958
+- autocomplete `@ref` https://github.com/rstudio/rmarkdown/issues/958
 - htmlwidget / DT-table als "Tabelle" statt als "Abbildung"
 
 

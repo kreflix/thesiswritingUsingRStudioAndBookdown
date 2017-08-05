@@ -21,7 +21,7 @@ sessionInfo()
 
 <!-- add .zip to book's download area, so that the RProject (and not only the compiled book) can be downloaded -->
 
-```{r makeZip}
+```{r makeZip, echo=FALSE, include=FALSE}
 #zipfilename <- paste0("RProject_thesiswritingUsingRStudioAndBookdown_",
 #                      Sys.Date())
 #zipfiles <- list.files(getwd())

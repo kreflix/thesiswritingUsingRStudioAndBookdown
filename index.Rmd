@@ -36,10 +36,10 @@ I really much appreciate what the RStudio Team and people like [Yihui Xie](https
 **Why should I read this book?**
 
 1. _Fully dynamic reports_: You have added some new observations? Don't worry! All graphics, tables and values will have changed automatically after compiling the thesis again. You won't have to copy results from your R console and paste it to your word or presentation processing program any longer, since 
-    a. R-Chunks allow you to insert tables and graphics using the R code you are familiar.
+    a. R-Chunks allow you to insert tables and graphics using the R code you are familiar with.
     a. You can use inline R code directly in your thesis text, allowing you to have R output in your sentences. Just store a result in a variable and let R and Markdown print it's value within a sentence.
 1. _Be a good scientist!_ You are doing real reproducible research as we all should do^[I'd really wish publisher would reward this!].
-    a. Having a dynamic report means every single result you report is traceable, so youre reader could see, where every specific value comes from. 
+    a. Having a dynamic report means every single result you report is traceable, so your reader could see, where every specific value comes from. 
     a. Everything, even the used R packages, are stored within one folder. So you can easily share the project and lastly it should compile correctly even some years in the future.
     a. _Collaborate_: Since your are manipulating plain text files, you can use your favorite version control system (e.g. your University's GitLab) and collaborate easily with colleagues.
 
@@ -50,7 +50,7 @@ I really much appreciate what the RStudio Team and people like [Yihui Xie](https
 
 I put a lot of completely unpaid effort and time (since I'm a student hardcore procrastinating writing his thesis) into making this book and I give it to you for free, hoping it will save you a lot of time and make you a better or at least a more efficient researcher. 
 
-I though have on request for you: Everyone whom this book helped I want to invite to contribute to this project as ideas and resolutions, that would make this book continously better, come during actual thesis writing or while coding in R.
+I though have one request for you: Everyone whom this book helped I want to invite to contribute to this project as ideas and resolutions, that would make this book continously better, come during actual thesis writing or while coding in R.
 
 <!-- Spendenbutton https://www.paypal.com/de/cgi-bin/webscr?cmd=_donate-intro-outside -->
 Maybe you simply want to say "Thank you!". Whether my project saved you time worth 1,000EUR (because you are of the rare species of a well paid scientist) or you just grant me an after work beer, I would really appreciate your donation!^[Depending on the way your are reading this, you might visit https://kreflix.github.io/thesiswritingUsingRStudioAndBookdown/index.html#contribute to see how to donate.]
@@ -109,7 +109,7 @@ __*tl;dr:*__
 - To open and use this book's project just download it's source files from GitHub http://statistify.de/thesiswritingUsingRStudioAndBookdown_repo or the `zip` from the toolbar on top of the book's html-version and open the `.Rproj`-file in RStudio (of course you need R and RStudio).
 
 - After successfully installing bookdown (see [Rstudio und Packrat]) you should find the button "Build Book" in the "Build"-tab in RStudio. "Build Book" creates the book in all output formats. You can find the `index.html`, `pdf` etc. in the `docs`-folder.
-    - For PDF-Output you also need to install LaTeX.
+    - For PDF-Output you also need to install LaTeX. Pandoc assumes some LaTeX packages to be availabe. See http://pandoc.org/MANUAL.html#creating-a-pdf.
     
 ----
 
@@ -137,7 +137,7 @@ library(bookdown)
 
 Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
 
-To compile this example to PDF, you need to install XeLaTeX.
+To compile this example to PDF, you need to install XeLaTeX. Pandoc assumes some LaTeX packages to be availabe. See http://pandoc.org/MANUAL.html#creating-a-pdf.
 
 I assume you have already installed R and RStudio and you know how to install any other package this RProject may need (see `_Auswertungsskript.r`).
 
@@ -156,6 +156,25 @@ Beim erstmaligen Start des Projektes wird R versuchen, Packrat und alle notwendi
 Sollte es nicht automatisch klappen, dann installiere Packrat manuell. Nutze anschließend folgende Befehle, um die Pakete zu installieren oder schaue in `_Auswertungsskript.r`, welche Pakete für dieses Buch geladen werden müssen.
 ```
 
+  <!-- R-Meldung, wenn packrat-lib erstellt wird:
+  Packrat is not installed in the local library -- attempting to bootstrap an installation...
+  > Installing packrat into project private library:
+  - "C:/Users/Felix/Desktop/test_thesiswritingUsingRStudioAndBookdown-master/packrat/lib/x86_64-w64-mingw32/3.4.0"
+  * installing *source* package 'packrat' ...
+  ** Paket 'packrat' erfolgreich entpackt und MD5 Summen überprüft
+  ** R
+  ** inst
+  ** preparing package for lazy loading
+  ** help
+  *** installing help indices
+  ** building package indices
+  ** testing if installed package can be loaded
+  *** arch - i386
+  *** arch - x64
+  * DONE (packrat)
+  > Attaching packrat
+  > Restoring library
+  -->
 
 ```{r packrat, eval=FALSE}
 #packrat::init()  #Initializes the current working directory as a Packrat project.
@@ -166,7 +185,7 @@ packrat::get_opts()  #aktuelle Packrat-Einstellungen
 ```
 
 After successfully installing R, RStudio, all R packages and LaTeX^[How to correctly install and set up LaTeX is another chapter, that I can't cover by now, because it is still some sort of a mystery for me, why some things work while others don't.] (if you want to create PDF files), you should find the button "Build Book" in the "Build"-tab in RStudio. "Build Book" creates the book in all output formats. You can find the `index.html`, `pdf` etc. in the `docs`-folder.
-    - For PDF-Output you also need to install LaTeX.
+
     
 <!----------------------------------------------------------------------------->
 ## Links und Tipps {-}
@@ -177,6 +196,10 @@ After successfully installing R, RStudio, all R packages and LaTeX^[How to corre
     
 - I agree with Sean Kross who says "getting started with bookdown is not yet a totally straightforward process". Read his [How to Start a Bookdown Book](http://seankross.com/2016/11/17/How-to-Start-a-Bookdown-Book.html) here!
     - Actually he provides a [minimal bookdown example](http://seankross.com/bookdown-start/diving-in.html) as well, but for some reasons his didn't work for me. You can download it from [GitHub](https://github.com/seankross/bookdown-start).
+    
+- Rosanna van Hespen wrote a great and very straight forward blog on "Writing your thesis with R Markdown" (read at [Rosanna's Research](https://rosannavanhespenresearch.wordpress.com/2016/03/29/writing-your-thesis-with-r-markdown-4-putting-the-thesis-together/)) with a focus on solely creating a PDF file. Special thanks to her for eventually showing me how to use inline R code in a Markdown report. I was haunted by this idea for years and thank to her blog I came in contact with Pandoc and Co.
+
+- Into Microsoft Word? http://rmarkdown.rstudio.com/articles_docx.html
     
 - If you move or share your own project, it migth be a good idea to delete the folder `/packrat/lib/` before starting the RProject on a new machine in order to have a clean installation of the packages.
     
@@ -191,7 +214,7 @@ After successfully installing R, RStudio, all R packages and LaTeX^[How to corre
 <!----------------------------------------------------------------------------->
 ### Auswertungsskript ausführen {-}
 
-Damit alle Ergebnisse, Grafiken und Variablen vorhanden sind, müssen erst die Berechnungen in R vorgenommen werden. Theoretisch könnten alle R-Berechnungn auch in einem R-Chunk im Buch ausgeführt werden. Da das aber bei langen Skripten sehr unüblich werden kann, habe ich ein klassischen R-Skript zur Auswertung erstellt, dass vor dem Kompilieren des Buches (ggf. mit Dummy-Daten) ausgeführt werden muss. Entweder per Hand oder per Source-Befehl.
+Damit alle Ergebnisse, Grafiken und Variablen vorhanden sind, müssen erst die Berechnungen in R vorgenommen werden. Theoretisch könnten alle R-Berechnungn auch in einem R-Chunk im Buch ausgeführt werden. Da das aber bei langen Skripten sehr unübersichtlich werden kann, habe ich ein klassischen R-Skript zur Auswertung erstellt, dass vor dem Kompilieren des Buches (ggf. mit Dummy-Daten) ausgeführt werden muss. Entweder per Hand oder per Source-Befehl.
 
 ```{r sourceAuswertung, eval=FALSE}
 source('_Auswertungsskript.r')
