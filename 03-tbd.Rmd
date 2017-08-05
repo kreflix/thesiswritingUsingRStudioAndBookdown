@@ -2,8 +2,6 @@
 
 Notwendig:
 
-- best practice: Wann cachen? Und weitere sinnvolle R-Chunk-Options. https://yihui.name/knitr/options/
-    - ich cache erstmal alles, damit knitting schnell geht
 - Pandoc assumes some LaTeX packages to be availabe. See http://pandoc.org/MANUAL.html#creating-a-pdf.
 - "References" statt "Literatur" unter HTML-Seite
 - LaTeX Übersetzung
@@ -11,6 +9,7 @@ Notwendig:
 - LaTeX Float
 - LaTeX nocite
 - LaTeX Code schreibt über Seitenränder -> manuell Zeilen ab Spalte 90 umbrechen
+    - [x] auch wenn code chunk option `tidy`?
 - Word zentriertes Bild ist linksbündig
 - `'r format(Sys.time(), '%d. %B %Y')'` verursacht LaTeX Probleme
 - custom block icons und favicon werden online nicht angezeigt
@@ -18,7 +17,6 @@ Notwendig:
 
 Zukünftig:
 
-- Grafik in custom block wird auf git pages nicht angezeigt
 - LaTeX Text ist zentriert nach kaputter Tabelle
 - auto create .zip RProject (vllt via makeZip.bat oder zip())
 - autocompletion für `\@ref`

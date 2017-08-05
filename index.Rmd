@@ -19,7 +19,7 @@ favicon: 'img/favicon.png'
 #nocite klappt über natbib nur für HTML und Word, nicht aber PDF -> vllt den default pandoc-citeproc nehmen
 nocite: |
   @Welsh2014, @Atkinson2014 
-
+#include-after: donation button
 ---
 
 # Vorbereitung und Vorwort {-}
@@ -207,6 +207,8 @@ After successfully installing R, RStudio, all R packages and LaTeX^[How to corre
     - `citr` Just install it like any other R-package and then you can easily insert citations browsing your bib-file within Rstudio.
     - `ggThemeAssist` or `ggedit`
     - Find more https://github.com/daattali/addinslist
+    
+- To speed up knitting you should use cache. Via `knitr::opts_chunk$set()` you can set your preferred default chunk options. See mine in the source code of `index.Rmd`. For all options see https://yihui.name/knitr/options/ and for cool ideas regarding dependent caching see https://github.com/yihui/knitr/issues/238!
 
 - Annotations: [hypothes.is](https://web.hypothes.is/) lets you easily and in collaboration with others (or several supervisors) annotate text on any website. Of course PDF annotations, (Online-)Word's markups, an HTML comment area (e.g. [Disqus](https://disqus.com/)) or Git issues could fit your needs as well.
 
@@ -214,8 +216,33 @@ After successfully installing R, RStudio, all R packages and LaTeX^[How to corre
 <!----------------------------------------------------------------------------->
 ### Auswertungsskript ausführen {-}
 
-Damit alle Ergebnisse, Grafiken und Variablen vorhanden sind, müssen erst die Berechnungen in R vorgenommen werden. Theoretisch könnten alle R-Berechnungn auch in einem R-Chunk im Buch ausgeführt werden. Da das aber bei langen Skripten sehr unübersichtlich werden kann, habe ich ein klassischen R-Skript zur Auswertung erstellt, dass vor dem Kompilieren des Buches (ggf. mit Dummy-Daten) ausgeführt werden muss. Entweder per Hand oder per Source-Befehl.
+Damit alle Ergebnisse, Grafiken und Variablen vorhanden sind, müssen erst die Berechnungen in R vorgenommen werden. Theoretisch könnten alle R-Berechnungn auch in einem R-Chunk im Buch ausgeführt werden. Da das aber bei langen Skripten sehr unübersichtlich werden kann, habe ich ein klassischen R-Skript zur Auswertung erstellt, dass vor dem Kompilieren des Buches (ggf. mit Dummy-Daten) ausgeführt werden muss. Entweder per Hand oder per Source-Befehl. Die Ergebnissen können/sollten für ein schnelles Kompilieren des Buches während der Bearbeitung gecached werden.
 
 ```{r sourceAuswertung, eval=FALSE}
 source('_Auswertungsskript.r')
+```
+
+<!-- set default R chunk options -->
+```{r include=FALSE}
+# see https://yihui.name/knitr/options/ and https://github.com/yihui/knitr/issues/238
+mtime <- function(files){
+  lapply(Sys.glob(files),function(x) file.info(x)$mtime)
+}
+knitr::opts_chunk$set(cache = TRUE,  #speeds up knitting; recognizes when R chunk was changed; set FALSE when you want to make sure that outputs will change
+                      cache.extra = mtime(list.files("datensaetze/")), #fetch cache unless one of the datasets changed
+                      cache.comments = FALSE,  #keep cache when in an R chunk only comments have changed
+                      autodep = TRUE,  #not reliable! figure out, on which R chunk the current chunk depends and decache both if necessary
+                      eval = TRUE,  #evaluate the code chunk (numeric vector to select which R expression if not all)
+                      echo = FALSE,  #include source code in output (numeric vector possible)
+                      results = "hold",  #hold all the output pieces and push them to the end of a chunk
+                      warning = FALSE,  #if FALSE, all warnings will be printed in the console instead of the output document
+                      error = TRUE,  #if we want R to stop on errors, we need to set this option to FALSE
+                      message = FALSE,  #whether to preserve messages emitted by message() (similar to warning)
+                      include = TRUE,  #if include=FALSE, nothing will be written into the output document, but the code is still evaluated and plot files are generated if there are any plots in the chunk, so you can manually insert figures
+                      tidy = TRUE,
+                        #tidy.opts=list(width.cutoff=90)
+                      comment = "##",  #the prefix to be put before source code output
+                      fig.path = 'img/',  #prefix to be used for figure filename
+                      verbose = FALSE  #whether to show verbose information (e.g., R code in each chunk and message logs) 
+                      )
 ```
