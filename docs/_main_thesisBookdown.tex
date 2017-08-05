@@ -124,7 +124,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2017-08-03}
+  \date{2017-08-05}
 
 %\usepackage[ngerman, english]{babel} % this is needed for umlauts and hyphenation
 %------- by Nils
@@ -250,7 +250,7 @@ scientist, who is about to set up her or his next R project.
   \tightlist
   \item
     R-Chunks allow you to insert tables and graphics using the R code
-    you are familiar.
+    you are familiar with.
   \item
     You can use inline R code directly in your thesis text, allowing you
     to have R output in your sentences. Just store a result in a
@@ -266,7 +266,7 @@ scientist, who is about to set up her or his next R project.
   \tightlist
   \item
     Having a dynamic report means every single result you report is
-    traceable, so youre reader could see, where every specific value
+    traceable, so your reader could see, where every specific value
     comes from.
   \item
     Everything, even the used R packages, are stored within one folder.
@@ -289,7 +289,7 @@ hardcore procrastinating writing his thesis) into making this book and I
 give it to you for free, hoping it will save you a lot of time and make
 you a better or at least a more efficient researcher.
 
-I though have on request for you: Everyone whom this book helped I want
+I though have one request for you: Everyone whom this book helped I want
 to invite to contribute to this project as ideas and resolutions, that
 would make this book continously better, come during actual thesis
 writing or while coding in R.
@@ -363,7 +363,9 @@ findet ihr unter \protect\hyperlink{tbd}{To Be Done}.
   \begin{itemize}
   \tightlist
   \item
-    For PDF-Output you also need to install LaTeX.
+    For PDF-Output you also need to install LaTeX. Pandoc assumes some
+    LaTeX packages to be availabe. See
+    \url{http://pandoc.org/MANUAL.html\#creating-a-pdf}.
   \end{itemize}
 \end{itemize}
 
@@ -411,7 +413,9 @@ the development versions of \textbf{bookdown} from Github:
 Remember each Rmd file contains one and only one chapter, and a chapter
 is defined by the first-level heading \texttt{\#}.
 
-To compile this example to PDF, you need to install XeLaTeX.
+To compile this example to PDF, you need to install XeLaTeX. Pandoc
+assumes some LaTeX packages to be availabe. See
+\url{http://pandoc.org/MANUAL.html\#creating-a-pdf}.
 
 I assume you have already installed R and RStudio and you know how to
 install any other package this RProject may need (see
@@ -472,7 +476,7 @@ LaTeX\footnote{How to correctly install and set up LaTeX is another
 to create PDF files), you should find the button ``Build Book'' in the
 ``Build''-tab in RStudio. ``Build Book'' creates the book in all output
 formats. You can find the \texttt{index.html}, \texttt{pdf} etc. in the
-\texttt{docs}-folder. - For PDF-Output you also need to install LaTeX.
+\texttt{docs}-folder.
 
 \hypertarget{links-und-tipps}{\section*{Links und
 Tipps}\label{links-und-tipps}}
@@ -511,6 +515,17 @@ Tipps}\label{links-und-tipps}}
     \href{https://github.com/seankross/bookdown-start}{GitHub}.
   \end{itemize}
 \item
+  Rosanna van Hespen wrote a great and very straight forward blog on
+  ``Writing your thesis with R Markdown'' (read at
+  \href{https://rosannavanhespenresearch.wordpress.com/2016/03/29/writing-your-thesis-with-r-markdown-4-putting-the-thesis-together/}{Rosanna's
+  Research}) with a focus on solely creating a PDF file. Special thanks
+  to her for eventually showing me how to use inline R code in a
+  Markdown report. I was haunted by this idea for years and thank to her
+  blog I came in contact with Pandoc and Co.
+\item
+  Into Microsoft Word?
+  \url{http://rmarkdown.rstudio.com/articles_docx.html}
+\item
   If you move or share your own project, it migth be a good idea to
   delete the folder \texttt{/packrat/lib/} before starting the RProject
   on a new machine in order to have a clean installation of the
@@ -544,7 +559,7 @@ ausführen}\label{auswertungsskript-ausfuhren}
 Damit alle Ergebnisse, Grafiken und Variablen vorhanden sind, müssen
 erst die Berechnungen in R vorgenommen werden. Theoretisch könnten alle
 R-Berechnungn auch in einem R-Chunk im Buch ausgeführt werden. Da das
-aber bei langen Skripten sehr unüblich werden kann, habe ich ein
+aber bei langen Skripten sehr unübersichtlich werden kann, habe ich ein
 klassischen R-Skript zur Auswertung erstellt, dass vor dem Kompilieren
 des Buches (ggf. mit Dummy-Daten) ausgeführt werden muss. Entweder per
 Hand oder per Source-Befehl.
@@ -918,9 +933,9 @@ HTML-Widgets, müssen als \textbf{Abbildung}
 werden, auch wenn es sich um eine DT-Tabelle handelt.
 \EndKnitrBlock{rmdcaution}
 
-\subsection{Inline R-Code}\label{inline-r-code}
+\section{Inline R-Code}\label{inline-r-code}
 
-\subsubsection{Referenzieren mit
+\subsection{Referenzieren mit
 Inline-Bedingung}\label{referenzieren-mit-inline-bedingung}
 
 \emph{Kann ich nicht je nach Outputformat eine statische oder
@@ -1004,7 +1019,7 @@ in PDF und HTML.
   but is a bit monstrous.
 \end{enumerate}
 
-\subsubsection{Inline R-Output und bedingte
+\subsection{Inline R-Output und bedingte
 Textanzeige}\label{inline-r-output-und-bedingte-textanzeige}
 
 Letztlich können wir mithilfe von Inline-R-Code auf jede R-Variable
@@ -1170,17 +1185,18 @@ Spell-Checking whole Text-Document in English and German:
 
 \begin{verbatim}
 ##  [1] "Ã"              "Ãobersetzung"   "autocomplete"   "autocompletion"
-##  [5] "ber"            "cachen"         "citeproc"       "citr"          
-##  [9] "deutshes"       "DT"             "eglish"         "eval"          
-## [13] "fÃ"             "favicon"        "github"         "htmlwidget"    
-## [17] "https"          "hunspell"       "io"             "knitr"         
-## [21] "linksbÃ"        "mÃ"             "makeZip"        "nder"          
-## [25] "ndig"           "nftig"          "nocite"         "Packrat"       
-## [29] "rmarkdown"      "RProject"       "rstudio"        "RStudio"       
-## [33] "rter"           "SeitenrÃ"       "Spellchecking"  "Sys"           
-## [37] "tbd"            "vllt"           "WÃ"             "Worng"         
-## [41] "wrongWords"     "xtable"         "yihui"          "Yihui"         
-## [45] "ZukÃ"
+##  [5] "availabe"       "ber"            "cachen"         "citeproc"      
+##  [9] "citr"           "deutshes"       "DT"             "eglish"        
+## [13] "eval"           "fÃ"             "favicon"        "github"        
+## [17] "htmlwidget"     "https"          "hunspell"       "io"            
+## [21] "knitr"          "linksbÃ"        "mÃ"             "makeZip"       
+## [25] "nder"           "ndig"           "nftig"          "nocite"        
+## [29] "Packrat"        "pandoc"         "Pandoc"         "rmarkdown"     
+## [33] "RProject"       "rstudio"        "RStudio"        "rter"          
+## [37] "SeitenrÃ"       "Spellchecking"  "statistify"     "Sys"           
+## [41] "tbd"            "vllt"           "WÃ"             "Worng"         
+## [45] "wrongWords"     "xtable"         "yihui"          "Yihui"         
+## [49] "ZukÃ"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1227,6 +1243,15 @@ Notwendig:
 \item
   best practice: Wann cachen? Und weitere sinnvolle R-Chunk-Options.
   \url{https://yihui.name/knitr/options/}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ich cache erstmal alles, damit knitting schnell geht
+  \end{itemize}
+\item
+  Pandoc assumes some LaTeX packages to be availabe. See
+  \url{http://pandoc.org/MANUAL.html\#creating-a-pdf}.
 \item
   ``References'' statt ``Literatur'' unter HTML-Seite
 \item
@@ -1256,6 +1281,8 @@ Zukünftig:
 \begin{itemize}
 \tightlist
 \item
+  Grafik in custom block wird auf git pages nicht angezeigt
+\item
   LaTeX Text ist zentriert nach kaputter Tabelle
 \item
   auto create .zip RProject (vllt via makeZip.bat oder zip())
@@ -1281,7 +1308,9 @@ Zukünftig:
 \item
   hunspell und Umlaute
 \item
-  R-Code in Custom Block
+  R-Code in Custom Block und umgekehrt
+\item
+  github-Links zu statistify.de-Links wandeln/umleiten
 \end{itemize}
 
 Im Moment noch nicht möglich:
@@ -1291,7 +1320,7 @@ Im Moment noch nicht möglich:
 \item
   continuous spell checking in RStudio
 \item
-  autocomplete \citet{ref}
+  autocomplete \texttt{@ref}
   \url{https://github.com/rstudio/rmarkdown/issues/958}
 \item
   htmlwidget / DT-table als ``Tabelle'' statt als ``Abbildung''
@@ -1329,24 +1358,6 @@ Im Moment noch nicht möglich:
 ## [17] stringr_1.2.0    shiny_1.0.3      httpuv_1.3.3     yaml_2.1.14     
 ## [21] compiler_3.4.0   htmltools_0.3.6  knitr_1.16
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{#zipfilename <- paste0("RProject_thesiswritingUsingRStudioAndBookdown_",}
-\CommentTok{#                      Sys.Date())}
-\CommentTok{#zipfiles <- list.files(getwd())}
-\CommentTok{#zipextras <- list("-x .git")}
-\CommentTok{#dest_path <- paste0(getwd(), zip)}
-\NormalTok{##zip(zipfile = zipfilename, }
-\NormalTok{##    files = zipfiles,}
-\NormalTok{##    extra = zipextras)}
-\CommentTok{#tar(tarfile = zipfilename, }
-\CommentTok{#    files = zipfiles) #how to exclude packrat/lib ?}
-\CommentTok{#    }
-\CommentTok{#system("for /d %%a in (*) do (ECHO zip -r -p \textbackslash{}"%%~na.zip\textbackslash{}" \textbackslash{}".\textbackslash{}%%a\textbackslash{}*\textbackslash{}")")}
-\CommentTok{#shell.exec("makeZip.bat")}
-\end{Highlighting}
-\end{Shaded}
 
 \bibliography{packages,bibliography}
 

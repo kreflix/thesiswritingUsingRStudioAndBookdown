@@ -25,7 +25,7 @@
 <meta name="author" content="Felix Kretschmer">
 
 
-<meta name="date" content="2017-08-03">
+<meta name="date" content="2017-08-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -125,7 +125,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.3.2" data-path="tabellen.html"><a href="tabellen.html#complexTables"><i class="fa fa-check"></i><b>1.3.2</b> komplexere (LaTeX-)Tabellen</a></li>
 <li class="chapter" data-level="1.3.3" data-path="tabellen.html"><a href="tabellen.html#xTable"><i class="fa fa-check"></i><b>1.3.3</b> xTable()</a></li>
 <li class="chapter" data-level="1.3.4" data-path="tabellen.html"><a href="tabellen.html#interactiveTable"><i class="fa fa-check"></i><b>1.3.4</b> interaktive Tabellen</a></li>
-<li class="chapter" data-level="1.3.5" data-path="tabellen.html"><a href="tabellen.html#inline-r-code"><i class="fa fa-check"></i><b>1.3.5</b> Inline R-Code</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="inline-r-code.html"><a href="inline-r-code.html"><i class="fa fa-check"></i><b>1.4</b> Inline R-Code</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="inline-r-code.html"><a href="inline-r-code.html#referenzieren-mit-inline-bedingung"><i class="fa fa-check"></i><b>1.4.1</b> Referenzieren mit Inline-Bedingung</a></li>
+<li class="chapter" data-level="1.4.2" data-path="inline-r-code.html"><a href="inline-r-code.html#inline-r-output-und-bedingte-textanzeige"><i class="fa fa-check"></i><b>1.4.2</b> Inline R-Output und bedingte Textanzeige</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="verfassen.html"><a href="verfassen.html"><i class="fa fa-check"></i><b>2</b> Verfassen</a><ul>
@@ -160,7 +163,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</h1>
 <h4 class="author"><em>Felix Kretschmer</em></h4>
-<h4 class="date"><em>2017-08-03</em></h4>
+<h4 class="date"><em>2017-08-05</em></h4>
 </div>
 <div id="vorbereitung-und-vorwort" class="section level1 unnumbered">
 <h1>Vorbereitung und Vorwort</h1>
@@ -172,12 +175,12 @@ I really much appreciate what the RStudio Team and people like <a href="https://
 <ol style="list-style-type: decimal">
 <li><em>Fully dynamic reports</em>: You have added some new observations? Don’t worry! All graphics, tables and values will have changed automatically after compiling the thesis again. You won’t have to copy results from your R console and paste it to your word or presentation processing program any longer, since
 <ol style="list-style-type: lower-alpha">
-<li>R-Chunks allow you to insert tables and graphics using the R code you are familiar.</li>
+<li>R-Chunks allow you to insert tables and graphics using the R code you are familiar with.</li>
 <li>You can use inline R code directly in your thesis text, allowing you to have R output in your sentences. Just store a result in a variable and let R and Markdown print it’s value within a sentence.</li>
 </ol></li>
 <li><em>Be a good scientist!</em> You are doing real reproducible research as we all should do<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>.
 <ol style="list-style-type: lower-alpha">
-<li>Having a dynamic report means every single result you report is traceable, so youre reader could see, where every specific value comes from.</li>
+<li>Having a dynamic report means every single result you report is traceable, so your reader could see, where every specific value comes from.</li>
 <li>Everything, even the used R packages, are stored within one folder. So you can easily share the project and lastly it should compile correctly even some years in the future.</li>
 <li><em>Collaborate</em>: Since your are manipulating plain text files, you can use your favorite version control system (e.g. your University’s GitLab) and collaborate easily with colleagues.</li>
 </ol></li>
@@ -187,7 +190,7 @@ I really much appreciate what the RStudio Team and people like <a href="https://
 <div id="contribute" class="section level3 unnumbered">
 <h3>Contribute!</h3>
 <p>I put a lot of completely unpaid effort and time (since I’m a student hardcore procrastinating writing his thesis) into making this book and I give it to you for free, hoping it will save you a lot of time and make you a better or at least a more efficient researcher.</p>
-<p>I though have on request for you: Everyone whom this book helped I want to invite to contribute to this project as ideas and resolutions, that would make this book continously better, come during actual thesis writing or while coding in R.</p>
+<p>I though have one request for you: Everyone whom this book helped I want to invite to contribute to this project as ideas and resolutions, that would make this book continously better, come during actual thesis writing or while coding in R.</p>
 <!-- Spendenbutton https://www.paypal.com/de/cgi-bin/webscr?cmd=_donate-intro-outside -->
 <p>Maybe you simply want to say “Thank you!”. Whether my project saved you time worth 1,000EUR (because you are of the rare species of a well paid scientist) or you just grant me an after work beer, I would really appreciate your donation!<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">

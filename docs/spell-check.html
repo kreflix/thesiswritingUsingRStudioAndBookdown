@@ -25,7 +25,7 @@
 <meta name="author" content="Felix Kretschmer">
 
 
-<meta name="date" content="2017-08-03">
+<meta name="date" content="2017-08-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -125,7 +125,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.3.2" data-path="tabellen.html"><a href="tabellen.html#complexTables"><i class="fa fa-check"></i><b>1.3.2</b> komplexere (LaTeX-)Tabellen</a></li>
 <li class="chapter" data-level="1.3.3" data-path="tabellen.html"><a href="tabellen.html#xTable"><i class="fa fa-check"></i><b>1.3.3</b> xTable()</a></li>
 <li class="chapter" data-level="1.3.4" data-path="tabellen.html"><a href="tabellen.html#interactiveTable"><i class="fa fa-check"></i><b>1.3.4</b> interaktive Tabellen</a></li>
-<li class="chapter" data-level="1.3.5" data-path="tabellen.html"><a href="tabellen.html#inline-r-code"><i class="fa fa-check"></i><b>1.3.5</b> Inline R-Code</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="inline-r-code.html"><a href="inline-r-code.html"><i class="fa fa-check"></i><b>1.4</b> Inline R-Code</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="inline-r-code.html"><a href="inline-r-code.html#referenzieren-mit-inline-bedingung"><i class="fa fa-check"></i><b>1.4.1</b> Referenzieren mit Inline-Bedingung</a></li>
+<li class="chapter" data-level="1.4.2" data-path="inline-r-code.html"><a href="inline-r-code.html#inline-r-output-und-bedingte-textanzeige"><i class="fa fa-check"></i><b>1.4.2</b> Inline R-Output und bedingte Textanzeige</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="verfassen.html"><a href="verfassen.html"><i class="fa fa-check"></i><b>2</b> Verfassen</a><ul>
@@ -181,17 +184,18 @@ bad_words_list &lt;-<span class="st"> </span><span class="kw">sort</span>(<span 
 bad_words_list &lt;-<span class="st"> </span>bad_words_list[<span class="kw">duplicated</span>(bad_words_list)]
 bad_words_list</code></pre></div>
 <pre><code>##  [1] &quot;Ã&quot;              &quot;Ãobersetzung&quot;   &quot;autocomplete&quot;   &quot;autocompletion&quot;
-##  [5] &quot;ber&quot;            &quot;cachen&quot;         &quot;citeproc&quot;       &quot;citr&quot;          
-##  [9] &quot;deutshes&quot;       &quot;DT&quot;             &quot;eglish&quot;         &quot;eval&quot;          
-## [13] &quot;fÃ&quot;             &quot;favicon&quot;        &quot;github&quot;         &quot;htmlwidget&quot;    
-## [17] &quot;https&quot;          &quot;hunspell&quot;       &quot;io&quot;             &quot;knitr&quot;         
-## [21] &quot;linksbÃ&quot;        &quot;mÃ&quot;             &quot;makeZip&quot;        &quot;nder&quot;          
-## [25] &quot;ndig&quot;           &quot;nftig&quot;          &quot;nocite&quot;         &quot;Packrat&quot;       
-## [29] &quot;rmarkdown&quot;      &quot;RProject&quot;       &quot;rstudio&quot;        &quot;RStudio&quot;       
-## [33] &quot;rter&quot;           &quot;SeitenrÃ&quot;       &quot;Spellchecking&quot;  &quot;Sys&quot;           
-## [37] &quot;tbd&quot;            &quot;vllt&quot;           &quot;WÃ&quot;             &quot;Worng&quot;         
-## [41] &quot;wrongWords&quot;     &quot;xtable&quot;         &quot;yihui&quot;          &quot;Yihui&quot;         
-## [45] &quot;ZukÃ&quot;</code></pre>
+##  [5] &quot;availabe&quot;       &quot;ber&quot;            &quot;cachen&quot;         &quot;citeproc&quot;      
+##  [9] &quot;citr&quot;           &quot;deutshes&quot;       &quot;DT&quot;             &quot;eglish&quot;        
+## [13] &quot;eval&quot;           &quot;fÃ&quot;             &quot;favicon&quot;        &quot;github&quot;        
+## [17] &quot;htmlwidget&quot;     &quot;https&quot;          &quot;hunspell&quot;       &quot;io&quot;            
+## [21] &quot;knitr&quot;          &quot;linksbÃ&quot;        &quot;mÃ&quot;             &quot;makeZip&quot;       
+## [25] &quot;nder&quot;           &quot;ndig&quot;           &quot;nftig&quot;          &quot;nocite&quot;        
+## [29] &quot;Packrat&quot;        &quot;pandoc&quot;         &quot;Pandoc&quot;         &quot;rmarkdown&quot;     
+## [33] &quot;RProject&quot;       &quot;rstudio&quot;        &quot;RStudio&quot;        &quot;rter&quot;          
+## [37] &quot;SeitenrÃ&quot;       &quot;Spellchecking&quot;  &quot;statistify&quot;     &quot;Sys&quot;           
+## [41] &quot;tbd&quot;            &quot;vllt&quot;           &quot;WÃ&quot;             &quot;Worng&quot;         
+## [45] &quot;wrongWords&quot;     &quot;xtable&quot;         &quot;yihui&quot;          &quot;Yihui&quot;         
+## [49] &quot;ZukÃ&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#hunspell_suggest(bad_words_list, dict = deutsch) #gibt Verbesserungsvorschläge</span></code></pre></div>
 <p>Ich persönlich finde es aber einfacher, die Vorteile von Pandoc/bookdown/knitr zu nutzen und würde die Word-Version meines Dokuments gegenlesen, wo direkt im Text unterstrichen wird, wenn ein Wort falsch oder ein Satz grammatikalisch fehlerhaft ist.</p>
 <!----------------------------------------------------------------------------->

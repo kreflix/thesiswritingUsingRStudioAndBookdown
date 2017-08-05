@@ -25,7 +25,7 @@
 <meta name="author" content="Felix Kretschmer">
 
 
-<meta name="date" content="2017-08-03">
+<meta name="date" content="2017-08-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -125,7 +125,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.3.2" data-path="tabellen.html"><a href="tabellen.html#complexTables"><i class="fa fa-check"></i><b>1.3.2</b> komplexere (LaTeX-)Tabellen</a></li>
 <li class="chapter" data-level="1.3.3" data-path="tabellen.html"><a href="tabellen.html#xTable"><i class="fa fa-check"></i><b>1.3.3</b> xTable()</a></li>
 <li class="chapter" data-level="1.3.4" data-path="tabellen.html"><a href="tabellen.html#interactiveTable"><i class="fa fa-check"></i><b>1.3.4</b> interaktive Tabellen</a></li>
-<li class="chapter" data-level="1.3.5" data-path="tabellen.html"><a href="tabellen.html#inline-r-code"><i class="fa fa-check"></i><b>1.3.5</b> Inline R-Code</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="inline-r-code.html"><a href="inline-r-code.html"><i class="fa fa-check"></i><b>1.4</b> Inline R-Code</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="inline-r-code.html"><a href="inline-r-code.html#referenzieren-mit-inline-bedingung"><i class="fa fa-check"></i><b>1.4.1</b> Referenzieren mit Inline-Bedingung</a></li>
+<li class="chapter" data-level="1.4.2" data-path="inline-r-code.html"><a href="inline-r-code.html#inline-r-output-und-bedingte-textanzeige"><i class="fa fa-check"></i><b>1.4.2</b> Inline R-Output und bedingte Textanzeige</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="verfassen.html"><a href="verfassen.html"><i class="fa fa-check"></i><b>2</b> Verfassen</a><ul>
@@ -169,6 +172,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>Actually he provides a <a href="http://seankross.com/bookdown-start/diving-in.html">minimal bookdown example</a> as well, but for some reasons his didn’t work for me. You can download it from <a href="https://github.com/seankross/bookdown-start">GitHub</a>.</li>
 </ul></li>
+<li><p>Rosanna van Hespen wrote a great and very straight forward blog on “Writing your thesis with R Markdown” (read at <a href="https://rosannavanhespenresearch.wordpress.com/2016/03/29/writing-your-thesis-with-r-markdown-4-putting-the-thesis-together/">Rosanna’s Research</a>) with a focus on solely creating a PDF file. Special thanks to her for eventually showing me how to use inline R code in a Markdown report. I was haunted by this idea for years and thank to her blog I came in contact with Pandoc and Co.</p></li>
+<li><p>Into Microsoft Word? <a href="http://rmarkdown.rstudio.com/articles_docx.html" class="uri">http://rmarkdown.rstudio.com/articles_docx.html</a></p></li>
 <li><p>If you move or share your own project, it migth be a good idea to delete the folder <code>/packrat/lib/</code> before starting the RProject on a new machine in order to have a clean installation of the packages.</p></li>
 <li>There are some cool addins for RStudio, e. g.
 <ul>
@@ -181,7 +186,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <!----------------------------------------------------------------------------->
 <div id="auswertungsskript-ausfuhren" class="section level3 unnumbered">
 <h3>Auswertungsskript ausführen</h3>
-<p>Damit alle Ergebnisse, Grafiken und Variablen vorhanden sind, müssen erst die Berechnungen in R vorgenommen werden. Theoretisch könnten alle R-Berechnungn auch in einem R-Chunk im Buch ausgeführt werden. Da das aber bei langen Skripten sehr unüblich werden kann, habe ich ein klassischen R-Skript zur Auswertung erstellt, dass vor dem Kompilieren des Buches (ggf. mit Dummy-Daten) ausgeführt werden muss. Entweder per Hand oder per Source-Befehl.</p>
+<p>Damit alle Ergebnisse, Grafiken und Variablen vorhanden sind, müssen erst die Berechnungen in R vorgenommen werden. Theoretisch könnten alle R-Berechnungn auch in einem R-Chunk im Buch ausgeführt werden. Da das aber bei langen Skripten sehr unübersichtlich werden kann, habe ich ein klassischen R-Skript zur Auswertung erstellt, dass vor dem Kompilieren des Buches (ggf. mit Dummy-Daten) ausgeführt werden muss. Entweder per Hand oder per Source-Befehl.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&#39;_Auswertungsskript.r&#39;</span>)</code></pre></div>
 
 <!----------------------------------------------------------------------------->

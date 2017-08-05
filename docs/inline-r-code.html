@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-<link rel="prev" href="collaboration.html">
-<link rel="next" href="literatur.html">
+<link rel="prev" href="tabellen.html">
+<link rel="next" href="verfassen.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -160,59 +160,74 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tbd" class="section level1">
-<h1><span class="header-section-number">3</span> To Be Done</h1>
-<p>Notwendig:</p>
-<ul>
-<li>best practice: Wann cachen? Und weitere sinnvolle R-Chunk-Options. <a href="https://yihui.name/knitr/options/" class="uri">https://yihui.name/knitr/options/</a>
-<ul>
-<li>ich cache erstmal alles, damit knitting schnell geht</li>
-</ul></li>
-<li>Pandoc assumes some LaTeX packages to be availabe. See <a href="http://pandoc.org/MANUAL.html#creating-a-pdf" class="uri">http://pandoc.org/MANUAL.html#creating-a-pdf</a>.</li>
-<li>“References” statt “Literatur” unter HTML-Seite</li>
-<li>LaTeX Übersetzung</li>
-<li>Dezimaltrennzeichen vor allem von inline r-Code: Komma statt Punkt</li>
-<li>LaTeX Float</li>
-<li>LaTeX nocite</li>
-<li>LaTeX Code schreibt über Seitenränder -&gt; manuell Zeilen ab Spalte 90 umbrechen</li>
-<li>Word zentriertes Bild ist linksbündig</li>
-<li><code>'r format(Sys.time(), '%d. %B %Y')'</code> verursacht LaTeX Probleme</li>
-<li>custom block icons und favicon werden online nicht angezeigt</li>
-<li>Zitieren von Yihui. Bib-file entschlacken.</li>
-</ul>
-<p>Zukünftig:</p>
-<ul>
-<li>Grafik in custom block wird auf git pages nicht angezeigt</li>
-<li>LaTeX Text ist zentriert nach kaputter Tabelle</li>
-<li>auto create .zip RProject (vllt via makeZip.bat oder zip())</li>
-<li>autocompletion für <code>\@ref</code>
-<ul>
-<li>Atom-Editor kann das vielleicht <a href="https://discuss.atom.io/t/autocompletion-of-citeproc-references-in-markdown/28177" class="uri">https://discuss.atom.io/t/autocompletion-of-citeproc-references-in-markdown/28177</a> ?</li>
-</ul></li>
-<li>xtable bzw. generell LaTeX-Tabellen in Word und co möglich? Per Screenshot?</li>
-<li>citr geht nicht mehr</li>
-<li>mehrere Literaturverzeichnisse</li>
-<li>Packrat offline restore</li>
-<li>hunspell und Umlaute</li>
-<li>R-Code in Custom Block und umgekehrt</li>
-<li>github-Links zu statistify.de-Links wandeln/umleiten</li>
-</ul>
-<p>Im Moment noch nicht möglich:</p>
-<ul>
-<li>continuous spell checking in RStudio</li>
-<li>autocomplete <code>@ref</code> <a href="https://github.com/rstudio/rmarkdown/issues/958" class="uri">https://github.com/rstudio/rmarkdown/issues/958</a></li>
-<li>htmlwidget / DT-table als “Tabelle” statt als “Abbildung”</li>
-</ul>
-<!-- Ein paar falsch geschriebene Wörter für das Spellchecking-Beispiel -->
+<div id="inline-r-code" class="section level2">
+<h2><span class="header-section-number">1.4</span> Inline R-Code</h2>
+<div id="referenzieren-mit-inline-bedingung" class="section level3">
+<h3><span class="header-section-number">1.4.1</span> Referenzieren mit Inline-Bedingung</h3>
+<p><em>Kann ich nicht je nach Outputformat eine statische oder interaktive Tabelle erzeugen?</em></p>
+<p>Leider kann das Vorgehen wie unter Abschnitt <a href="tabellen.html#complexTables">1.3.2</a> beschrieben für DT-Tabellen (HTML-Widget) nicht empfohlen werden. Da in HTML die interaktive htmlwidget-Tabelle als Abbildung aufgefasst wird, aber als Tabelle in PDF, ergeben sich unterschiedliche Nummerierungen in HTML und PDF. Zwar sind die Nummerierungen innerhalb eines Dokuments konsistent, aber man muss stets darauf achten, ob man die Tabelle mit <code>\@ref(tab:Tabellenbezeichnung)</code> (HTML) oder mit <code>\@ref(fig:Tabellenbezeichnung)</code> (PDF) referenziert.</p>
+
+<div class="rmdimportant">
+HTML-Widgets werden auch dann als Abbildung geführt, wenn es sich um eine DT-Tabelle handelt.
+</div>
+<p></p>
+<p>Wie referenziere ich nun auf die Tabelle, wenn sie einmal eine Tabelle und einmal eine Abbildung ist? Probieren wir es anhand der folgenden Tabelle aus.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if( knitr:::<span class="kw">is_html_output</span>() ) {
+  <span class="co">#interactives HTML-Widget</span>
+  <span class="co">#library(webshot)</span>
+  <span class="co">#webshot::install_phantomjs()  #muss für Screenshot installiert werden</span>
+  DT::<span class="kw">datatable</span>(
+    mtcars[<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">1</span>:<span class="dv">4</span>], <span class="dt">caption =</span> <span class="st">&#39;This table is a screenshot in PDF, but interactive in HTML.&#39;</span>)
+} else {
+  <span class="co">#statische Tabelle in allen anderen Outputformaten  </span>
+  knitr::<span class="kw">kable</span>(
+    mtcars[<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">1</span>:<span class="dv">4</span>], <span class="dt">caption =</span> <span class="st">&#39;This table would be interactive in HTML.&#39;</span>,
+    <span class="dt">booktabs =</span> <span class="ot">TRUE</span>
+    )
+}</code></pre></div>
+<div class="figure"><span id="fig:htmlWidgetTableCondition"></span>
+<div id="htmlwidget-2df172f57224ce2fa190" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2df172f57224ce2fa190">{"x":{"filter":"none","caption":"<caption>This table is a screenshot in PDF, but interactive in HTML.<\/caption>","data":[["Mazda RX4","Mazda RX4 Wag","Datsun 710"],[21,21,22.8],[6,6,4],[160,160,108],[110,110,93]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mpg<\/th>\n      <th>cyl<\/th>\n      <th>disp<\/th>\n      <th>hp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Abbildung 1.4: htmlWidgetTableCondition
+</p>
+</div>
+<p>Folgende Markdown-Textschnipsel ergeben zum Teil unterschiedlichen Text in PDF und HTML.</p>
+<pre class="text"><code>1. See Table \@ref(tab:htmlWidgetTableCondition) will work in PDF, but not in HTML.
+1. See Table \@ref(fig:htmlWidgetTableCondition) will work in HTML (and Word btw.), but not in PDF.
+1. See Table \@ref(htmlWidgetTableCondition) is just not correct here.
+1. See Table `r ifelse ( knitr:::is_html_output(), &#39;\\@ref(fig:htmlWidgetTableCondition)&#39;, &#39;\\@ref(tab:htmlWidgetTableCondition)&#39; )` will work in any Output, but is a bit monstrous.</code></pre>
+<ol style="list-style-type: decimal">
+<li>See Table <a href="#tab:htmlWidgetTableCondition"><strong>??</strong></a> will work in PDF, but not in HTML.</li>
+<li>See Table <a href="inline-r-code.html#fig:htmlWidgetTableCondition">1.4</a> will work in HTML (and Word btw.), but not in PDF.</li>
+<li>See Table <a href="#htmlWidgetTableCondition"><strong>??</strong></a> is just not correct here.</li>
+<li>See Table <a href="inline-r-code.html#fig:htmlWidgetTableCondition">1.4</a> will work in any Output, but is a bit monstrous.</li>
+</ol>
+</div>
+<div id="inline-r-output-und-bedingte-textanzeige" class="section level3">
+<h3><span class="header-section-number">1.4.2</span> Inline R-Output und bedingte Textanzeige</h3>
+<p>Letztlich können wir mithilfe von Inline-R-Code auf jede R-Variable zurückgreifen und überall bedingte Textbausteine in die Thesis einfügen, was vor allem beim Report statistische Analysen sehr nütztlich ist.</p>
+<div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown">Fahrzeuge mit Automatikgetriebe haben 
+<span class="bn">`r if (t.test(gear~am, data=mtcars)$p.value &gt; 0.05) &#39;nicht&#39;`</span> 
+signifikant mehr oder weniger Gänge als Autos mit manuellem Schaltgetriebe.</code></pre></div>
+<p>Fahrzeuge mit Automatikgetriebe haben signifikant mehr oder weniger Gänge als Autos mit manuellem Schaltgetriebe.<br />
+Im Schnitt haben alle Autos des <code>mtcars</code>-Datensatzes <code>mean(mtcars$hp)=</code> 146.6875PS.</p>
+
+<div class="rmdimportant">
+Mithilfe von Inline-R-Code <code>`r R-Code`</code> können wir auf jede R-Variable und gewohnte R-Funktionalitäten wie bedingte Textanzeigen zurückgreifen.
+</div>
+<p></p>
 
 </div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="collaboration.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="literatur.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tabellen.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="verfassen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
