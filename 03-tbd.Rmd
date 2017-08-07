@@ -25,8 +25,18 @@ Zukünftig:
 - citr geht nicht mehr
 - mehrere Literaturverzeichnisse
 - Packrat offline restore
+    - `packrat::set_opts(local.repos = "packrat/src/")` ?
+	- scheint noch offen zu sein https://github.com/rstudio/packrat/issues/287
+- [x] Packrat lib outside of project folder
+    - enabled in developer version: https://github.com/rstudio/packrat/issues/338#issuecomment-320553343
+    - packrat/packrat.opts see ?"packrat-options"
+    - packrat/lib/ verschiebbar? use.cache? -> not enabled on windows!
+    - https://stackoverflow.com/questions/44676570/how-does-the-use-cache-feature-of-packrat-work
+        - "Somewhere in between these options might make the most sense - users currate their list of large but commonly used packages to be symlinked (i.e.packrat::set_opts(external.packages=c('tidyverse', 'data.table')) ) and then put up with installing smaller packages on a project by project basis." or all packges: installed.packages()[,"Package"]
 - hunspell und Umlaute
 - R-Code in Custom Block und umgekehrt
+- was kann bookdownplus besser? https://github.com/pzhaonet/bookdownplus
+- interactive tutorial with https://rstudio.github.io/learnr/
 - github-Links zu statistify.de-Links wandeln/umleiten
 
 Im Moment noch nicht möglich:

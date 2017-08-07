@@ -149,7 +149,14 @@ I assume you have already installed R and RStudio and you know how to install an
 Wenn du den Projektordner dieses Buches heruntergeladen hast (siehe [Links und Tipps]), verwendest du automatisch [Packrat](https://rstudio.github.io/packrat/), da die entsprechende Projekt-Option bereits aktiviert ist. Das bedeutet, dass sich die für dieses Buch verwendeten R-Pakete in einer private library direkt im Projektordner installieren (somit hat jedes Projekt seine eigenen Pakete). 
 
 Da die Pakete auf jedem Computer neu installiert werden müssen, beinhaltet der Unterordner `/packrat` anfangs nur die Infos, welche Pakete du benötigst (einen sogenannten Snapshot). Der Ordner `/src` beinhaltet die package tarballs und sollte der Versionskontrolle unterliegen, wenn du z.B. Git verwendest, sodass das Projekt auch langfristig reproduzierbar bleibt, selbst dann, wenn die Pakete nicht mehr online zur Verfügung stehen. ^[_tbd_: Packrat lädt in meinem Falle trotz hinterlegter tarballs die Pakete aus dem Internet.] Die Pakete werden in den Ordner `/packrat/lib` installiert, sodass du bei jedem Umzug des Projektes auf einen neuen PC diesen Ordner zunächst löschen solltest.  
-Mit den folgenden Packrat-Befehlen installierst du alle benötigten Pakete auf deinem Computer (aufgrund der dependencies der Pakete ist die Liste recht lang).
+
+**Tipp**: In der Developer-Version von `packrat` gibt es die Möglichkeit, die Pakete zu cachen, sodass sie außerhalb des Project Folders gespeichert werden und im private library nur ein Link zum jeweiligen Paket verweist^[https://github.com/rstudio/packrat/issues/338#issuecomment-320553343]. Dies kann den Ordner um mehrere 100mb leichter machen.   
+_tbd:_ Ich benutze für dieses Buchprojekt die `packrat`-developer version, weiß aber nicht, welche Version bei euch geladen wird, wenn ihr mein Projekt startet.
+
+```
+install.packages("devtools")
+devtools::install_github("rstudio/packrat")
+```
 
 ```{block2, packratImportant, type='rmdcaution'}
 Beim erstmaligen Start des Projektes wird R versuchen, Packrat und alle notwendigen Pakete auf deinem Computer zu installieren. Dies kann einige Minuten dauern und eine Internetverbindung benötigen. Beobachte währenddessen die Meldungen in der Console.
@@ -176,12 +183,42 @@ Sollte es nicht automatisch klappen, dann installiere Packrat manuell. Nutze ans
   > Restoring library
   -->
 
+<!-- Mit den folgenden Packrat-Befehlen installierst du alle benötigten Pakete auf deinem Computer (aufgrund der dependencies der Pakete ist die Liste recht lang). -->
+
 ```{r packrat, eval=FALSE}
+#packrat::set_opts(external.packages=installed.packages()[,"Package"])  #install all packages outside the project'S folder if you want a lightweight folder. But be aware: packages installed in this way aren't included in the packrat/src folder and so your project might become unreproducible in the future!
+##packrat::set_opts(use.cache = TRUE)  #use.cache=TRUE might be useful, but only enabled under windows in the developer version of packrat
+packrat::get_opts()  #aktuelle Packrat-Einstellungen
 #packrat::init()  #Initializes the current working directory as a Packrat project.
 packrat::status()
-packrat::restore()
-packrat::clean() #löscht scheinbar nicht benötigte Pakete (erkennt Pakete an library() und require() )
-packrat::get_opts()  #aktuelle Packrat-Einstellungen
+packrat::restore()  #also good for syncing wiht library changes made by a collaborator
+packrat::clean()  #löscht scheinbar nicht benötigte Pakete (erkennt Pakete an library() und require() )
+```
+```{r BETApackratCacheWorkaround, eval=FALSE, include=FALSE}
+# see https://stackoverflow.com/questions/44676570/how-does-the-use-cache-feature-of-packrat-work
+packrat::get_opts()  #aktuelle Packrat-Einstellungen; use.cache=TRUE might be useful, but not enabled under windows by now
+#packrat::init()  #Initializes the current working directory as a Packrat project.
+#packrat::init(options = list(use.cache = TRUE))  #global cache for packages so the private lib folder contains only symlinks. Not yet enabeld on Windows.
+#packrat::set_opts(external.packages=installed.packages()[,"Package"])  #install all packages outside the project'S folder if you want a lightweight folder. But be aware: packages installed in this way aren't included in the packrat/src folder and so your project might become unreproducible in the future!
+  #packrat::init(options = list(external.packages=installed.packages()[,"Package"]))
+packrat::status()
+packrat::restore()  #also good for syncing wiht library changes made by a collaborator
+packrat::clean()  #löscht scheinbar nicht benötigte Pakete (erkennt Pakete an library() und require() )
+
+source('https://raw.githubusercontent.com/willbowditch/ratpack/master/R/ratpack.R')
+symlink_packages()
+#Develop as normal then run 
+packrat::clean()
+packrat::snapshot(ignore.stale=TRUE) 
+
+#works:
+source('https://raw.githubusercontent.com/willbowditch/ratpack/master/R/ratpack.R')
+   import_user_packages()
+   #All installed packages will now be accessable within the packrat session
+#at the end of development
+   packrat::set_opts(external.packages=NULL)
+   packrat::snapshot()
+   packrat::restore() #This step will install the packages if they're not in the cache
 ```
 
 After successfully installing R, RStudio, all R packages and LaTeX^[How to correctly install and set up LaTeX is another chapter, that I can't cover by now, because it is still some sort of a mystery for me, why some things work while others don't.] (if you want to create PDF files), you should find the button "Build Book" in the "Build"-tab in RStudio. "Build Book" creates the book in all output formats. You can find the `index.html`, `pdf` etc. in the `docs`-folder.
