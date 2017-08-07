@@ -1,5 +1,5 @@
 --- 
-title: "Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example"
+title: "Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example"
 author: "Felix Kretschmer"
 date: "`r Sys.Date()`" #`r format(Sys.time(), '%d. %B %Y')`
 site: bookdown::bookdown_site
@@ -187,20 +187,21 @@ Sollte es nicht automatisch klappen, dann installiere Packrat manuell. Nutze ans
 
 ```{r packrat, eval=FALSE}
 #packrat::set_opts(external.packages=installed.packages()[,"Package"])  #install all packages outside the project'S folder if you want a lightweight folder. But be aware: packages installed in this way aren't included in the packrat/src folder and so your project might become unreproducible in the future!
-##packrat::set_opts(use.cache = TRUE)  #use.cache=TRUE might be useful, but only enabled under windows in the developer version of packrat
+#packrat::set_opts(use.cache = TRUE)  #use.cache=TRUE might be useful, but only enabled under windows in the developer version of packrat
 packrat::get_opts()  #aktuelle Packrat-Einstellungen
 #packrat::init()  #Initializes the current working directory as a Packrat project.
 packrat::status()
 packrat::restore()  #also good for syncing wiht library changes made by a collaborator
 packrat::clean()  #löscht scheinbar nicht benötigte Pakete (erkennt Pakete an library() und require() )
 ```
+
 ```{r BETApackratCacheWorkaround, eval=FALSE, include=FALSE}
 # see https://stackoverflow.com/questions/44676570/how-does-the-use-cache-feature-of-packrat-work
 packrat::get_opts()  #aktuelle Packrat-Einstellungen; use.cache=TRUE might be useful, but not enabled under windows by now
 #packrat::init()  #Initializes the current working directory as a Packrat project.
 #packrat::init(options = list(use.cache = TRUE))  #global cache for packages so the private lib folder contains only symlinks. Not yet enabeld on Windows.
 #packrat::set_opts(external.packages=installed.packages()[,"Package"])  #install all packages outside the project'S folder if you want a lightweight folder. But be aware: packages installed in this way aren't included in the packrat/src folder and so your project might become unreproducible in the future!
-  #packrat::init(options = list(external.packages=installed.packages()[,"Package"]))
+  #packrat::init(options = list(external.packages=installed.packages()[,"Package"]))  #cannot work!
 packrat::status()
 packrat::restore()  #also good for syncing wiht library changes made by a collaborator
 packrat::clean()  #löscht scheinbar nicht benötigte Pakete (erkennt Pakete an library() und require() )
