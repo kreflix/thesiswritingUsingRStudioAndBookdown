@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</title>
+  <title>Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a thesis in German.">
   <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
+  <meta property="og:title" content="Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="img/cover.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
+  <meta name="twitter:title" content="Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a thesis in German." />
   <meta name="twitter:image" content="img/cover.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Felix Kretschmer">
 
 
-<meta name="date" content="2017-08-05">
+<meta name="date" content="2017-08-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -152,7 +152,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example</a>
           </h1>
         </div>
 
@@ -164,15 +164,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">2.1</span> Zitationen</h2>
 <p>You can write citations, too. For example, we are using the <strong>bookdown</strong> package <span class="citation">(Xie, <a href="#ref-R-bookdown">2017</a>)</span> in this sample book, which was built on top of R Markdown and <strong>knitr</strong> <span class="citation">(Xie, <a href="#ref-xie2015">2015</a>)</span>.</p>
 <p>Um die genutzten R-Pakete zu zitieren, kann wie folgt eine bib-Datei erstellt werden, die als bibliography ausgegeben werden kann:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># automatically create a bib database for R packages</span>
-knitr::<span class="kw">write_bib</span>(<span class="kw">c</span>(
-  <span class="kw">.packages</span>(), <span class="st">&#39;bookdown&#39;</span>, <span class="st">&#39;knitr&#39;</span>, <span class="st">&#39;rmarkdown&#39;</span>
-), <span class="st">&#39;packages.bib&#39;</span>)</code></pre></div>
 <p>Mit dem RStudio Addin <code>citr</code> lässt sich, möchte man einen Autor zitieren, der passende bibtexkey per Klick heraussuchen. Dabei durchsucht <code>citr</code> die im YAML-Bereich der <code>index.Rmd</code> angegebenen bibliography-files (siehe <code>.bib</code>-Dateien im Projektordner).</p>
 <p><a href="https://github.com/crsh/citr/blob/master/tools/images/addin_demo.gif" target="_blank"><img src="https://raw.githubusercontent.com/crsh/citr/master/tools/images/addin_demo.gif" width="32.8%" style="display: block; margin: auto;" /></a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;citr&quot;)</span>
-<span class="kw">library</span>(citr)</code></pre></div>
-<pre><code>## Warning: package &#39;citr&#39; was built under R version 3.4.1</code></pre>
 <ul>
 <li><code>[@xie2015]</code> ergibt: … <span class="citation">(Xie, <a href="#ref-xie2015">2015</a>)</span> …</li>
 <li><code>Xie [-xie2015]</code> ergibt: … Xie <span class="citation">(<a href="#ref-xie2015">2015</a>)</span> …</li>

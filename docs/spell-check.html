@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</title>
+  <title>Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a thesis in German.">
   <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
+  <meta property="og:title" content="Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="img/cover.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
+  <meta name="twitter:title" content="Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a thesis in German." />
   <meta name="twitter:image" content="img/cover.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Felix Kretschmer">
 
 
-<meta name="date" content="2017-08-05">
+<meta name="date" content="2017-08-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -152,7 +152,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example</a>
           </h1>
         </div>
 
@@ -162,48 +162,30 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="spell-check" class="section level2">
 <h2><span class="header-section-number">2.4</span> Spell Check</h2>
-<p>RStudio nutzt die Hunspell Rechtschreibprüfung. Diese kann man pro Wort, bei dem man sich unsicher ist, oder über ein ganzes Dokument anwenden. Ich habe die Sprachdateien für Englisch und Deutsch bereits unter <code>/dictionaries</code> abgespeichert<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a>.</p>
+<p>RStudio nutzt die Hunspell Rechtschreibprüfung. Diese kann man pro Wort, bei dem man sich unsicher ist, oder über ein ganzes Dokument anwenden. Ich habe die Sprachdateien für Englisch und Deutsch bereits unter <code>/dictionaries</code> abgespeichert<a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a>.</p>
 <p>Spell-Checking whole Text-Document in English and German:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&#39;hunspell&#39;)</span>
-<span class="kw">library</span>(hunspell)</code></pre></div>
-<pre><code>## Warning: package &#39;hunspell&#39; was built under R version 3.4.1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#dic - und aff - files aus C:\Users\Username\AppData\Local\RStudio-Desktop\dictionaries\languages-system</span>
-<span class="co">#hunspell_info()</span>
-
-deutsch &lt;-<span class="st"> </span><span class="kw">dictionary</span>(<span class="st">&quot;./dictionaries/de_DE_neu.dic&quot;</span>)</code></pre></div>
-<pre><code>## Warning in R_hunspell_dict(affix, dicpath, as.character(add_words)):
-## &#39;.Random.seed&#39; ist kein Integer-Vektor sondern vom Typ &#39;NULL&#39;, wird also
-## ignoriert</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">english &lt;-<span class="st"> </span><span class="kw">dictionary</span>(<span class="st">&quot;./dictionaries/en_US.dic&quot;</span>)
-
-text &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;03-tbd.Rmd&quot;</span>, <span class="dt">warn =</span> <span class="ot">FALSE</span>)
-bad_words_english &lt;-<span class="st"> </span><span class="kw">hunspell</span>(text, <span class="dt">format =</span> <span class="st">&quot;text&quot;</span>, <span class="dt">dict =</span> english)
-bad_words_deutsch &lt;-<span class="st"> </span><span class="kw">hunspell</span>(text, <span class="dt">format =</span> <span class="st">&quot;text&quot;</span>, <span class="dt">dict =</span> deutsch)
-
-bad_words_list &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">c</span>(<span class="kw">unique</span>(<span class="kw">unlist</span>(bad_words_deutsch)), <span class="kw">unique</span>(<span class="kw">unlist</span>(bad_words_english))))
-bad_words_list &lt;-<span class="st"> </span>bad_words_list[<span class="kw">duplicated</span>(bad_words_list)]
-bad_words_list</code></pre></div>
 <pre><code>##  [1] &quot;Ã&quot;              &quot;Ãobersetzung&quot;   &quot;autocomplete&quot;   &quot;autocompletion&quot;
-##  [5] &quot;availabe&quot;       &quot;ber&quot;            &quot;cachen&quot;         &quot;citeproc&quot;      
-##  [9] &quot;citr&quot;           &quot;deutshes&quot;       &quot;DT&quot;             &quot;eglish&quot;        
-## [13] &quot;eval&quot;           &quot;fÃ&quot;             &quot;favicon&quot;        &quot;github&quot;        
-## [17] &quot;htmlwidget&quot;     &quot;https&quot;          &quot;hunspell&quot;       &quot;io&quot;            
-## [21] &quot;knitr&quot;          &quot;linksbÃ&quot;        &quot;mÃ&quot;             &quot;makeZip&quot;       
-## [25] &quot;nder&quot;           &quot;ndig&quot;           &quot;nftig&quot;          &quot;nocite&quot;        
-## [29] &quot;Packrat&quot;        &quot;pandoc&quot;         &quot;Pandoc&quot;         &quot;rmarkdown&quot;     
-## [33] &quot;RProject&quot;       &quot;rstudio&quot;        &quot;RStudio&quot;        &quot;rter&quot;          
-## [37] &quot;SeitenrÃ&quot;       &quot;Spellchecking&quot;  &quot;statistify&quot;     &quot;Sys&quot;           
-## [41] &quot;tbd&quot;            &quot;vllt&quot;           &quot;WÃ&quot;             &quot;Worng&quot;         
-## [45] &quot;wrongWords&quot;     &quot;xtable&quot;         &quot;yihui&quot;          &quot;Yihui&quot;         
-## [49] &quot;ZukÃ&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#hunspell_suggest(bad_words_list, dict = deutsch) #gibt Verbesserungsvorschläge</span></code></pre></div>
+##  [5] &quot;availabe&quot;       &quot;ber&quot;            &quot;bookdownplus&quot;   &quot;citeproc&quot;      
+##  [9] &quot;citr&quot;           &quot;currate&quot;        &quot;deutshes&quot;       &quot;DT&quot;            
+## [13] &quot;eglish&quot;         &quot;eval&quot;           &quot;fÃ&quot;             &quot;favicon&quot;       
+## [17] &quot;github&quot;         &quot;htmlwidget&quot;     &quot;https&quot;          &quot;hunspell&quot;      
+## [21] &quot;io&quot;             &quot;issuecomment&quot;   &quot;learnr&quot;         &quot;linksbÃ&quot;       
+## [25] &quot;mÃ&quot;             &quot;makeZip&quot;        &quot;nder&quot;           &quot;ndig&quot;          
+## [29] &quot;nftig&quot;          &quot;nocite&quot;         &quot;packges&quot;        &quot;packrat&quot;       
+## [33] &quot;Packrat&quot;        &quot;pandoc&quot;         &quot;Pandoc&quot;         &quot;pzhaonet&quot;      
+## [37] &quot;repos&quot;          &quot;rmarkdown&quot;      &quot;RProject&quot;       &quot;rstudio&quot;       
+## [41] &quot;RStudio&quot;        &quot;rter&quot;           &quot;SeitenrÃ&quot;       &quot;Spellchecking&quot; 
+## [45] &quot;src&quot;            &quot;stackoverflow&quot;  &quot;statistify&quot;     &quot;symlinked&quot;     
+## [49] &quot;Sys&quot;            &quot;tbd&quot;            &quot;tidyverse&quot;      &quot;vllt&quot;          
+## [53] &quot;WÃ&quot;             &quot;Worng&quot;          &quot;wrongWords&quot;     &quot;xtable&quot;        
+## [57] &quot;Yihui&quot;          &quot;ZukÃ&quot;</code></pre>
 <p>Ich persönlich finde es aber einfacher, die Vorteile von Pandoc/bookdown/knitr zu nutzen und würde die Word-Version meines Dokuments gegenlesen, wo direkt im Text unterstrichen wird, wenn ein Wort falsch oder ein Satz grammatikalisch fehlerhaft ist.</p>
 <!----------------------------------------------------------------------------->
 </div>
 <div class="footnotes">
 <hr />
-<ol start="8">
-<li id="fn8"><p>für mehr Infos siehe <a href="https://support.rstudio.com/hc/en-us/articles/200551916-Spelling-Dictionaries" class="uri">https://support.rstudio.com/hc/en-us/articles/200551916-Spelling-Dictionaries</a><a href="spell-check.html#fnref8">↩</a></p></li>
+<ol start="9">
+<li id="fn9"><p>für mehr Infos siehe <a href="https://support.rstudio.com/hc/en-us/articles/200551916-Spelling-Dictionaries" class="uri">https://support.rstudio.com/hc/en-us/articles/200551916-Spelling-Dictionaries</a><a href="spell-check.html#fnref9">↩</a></p></li>
 </ol>
 </div>
             </section>

@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</title>
+  <title>Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a thesis in German.">
   <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
+  <meta property="og:title" content="Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="img/cover.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
+  <meta name="twitter:title" content="Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a thesis in German." />
   <meta name="twitter:image" content="img/cover.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Felix Kretschmer">
 
 
-<meta name="date" content="2017-08-05">
+<meta name="date" content="2017-08-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -152,7 +152,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example</a>
           </h1>
         </div>
 
@@ -181,13 +181,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><code>ggThemeAssist</code> or <code>ggedit</code></li>
 <li>Find more <a href="https://github.com/daattali/addinslist" class="uri">https://github.com/daattali/addinslist</a></li>
 </ul></li>
+<li><p>To speed up knitting you should use cache. Via <code>knitr::opts_chunk$set()</code> you can set your preferred default chunk options. See mine in the source code of <code>index.Rmd</code>. For all options see <a href="https://yihui.name/knitr/options/" class="uri">https://yihui.name/knitr/options/</a> and for cool ideas regarding dependent caching see <a href="https://github.com/yihui/knitr/issues/238" class="uri">https://github.com/yihui/knitr/issues/238</a>!</p></li>
 <li><p>Annotations: <a href="https://web.hypothes.is/">hypothes.is</a> lets you easily and in collaboration with others (or several supervisors) annotate text on any website. Of course PDF annotations, (Online-)Word’s markups, an HTML comment area (e.g. <a href="https://disqus.com/">Disqus</a>) or Git issues could fit your needs as well.</p></li>
 </ul>
 <!----------------------------------------------------------------------------->
 <div id="auswertungsskript-ausfuhren" class="section level3 unnumbered">
 <h3>Auswertungsskript ausführen</h3>
-<p>Damit alle Ergebnisse, Grafiken und Variablen vorhanden sind, müssen erst die Berechnungen in R vorgenommen werden. Theoretisch könnten alle R-Berechnungn auch in einem R-Chunk im Buch ausgeführt werden. Da das aber bei langen Skripten sehr unübersichtlich werden kann, habe ich ein klassischen R-Skript zur Auswertung erstellt, dass vor dem Kompilieren des Buches (ggf. mit Dummy-Daten) ausgeführt werden muss. Entweder per Hand oder per Source-Befehl.</p>
+<p>Damit alle Ergebnisse, Grafiken und Variablen vorhanden sind, müssen erst die Berechnungen in R vorgenommen werden. Theoretisch könnten alle R-Berechnungn auch in einem R-Chunk im Buch ausgeführt werden. Da das aber bei langen Skripten sehr unübersichtlich werden kann, habe ich ein klassischen R-Skript zur Auswertung erstellt, dass vor dem Kompilieren des Buches (ggf. mit Dummy-Daten) ausgeführt werden muss. Entweder per Hand oder per Source-Befehl. Die Ergebnissen können/sollten für ein schnelles Kompilieren des Buches während der Bearbeitung gecached werden.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&#39;_Auswertungsskript.r&#39;</span>)</code></pre></div>
+<!-- set default R chunk options -->
 
 <!----------------------------------------------------------------------------->
 </div>

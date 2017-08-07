@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</title>
+  <title>Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a thesis in German.">
   <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
+  <meta property="og:title" content="Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="img/cover.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
+  <meta name="twitter:title" content="Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a thesis in German." />
   <meta name="twitter:image" content="img/cover.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Felix Kretschmer">
 
 
-<meta name="date" content="2017-08-05">
+<meta name="date" content="2017-08-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -152,7 +152,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example</a>
           </h1>
         </div>
 
@@ -194,8 +194,11 @@ Be patient while opening the project the first time. Also you might need an inte
 <div id="rstudio-und-packrat" class="section level3 unnumbered">
 <h3>RStudio und Packrat</h3>
 <p>Wenn du den Projektordner dieses Buches heruntergeladen hast (siehe <a href="links-und-tipps.html#links-und-tipps">Links und Tipps</a>), verwendest du automatisch <a href="https://rstudio.github.io/packrat/">Packrat</a>, da die entsprechende Projekt-Option bereits aktiviert ist. Das bedeutet, dass sich die für dieses Buch verwendeten R-Pakete in einer private library direkt im Projektordner installieren (somit hat jedes Projekt seine eigenen Pakete).</p>
-<p>Da die Pakete auf jedem Computer neu installiert werden müssen, beinhaltet der Unterordner <code>/packrat</code> anfangs nur die Infos, welche Pakete du benötigst (einen sogenannten Snapshot). Der Ordner <code>/src</code> beinhaltet die package tarballs und sollte der Versionskontrolle unterliegen, wenn du z.B. Git verwendest, sodass das Projekt auch langfristig reproduzierbar bleibt, selbst dann, wenn die Pakete nicht mehr online zur Verfügung stehen.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> Die Pakete werden in den Ordner <code>/packrat/lib</code> installiert, sodass du bei jedem Umzug des Projektes auf einen neuen PC diesen Ordner zunächst löschen solltest.<br />
-Mit den folgenden Packrat-Befehlen installierst du alle benötigten Pakete auf deinem Computer (aufgrund der dependencies der Pakete ist die Liste recht lang).</p>
+<p>Da die Pakete auf jedem Computer neu installiert werden müssen, beinhaltet der Unterordner <code>/packrat</code> anfangs nur die Infos, welche Pakete du benötigst (einen sogenannten Snapshot). Der Ordner <code>/src</code> beinhaltet die package tarballs und sollte der Versionskontrolle unterliegen, wenn du z.B. Git verwendest, sodass das Projekt auch langfristig reproduzierbar bleibt, selbst dann, wenn die Pakete nicht mehr online zur Verfügung stehen.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> Die Pakete werden in den Ordner <code>/packrat/lib</code> installiert, sodass du bei jedem Umzug des Projektes auf einen neuen PC diesen Ordner zunächst löschen solltest.</p>
+<p><strong>Tipp</strong>: In der Developer-Version von <code>packrat</code> gibt es die Möglichkeit, die Pakete zu cachen, sodass sie außerhalb des Project Folders gespeichert werden und im private library nur ein Link zum jeweiligen Paket verweist<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>. Dies kann den Ordner um mehrere 100mb leichter machen.<br />
+<em>tbd:</em> Ich benutze für dieses Buchprojekt die <code>packrat</code>-developer version, weiß aber nicht, welche Version bei euch geladen wird, wenn ihr mein Projekt startet.</p>
+<pre><code>install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;rstudio/packrat&quot;)</code></pre>
 
 <div class="rmdcaution">
 Beim erstmaligen Start des Projektes wird R versuchen, Packrat und alle notwendigen Pakete auf deinem Computer zu installieren. Dies kann einige Minuten dauern und eine Internetverbindung benötigen. Beobachte währenddessen die Meldungen in der Console. Sollte es nicht automatisch klappen, dann installiere Packrat manuell. Nutze anschließend folgende Befehle, um die Pakete zu installieren oder schaue in <code>_Auswertungsskript.r</code>, welche Pakete für dieses Buch geladen werden müssen.
@@ -220,12 +223,15 @@ Beim erstmaligen Start des Projektes wird R versuchen, Packrat und alle notwendi
   > Attaching packrat
   > Restoring library
   --></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#packrat::init()  #Initializes the current working directory as a Packrat project.</span>
+<!-- Mit den folgenden Packrat-Befehlen installierst du alle benötigten Pakete auf deinem Computer (aufgrund der dependencies der Pakete ist die Liste recht lang). -->
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#packrat::set_opts(external.packages=installed.packages()[,&quot;Package&quot;])  #install all packages outside the project&#39;S folder if you want a lightweight folder. But be aware: packages installed in this way aren&#39;t included in the packrat/src folder and so your project might become unreproducible in the future!</span>
+<span class="co">#packrat::set_opts(use.cache = TRUE)  #use.cache=TRUE might be useful, but only enabled under windows in the developer version of packrat</span>
+packrat::<span class="kw">get_opts</span>()  <span class="co">#aktuelle Packrat-Einstellungen</span>
+<span class="co">#packrat::init()  #Initializes the current working directory as a Packrat project.</span>
 packrat::<span class="kw">status</span>()
-packrat::<span class="kw">restore</span>()
-packrat::<span class="kw">clean</span>() <span class="co">#löscht scheinbar nicht benötigte Pakete (erkennt Pakete an library() und require() )</span>
-packrat::<span class="kw">get_opts</span>()  <span class="co">#aktuelle Packrat-Einstellungen</span></code></pre></div>
-<p>After successfully installing R, RStudio, all R packages and LaTeX<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a> (if you want to create PDF files), you should find the button “Build Book” in the “Build”-tab in RStudio. “Build Book” creates the book in all output formats. You can find the <code>index.html</code>, <code>pdf</code> etc. in the <code>docs</code>-folder.</p>
+packrat::<span class="kw">restore</span>()  <span class="co">#also good for syncing wiht library changes made by a collaborator</span>
+packrat::<span class="kw">clean</span>()  <span class="co">#löscht scheinbar nicht benötigte Pakete (erkennt Pakete an library() und require() )</span></code></pre></div>
+<p>After successfully installing R, RStudio, all R packages and LaTeX<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a> (if you want to create PDF files), you should find the button “Build Book” in the “Build”-tab in RStudio. “Build Book” creates the book in all output formats. You can find the <code>index.html</code>, <code>pdf</code> etc. in the <code>docs</code>-folder.</p>
 <!----------------------------------------------------------------------------->
 </div>
 </div>
@@ -233,7 +239,8 @@ packrat::<span class="kw">get_opts</span>()  <span class="co">#aktuelle Packrat-
 <hr />
 <ol start="4">
 <li id="fn4"><p><em>tbd</em>: Packrat lädt in meinem Falle trotz hinterlegter tarballs die Pakete aus dem Internet.<a href="get-started.html#fnref4">↩</a></p></li>
-<li id="fn5"><p>How to correctly install and set up LaTeX is another chapter, that I can’t cover by now, because it is still some sort of a mystery for me, why some things work while others don’t.<a href="get-started.html#fnref5">↩</a></p></li>
+<li id="fn5"><p><a href="https://github.com/rstudio/packrat/issues/338#issuecomment-320553343" class="uri">https://github.com/rstudio/packrat/issues/338#issuecomment-320553343</a><a href="get-started.html#fnref5">↩</a></p></li>
+<li id="fn6"><p>How to correctly install and set up LaTeX is another chapter, that I can’t cover by now, because it is still some sort of a mystery for me, why some things work while others don’t.<a href="get-started.html#fnref6">↩</a></p></li>
 </ol>
 </div>
             </section>

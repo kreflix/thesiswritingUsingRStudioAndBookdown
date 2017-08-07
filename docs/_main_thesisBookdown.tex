@@ -24,7 +24,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \hypersetup{unicode=true,
-            pdftitle={Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example},
+            pdftitle={Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example},
             pdfauthor={Felix Kretschmer},
             pdfborder={0 0 0},
             breaklinks=true}
@@ -116,7 +116,7 @@
 }
 
 \setlength{\droptitle}{-2em}
-  \title{Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example}
+  \title{Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example}
   \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
   \author{Felix Kretschmer}
@@ -124,7 +124,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2017-08-05}
+  \date{2017-08-08}
 
 %\usepackage[ngerman, english]{babel} % this is needed for umlauts and hyphenation
 %------- by Nils
@@ -443,10 +443,21 @@ Pakete nicht mehr online zur Verfügung stehen. \footnote{\emph{tbd}:
   Packrat lädt in meinem Falle trotz hinterlegter tarballs die Pakete
   aus dem Internet.} Die Pakete werden in den Ordner
 \texttt{/packrat/lib} installiert, sodass du bei jedem Umzug des
-Projektes auf einen neuen PC diesen Ordner zunächst löschen solltest.\\
-Mit den folgenden Packrat-Befehlen installierst du alle benötigten
-Pakete auf deinem Computer (aufgrund der dependencies der Pakete ist die
-Liste recht lang).
+Projektes auf einen neuen PC diesen Ordner zunächst löschen solltest.
+
+\textbf{Tipp}: In der Developer-Version von \texttt{packrat} gibt es die
+Möglichkeit, die Pakete zu cachen, sodass sie außerhalb des Project
+Folders gespeichert werden und im private library nur ein Link zum
+jeweiligen Paket verweist\footnote{\url{https://github.com/rstudio/packrat/issues/338\#issuecomment-320553343}}.
+Dies kann den Ordner um mehrere 100mb leichter machen.\\
+\emph{tbd:} Ich benutze für dieses Buchprojekt die
+\texttt{packrat}-developer version, weiß aber nicht, welche Version bei
+euch geladen wird, wenn ihr mein Projekt startet.
+
+\begin{verbatim}
+install.packages("devtools")
+devtools::install_github("rstudio/packrat")
+\end{verbatim}
 
 \BeginKnitrBlock{rmdcaution}
 Beim erstmaligen Start des Projektes wird R versuchen, Packrat und alle
@@ -461,11 +472,13 @@ werden müssen.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{#packrat::set_opts(external.packages=installed.packages()[,"Package"])  #install all packages outside the project'S folder if you want a lightweight folder. But be aware: packages installed in this way aren't included in the packrat/src folder and so your project might become unreproducible in the future!}
+\CommentTok{#packrat::set_opts(use.cache = TRUE)  #use.cache=TRUE might be useful, but only enabled under windows in the developer version of packrat}
+\NormalTok{packrat::}\KeywordTok{get_opts}\NormalTok{()  }\CommentTok{#aktuelle Packrat-Einstellungen}
 \CommentTok{#packrat::init()  #Initializes the current working directory as a Packrat project.}
 \NormalTok{packrat::}\KeywordTok{status}\NormalTok{()}
-\NormalTok{packrat::}\KeywordTok{restore}\NormalTok{()}
-\NormalTok{packrat::}\KeywordTok{clean}\NormalTok{() }\CommentTok{#löscht scheinbar nicht benötigte Pakete (erkennt Pakete an library() und require() )}
-\NormalTok{packrat::}\KeywordTok{get_opts}\NormalTok{()  }\CommentTok{#aktuelle Packrat-Einstellungen}
+\NormalTok{packrat::}\KeywordTok{restore}\NormalTok{()  }\CommentTok{#also good for syncing wiht library changes made by a collaborator}
+\NormalTok{packrat::}\KeywordTok{clean}\NormalTok{()  }\CommentTok{#löscht scheinbar nicht benötigte Pakete (erkennt Pakete an library() und require() )}
 \end{Highlighting}
 \end{Shaded}
 
@@ -544,6 +557,13 @@ Tipps}\label{links-und-tipps}}
     Find more \url{https://github.com/daattali/addinslist}
   \end{itemize}
 \item
+  To speed up knitting you should use cache. Via
+  \texttt{knitr::opts\_chunk\$set()} you can set your preferred default
+  chunk options. See mine in the source code of \texttt{index.Rmd}. For
+  all options see \url{https://yihui.name/knitr/options/} and for cool
+  ideas regarding dependent caching see
+  \url{https://github.com/yihui/knitr/issues/238}!
+\item
   Annotations: \href{https://web.hypothes.is/}{hypothes.is} lets you
   easily and in collaboration with others (or several supervisors)
   annotate text on any website. Of course PDF annotations,
@@ -562,7 +582,9 @@ R-Berechnungn auch in einem R-Chunk im Buch ausgeführt werden. Da das
 aber bei langen Skripten sehr unübersichtlich werden kann, habe ich ein
 klassischen R-Skript zur Auswertung erstellt, dass vor dem Kompilieren
 des Buches (ggf. mit Dummy-Daten) ausgeführt werden muss. Entweder per
-Hand oder per Source-Befehl.
+Hand oder per Source-Befehl. Die Ergebnissen können/sollten für ein
+schnelles Kompilieren des Buches während der Bearbeitung gecached
+werden.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -605,16 +627,9 @@ müssen nach dem vorhergehenden Satz mehrere Leerzeichen stehen.
 Figures and tables with captions will be placed in \texttt{figure} and
 \texttt{table} environments, respectively.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{_main_thesisBookdown_files/figure-latex/nice-fig-1} 
+{\centering \includegraphics[width=0.8\linewidth]{img/nice-fig-1} 
 
 }
 
@@ -629,12 +644,6 @@ eingefügt werden, um in PDF, HTML etc. automatisch korrekt referenziert
 werden zu können. Fußnoten können überall per
 \texttt{\^{}{[}Fußnotentext{]}} eingefügt werden -- so wie hier in der
 Bildunterschrift.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr::}\KeywordTok{include_graphics}\NormalTok{(}\StringTok{'img/important.png'}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \textbackslash{}begin\{figure\}
 
@@ -652,15 +661,6 @@ PNG-Datei.\footnote{\url{http://statistify.de}}\}\label{fig:externalImage}
 
 Similarly to figures, you can reference tables generated from
 \texttt{knitr::kable()}, e.g., see Table \ref{tab:knitrTable}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr::}\KeywordTok{kable}\NormalTok{(}
-  \KeywordTok{head}\NormalTok{(iris, }\DecValTok{5}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'This knitr::kable() table looks great in any output format.'}\NormalTok{,}
-  \DataTypeTok{booktabs =} \OtherTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{table}
 
@@ -721,12 +721,6 @@ erstellen, kann das Buch nicht mehr automatisch in jedes Output-Format
 kompiliert werden. Man kann aber selbst die Bedingung schreiben, bei
 welchem Output-Format welches Tabellenformat gewählt werden soll.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{if( knitr:::}\KeywordTok{is_latex_output}\NormalTok{() ) \{ ... \}}
-\end{Highlighting}
-\end{Shaded}
-
 Dies kann man nutzen, um zumindest in PDF komplexe LaTeX-Tabellen zu
 erzeugen, während in HTML und Co. eine nicht ganz so schöne Tabelle
 dargestellt wird. Beachtet die R-Chunk-Optionen
@@ -740,48 +734,6 @@ heraus zu generieren.
 \begin{verbatim}
 {r latexTable, fig.cap='latexTable', results='asis', comment=''}
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{if( knitr:::}\KeywordTok{is_latex_output}\NormalTok{() ) \{}
-  \CommentTok{#erstelle LaTeX-Tabelle über R-Output}
-    \CommentTok{#(beachte die Syntaxanpassung "cat()", "\textbackslash{}\textbackslash{}" und "\textbackslash{}n", um LaTeX-Output aus R zu erzeugen):}
-    \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{begin\{table\}[]}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-    \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{centering}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-    \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{caption\{(}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{#tab:latexTable) Pure LaTeX-Table\}}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-    \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{label\{latexTable\}}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-    \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{begin\{tabular\}\{lllll\}}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-    \KeywordTok{cat}\NormalTok{(}\StringTok{"            & }\CharTok{\textbackslash{}\textbackslash{}}\StringTok{textbf\{c1\}  & }\CharTok{\textbackslash{}\textbackslash{}}\StringTok{textbf\{c2\} & }\CharTok{\textbackslash{}\textbackslash{}}\StringTok{textbf\{c3\}  & }\CharTok{\textbackslash{}\textbackslash{}}\StringTok{textbf\{c4\} }\CharTok{\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}n}\StringTok{"}\NormalTok{)}
-    \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{textit\{r1\} & }\CharTok{\textbackslash{}\textbackslash{}}\StringTok{multicolumn\{2\}\{c\}\{r1c1c2\} & r1c3         & r1c4        }\CharTok{\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}n}\StringTok{"}\NormalTok{)}
-    \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{textit\{r2\} & r2c1         & r2c2        & }\CharTok{\textbackslash{}\textbackslash{}}\StringTok{multicolumn\{2\}\{c\}\{r2c3c4\}}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-    \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{end\{tabular\}}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-    \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{end\{table\}}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-    
-    \CommentTok{#erzeugt folgenden in LaTeX kompilierbaren Output:}
-    \CommentTok{# \textbackslash{}begin\{table\}[]}
-    \CommentTok{# \textbackslash{}centering}
-    \CommentTok{# \textbackslash{}caption\{caption="(\textbackslash{}\textbackslash{}#tab:xTable) An xtable table")Pure LaTeX-Table\}}
-    \CommentTok{# \textbackslash{}label\{latexTable\}}
-    \CommentTok{# \textbackslash{}begin\{tabular\}\{lllll\}}
-    \CommentTok{#             & \textbackslash{}textbf\{c1\}  & \textbackslash{}textbf\{c2\} & \textbackslash{}textbf\{c3\}  & \textbackslash{}textbf\{c4\} \textbackslash{}\textbackslash{}}
-    \CommentTok{# \textbackslash{}textit\{r1\} & \textbackslash{}multicolumn\{2\}\{c\}\{r1c1c2\} & r1c3         & r1c4        \textbackslash{}\textbackslash{}}
-    \CommentTok{# \textbackslash{}textit\{r2\} & r2c1         & r2c2        & \textbackslash{}multicolumn\{2\}\{c\}\{r2c3c4\}}
-    \CommentTok{# \textbackslash{}end\{tabular\}}
-    \CommentTok{# \textbackslash{}end\{table\}}
-\NormalTok{\} else \{}
-  \CommentTok{#erstelle Tabelle für alle anderen Outputformate:}
-    \NormalTok{rcMatrix <-}\StringTok{ }\KeywordTok{t}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"r1c1c2"}\NormalTok{, }\StringTok{""}\NormalTok{, }\StringTok{"r1c3"}\NormalTok{, }\StringTok{"r1c4"}\NormalTok{),}
-                             \KeywordTok{c}\NormalTok{(}\StringTok{"r2c1"}\NormalTok{, }\StringTok{"r2c2"}\NormalTok{, }\StringTok{""}\NormalTok{, }\StringTok{"r2c3c4"}\NormalTok{) ))}
-      \KeywordTok{colnames}\NormalTok{(rcMatrix) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"c1"}\NormalTok{, }\StringTok{"c2"}\NormalTok{, }\StringTok{"c3"}\NormalTok{, }\StringTok{"c4"}\NormalTok{)}
-      \KeywordTok{rownames}\NormalTok{(rcMatrix) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"r1"}\NormalTok{, }\StringTok{"r2"}\NormalTok{)}
-    
-    \NormalTok{knitr::}\KeywordTok{kable}\NormalTok{(}
-      \NormalTok{rcMatrix, }\DataTypeTok{caption =} \StringTok{'This table would be a pure LaTeX table with proper colspan in PDF'}\NormalTok{,}
-      \DataTypeTok{booktabs =} \OtherTok{TRUE}
-    \NormalTok{)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{table}[]
 \centering
@@ -833,23 +785,20 @@ R-Output in LaTeX kompilierbar ist.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{if( knitr:::}\KeywordTok{is_latex_output}\NormalTok{() ) \{}
-  \CommentTok{#PDF}
-  \KeywordTok{library}\NormalTok{(xtable)}
-  \KeywordTok{print.xtable}\NormalTok{(}
-    \KeywordTok{xtable}\NormalTok{(mtcars[}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{:}\DecValTok{4}\NormalTok{], }\DataTypeTok{label=}\StringTok{"xTableInternLabel"}\NormalTok{, }\DataTypeTok{caption=}\StringTok{"(}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{#tab:xTable) An xtable table"}\NormalTok{), }\DataTypeTok{comment=}\OtherTok{FALSE}\NormalTok{)}
-\NormalTok{\} else if ( knitr:::}\KeywordTok{is_html_output}\NormalTok{() ) \{}
-  \CommentTok{#HTML}
-  \KeywordTok{library}\NormalTok{(xtable)}
-  \KeywordTok{print.xtable}\NormalTok{(}
-    \KeywordTok{xtable}\NormalTok{(mtcars[}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{:}\DecValTok{4}\NormalTok{], }\DataTypeTok{label=}\StringTok{"xTableInternLabel"}\NormalTok{, }\DataTypeTok{caption=}\StringTok{"(}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{#tab:xTable) An xtable table"}\NormalTok{), }\DataTypeTok{comment=}\OtherTok{FALSE}\NormalTok{,}
-    \DataTypeTok{type=}\StringTok{'html'}\NormalTok{) }\CommentTok{#only 'latex' (default) or 'html'}
+\NormalTok{if (knitr:::}\KeywordTok{is_latex_output}\NormalTok{()) \{}
+    \CommentTok{# PDF}
+    \KeywordTok{library}\NormalTok{(xtable)}
+    \KeywordTok{print.xtable}\NormalTok{(}\KeywordTok{xtable}\NormalTok{(mtcars[}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{:}\DecValTok{4}\NormalTok{], }\DataTypeTok{label =} \StringTok{"xTableInternLabel"}\NormalTok{, }\DataTypeTok{caption =} \StringTok{"(}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{#tab:xTable) An xtable table"}\NormalTok{), }
+        \DataTypeTok{comment =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{\} else if (knitr:::}\KeywordTok{is_html_output}\NormalTok{()) \{}
+    \CommentTok{# HTML}
+    \KeywordTok{library}\NormalTok{(xtable)}
+    \KeywordTok{print.xtable}\NormalTok{(}\KeywordTok{xtable}\NormalTok{(mtcars[}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{:}\DecValTok{4}\NormalTok{], }\DataTypeTok{label =} \StringTok{"xTableInternLabel"}\NormalTok{, }\DataTypeTok{caption =} \StringTok{"(}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{#tab:xTable) An xtable table"}\NormalTok{), }
+        \DataTypeTok{comment =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{type =} \StringTok{"html"}\NormalTok{)  }\CommentTok{#only 'latex' (default) or 'html'}
 \NormalTok{\} else \{}
-  \CommentTok{#Word und andere Outputformate  }
-  \NormalTok{knitr::}\KeywordTok{kable}\NormalTok{(}
-    \NormalTok{mtcars[}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{:}\DecValTok{4}\NormalTok{], }\DataTypeTok{caption =} \StringTok{'In other output formats than PDF and HTML we cannot use xtable'}\NormalTok{,}
-    \DataTypeTok{booktabs =} \OtherTok{TRUE}
-    \NormalTok{)}
+    \CommentTok{# Word und andere Outputformate}
+    \NormalTok{knitr::}\KeywordTok{kable}\NormalTok{(mtcars[}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{:}\DecValTok{4}\NormalTok{], }\DataTypeTok{caption =} \StringTok{"In other output formats than PDF and HTML we cannot use xtable"}\NormalTok{, }
+        \DataTypeTok{booktabs =} \OtherTok{TRUE}\NormalTok{)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -868,10 +817,6 @@ Mazda RX4 & 21.00 & 6.00 & 160.00 & 110.00 \\
 \caption{\label{tab:xTable} An xtable table} 
 \label{xTableInternLabel}
 \end{table}
-
-\BeginKnitrBlock{rmdcaution}
-Only HTML and PDF are supported output formats in xtable().
-\EndKnitrBlock{rmdcaution}
 
 \subsection{interaktive Tabellen}\label{interactiveTable}
 
@@ -895,18 +840,9 @@ Chunk-Options via \texttt{screenshot.opts}.
 {r dynamicTableWebshot, fig.cap='dynamicTableWebshot', dev='png', cache=TRUE, cache.extra=packageVersion('DT'), screenshot.opts=list(zoom=2)}
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-  \CommentTok{#library(webshot)}
-  \CommentTok{#webshot::install_phantomjs()  #muss für Screenshot installiert werden}
-  \NormalTok{DT::}\KeywordTok{datatable}\NormalTok{(}
-    \KeywordTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'This table is a screenshot in PDF, but interactive in HTML.'}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}[htbp]
 \centering
-\includegraphics{_main_thesisBookdown_files/figure-latex/dynamicTableWebshot-1.png}
+\includegraphics{img/dynamicTableWebshot-1.png}
 \caption{\label{fig:dynamicTableWebshot}dynamicTableWebshot}
 \end{figure}
 
@@ -927,12 +863,6 @@ Chunk-Options via \texttt{screenshot.opts}.
   See Table \ref{dynamicTableWebshot} (Überschriftsreferenz-Syntax)
 \end{enumerate}
 
-\BeginKnitrBlock{rmdcaution}
-HTML-Widgets, müssen als \textbf{Abbildung}
-(\texttt{\textbackslash{}@ref(fig:BeschriftungstextFigCap}) referenziert
-werden, auch wenn es sich um eine DT-Tabelle handelt.
-\EndKnitrBlock{rmdcaution}
-
 \section{Inline R-Code}\label{inline-r-code}
 
 \subsection{Referenzieren mit
@@ -951,32 +881,9 @@ konsistent, aber man muss stets darauf achten, ob man die Tabelle mit
 \texttt{\textbackslash{}@ref(fig:Tabellenbezeichnung)} (PDF)
 referenziert.
 
-\BeginKnitrBlock{rmdimportant}
-HTML-Widgets werden auch dann als Abbildung geführt, wenn es sich um
-eine DT-Tabelle handelt.
-\EndKnitrBlock{rmdimportant}
-
 Wie referenziere ich nun auf die Tabelle, wenn sie einmal eine Tabelle
 und einmal eine Abbildung ist? Probieren wir es anhand der folgenden
 Tabelle aus.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{if( knitr:::}\KeywordTok{is_html_output}\NormalTok{() ) \{}
-  \CommentTok{#interactives HTML-Widget}
-  \CommentTok{#library(webshot)}
-  \CommentTok{#webshot::install_phantomjs()  #muss für Screenshot installiert werden}
-  \NormalTok{DT::}\KeywordTok{datatable}\NormalTok{(}
-    \NormalTok{mtcars[}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{:}\DecValTok{4}\NormalTok{], }\DataTypeTok{caption =} \StringTok{'This table is a screenshot in PDF, but interactive in HTML.'}\NormalTok{)}
-\NormalTok{\} else \{}
-  \CommentTok{#statische Tabelle in allen anderen Outputformaten  }
-  \NormalTok{knitr::}\KeywordTok{kable}\NormalTok{(}
-    \NormalTok{mtcars[}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{:}\DecValTok{4}\NormalTok{], }\DataTypeTok{caption =} \StringTok{'This table would be interactive in HTML.'}\NormalTok{,}
-    \DataTypeTok{booktabs =} \OtherTok{TRUE}
-    \NormalTok{)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{table}
 
@@ -1039,12 +946,6 @@ Gänge als Autos mit manuellem Schaltgetriebe.\\
 Im Schnitt haben alle Autos des \texttt{mtcars}-Datensatzes
 \texttt{mean(mtcars\$hp)=} 146.6875PS.
 
-\BeginKnitrBlock{rmdimportant}
-Mithilfe von Inline-R-Code \texttt{`r\ R-Code`} können wir auf jede
-R-Variable und gewohnte R-Funktionalitäten wie bedingte Textanzeigen
-zurückgreifen.
-\EndKnitrBlock{rmdimportant}
-
 \chapter{Verfassen}\label{verfassen}
 
 Neben Überschriften, Abbildungen und Co. besteht eine Thesis nun mal
@@ -1066,27 +967,11 @@ was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
 Um die genutzten R-Pakete zu zitieren, kann wie folgt eine bib-Datei
 erstellt werden, die als bibliography ausgegeben werden kann:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# automatically create a bib database for R packages}
-\NormalTok{knitr::}\KeywordTok{write_bib}\NormalTok{(}\KeywordTok{c}\NormalTok{(}
-  \KeywordTok{.packages}\NormalTok{(), }\StringTok{'bookdown'}\NormalTok{, }\StringTok{'knitr'}\NormalTok{, }\StringTok{'rmarkdown'}
-\NormalTok{), }\StringTok{'packages.bib'}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 Mit dem RStudio Addin \texttt{citr} lässt sich, möchte man einen Autor
 zitieren, der passende bibtexkey per Klick heraussuchen. Dabei
 durchsucht \texttt{citr} die im YAML-Bereich der \texttt{index.Rmd}
 angegebenen bibliography-files (siehe \texttt{.bib}-Dateien im
 Projektordner).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{#install.packages("citr")}
-\KeywordTok{library}\NormalTok{(citr)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{itemize}
 \tightlist
@@ -1152,58 +1037,23 @@ Ich habe die Sprachdateien für Englisch und Deutsch bereits unter
 
 Spell-Checking whole Text-Document in English and German:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{#install.packages('hunspell')}
-\KeywordTok{library}\NormalTok{(hunspell)}
-\CommentTok{#dic - und aff - files aus C:\textbackslash{}Users\textbackslash{}Username\textbackslash{}AppData\textbackslash{}Local\textbackslash{}RStudio-Desktop\textbackslash{}dictionaries\textbackslash{}languages-system}
-\CommentTok{#hunspell_info()}
-
-\NormalTok{deutsch <-}\StringTok{ }\KeywordTok{dictionary}\NormalTok{(}\StringTok{"./dictionaries/de_DE_neu.dic"}\NormalTok{)}
-\NormalTok{english <-}\StringTok{ }\KeywordTok{dictionary}\NormalTok{(}\StringTok{"./dictionaries/en_US.dic"}\NormalTok{)}
-
-\NormalTok{text <-}\StringTok{ }\KeywordTok{readLines}\NormalTok{(}\StringTok{"03-tbd.Rmd"}\NormalTok{, }\DataTypeTok{warn =} \OtherTok{FALSE}\NormalTok{)}
-\NormalTok{bad_words_english <-}\StringTok{ }\KeywordTok{hunspell}\NormalTok{(text, }\DataTypeTok{format =} \StringTok{"text"}\NormalTok{, }\DataTypeTok{dict =} \NormalTok{english)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning in R_hunspell_find(dictionary, text, format, ignore):
-## '.Random.seed' ist kein Integer-Vektor sondern vom Typ 'NULL', wird also
-## ignoriert
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{bad_words_deutsch <-}\StringTok{ }\KeywordTok{hunspell}\NormalTok{(text, }\DataTypeTok{format =} \StringTok{"text"}\NormalTok{, }\DataTypeTok{dict =} \NormalTok{deutsch)}
-
-\NormalTok{bad_words_list <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(bad_words_deutsch)), }\KeywordTok{unique}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(bad_words_english))))}
-\NormalTok{bad_words_list <-}\StringTok{ }\NormalTok{bad_words_list[}\KeywordTok{duplicated}\NormalTok{(bad_words_list)]}
-\NormalTok{bad_words_list}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ##  [1] "Ã"              "Ãobersetzung"   "autocomplete"   "autocompletion"
-##  [5] "availabe"       "ber"            "cachen"         "citeproc"      
-##  [9] "citr"           "deutshes"       "DT"             "eglish"        
-## [13] "eval"           "fÃ"             "favicon"        "github"        
-## [17] "htmlwidget"     "https"          "hunspell"       "io"            
-## [21] "knitr"          "linksbÃ"        "mÃ"             "makeZip"       
-## [25] "nder"           "ndig"           "nftig"          "nocite"        
-## [29] "Packrat"        "pandoc"         "Pandoc"         "rmarkdown"     
-## [33] "RProject"       "rstudio"        "RStudio"        "rter"          
-## [37] "SeitenrÃ"       "Spellchecking"  "statistify"     "Sys"           
-## [41] "tbd"            "vllt"           "WÃ"             "Worng"         
-## [45] "wrongWords"     "xtable"         "yihui"          "Yihui"         
-## [49] "ZukÃ"
+##  [5] "availabe"       "ber"            "bookdownplus"   "citeproc"      
+##  [9] "citr"           "currate"        "deutshes"       "DT"            
+## [13] "eglish"         "eval"           "fÃ"             "favicon"       
+## [17] "github"         "htmlwidget"     "https"          "hunspell"      
+## [21] "io"             "issuecomment"   "learnr"         "linksbÃ"       
+## [25] "mÃ"             "makeZip"        "nder"           "ndig"          
+## [29] "nftig"          "nocite"         "packges"        "packrat"       
+## [33] "Packrat"        "pandoc"         "Pandoc"         "pzhaonet"      
+## [37] "repos"          "rmarkdown"      "RProject"       "rstudio"       
+## [41] "RStudio"        "rter"           "SeitenrÃ"       "Spellchecking" 
+## [45] "src"            "stackoverflow"  "statistify"     "symlinked"     
+## [49] "Sys"            "tbd"            "tidyverse"      "vllt"          
+## [53] "WÃ"             "Worng"          "wrongWords"     "xtable"        
+## [57] "Yihui"          "ZukÃ"
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{#hunspell_suggest(bad_words_list, dict = deutsch) #gibt Verbesserungsvorschläge}
-\end{Highlighting}
-\end{Shaded}
 
 Ich persönlich finde es aber einfacher, die Vorteile von
 Pandoc/bookdown/knitr zu nutzen und würde die Word-Version meines
@@ -1241,15 +1091,6 @@ Notwendig:
 \begin{itemize}
 \tightlist
 \item
-  best practice: Wann cachen? Und weitere sinnvolle R-Chunk-Options.
-  \url{https://yihui.name/knitr/options/}
-
-  \begin{itemize}
-  \tightlist
-  \item
-    ich cache erstmal alles, damit knitting schnell geht
-  \end{itemize}
-\item
   Pandoc assumes some LaTeX packages to be availabe. See
   \url{http://pandoc.org/MANUAL.html\#creating-a-pdf}.
 \item
@@ -1265,6 +1106,12 @@ Notwendig:
 \item
   LaTeX Code schreibt über Seitenränder -\textgreater{} manuell Zeilen
   ab Spalte 90 umbrechen
+
+  \begin{itemize}
+  \tightlist
+  \item
+    {[}x{]} auch wenn code chunk option \texttt{tidy}?
+  \end{itemize}
 \item
   Word zentriertes Bild ist linksbündig
 \item
@@ -1280,8 +1127,6 @@ Zukünftig:
 
 \begin{itemize}
 \tightlist
-\item
-  Grafik in custom block wird auf git pages nicht angezeigt
 \item
   LaTeX Text ist zentriert nach kaputter Tabelle
 \item
@@ -1305,10 +1150,51 @@ Zukünftig:
   mehrere Literaturverzeichnisse
 \item
   Packrat offline restore
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{packrat::set\_opts(local.repos\ =\ "packrat/src/")} ?
+  \item
+    scheint noch offen zu sein
+    \url{https://github.com/rstudio/packrat/issues/287}
+  \end{itemize}
+\item
+  {[}x{]} Packrat lib outside of project folder
+
+  \begin{itemize}
+  \tightlist
+  \item
+    enabled in developer version:
+    \url{https://github.com/rstudio/packrat/issues/338\#issuecomment-320553343}
+  \item
+    packrat/packrat.opts see ?``packrat-options''
+  \item
+    packrat/lib/ verschiebbar? use.cache? -\textgreater{} not enabled on
+    windows!
+  \item
+    \url{https://stackoverflow.com/questions/44676570/how-does-the-use-cache-feature-of-packrat-work}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      ``Somewhere in between these options might make the most sense -
+      users currate their list of large but commonly used packages to be
+      symlinked (i.e.packrat::set\_opts(external.packages=c(`tidyverse',
+      `data.table')) ) and then put up with installing smaller packages
+      on a project by project basis.'' or all packges:
+      installed.packages(){[},``Package''{]}
+    \end{itemize}
+  \end{itemize}
 \item
   hunspell und Umlaute
 \item
   R-Code in Custom Block und umgekehrt
+\item
+  was kann bookdownplus besser?
+  \url{https://github.com/pzhaonet/bookdownplus}
+\item
+  interactive tutorial with \url{https://rstudio.github.io/learnr/}
 \item
   github-Links zu statistify.de-Links wandeln/umleiten
 \end{itemize}
@@ -1326,14 +1212,8 @@ Im Moment noch nicht möglich:
   htmlwidget / DT-table als ``Tabelle'' statt als ``Abbildung''
 \end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{sessionInfo}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
-## R version 3.4.0 (2017-04-21)
+## R version 3.4.1 (2017-06-30)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 7 x64 (build 7600)
 ## 
@@ -1351,12 +1231,14 @@ Im Moment noch nicht möglich:
 ## [1] hunspell_2.6 citr_0.2.0   xtable_1.8-2
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.10     bookdown_0.4     assertthat_0.2.0 digest_0.6.12   
-##  [5] rprojroot_1.2    mime_0.5         R6_2.2.1         backports_1.0.5 
-##  [9] magrittr_1.5     evaluate_0.10    highr_0.6        stringi_1.1.5   
-## [13] miniUI_0.1.1     rstudioapi_0.6   rmarkdown_1.6    tools_3.4.0     
-## [17] stringr_1.2.0    shiny_1.0.3      httpuv_1.3.3     yaml_2.1.14     
-## [21] compiler_3.4.0   htmltools_0.3.6  knitr_1.16
+##  [1] Rcpp_0.12.10     rstudioapi_0.6   knitr_1.16       magrittr_1.5    
+##  [5] R6_2.2.1         stringr_1.2.0    highr_0.6        tools_3.4.1     
+##  [9] webshot_0.4.1    DT_0.2           miniUI_0.1.1     htmltools_0.3.6 
+## [13] yaml_2.1.14      rprojroot_1.2    digest_0.6.12    assertthat_0.2.0
+## [17] bookdown_0.4     shiny_1.0.3      formatR_1.5      htmlwidgets_0.8 
+## [21] codetools_0.2-15 mime_0.5         evaluate_0.10    rmarkdown_1.6   
+## [25] stringi_1.1.5    compiler_3.4.1   backports_1.0.5  jsonlite_1.4    
+## [29] httpuv_1.3.3
 \end{verbatim}
 
 \bibliography{packages,bibliography}

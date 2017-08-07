@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</title>
+  <title>Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a thesis in German.">
   <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
+  <meta property="og:title" content="Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="img/cover.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
+  <meta name="twitter:title" content="Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a thesis in German." />
   <meta name="twitter:image" content="img/cover.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Felix Kretschmer">
 
 
-<meta name="date" content="2017-08-05">
+<meta name="date" content="2017-08-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -152,7 +152,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example</a>
           </h1>
         </div>
 
@@ -164,17 +164,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">3</span> To Be Done</h1>
 <p>Notwendig:</p>
 <ul>
-<li>best practice: Wann cachen? Und weitere sinnvolle R-Chunk-Options. <a href="https://yihui.name/knitr/options/" class="uri">https://yihui.name/knitr/options/</a>
-<ul>
-<li>ich cache erstmal alles, damit knitting schnell geht</li>
-</ul></li>
 <li>Pandoc assumes some LaTeX packages to be availabe. See <a href="http://pandoc.org/MANUAL.html#creating-a-pdf" class="uri">http://pandoc.org/MANUAL.html#creating-a-pdf</a>.</li>
 <li>“References” statt “Literatur” unter HTML-Seite</li>
 <li>LaTeX Übersetzung</li>
 <li>Dezimaltrennzeichen vor allem von inline r-Code: Komma statt Punkt</li>
 <li>LaTeX Float</li>
 <li>LaTeX nocite</li>
-<li>LaTeX Code schreibt über Seitenränder -&gt; manuell Zeilen ab Spalte 90 umbrechen</li>
+<li>LaTeX Code schreibt über Seitenränder -&gt; manuell Zeilen ab Spalte 90 umbrechen
+<ul>
+<li>[x] auch wenn code chunk option <code>tidy</code>?</li>
+</ul></li>
 <li>Word zentriertes Bild ist linksbündig</li>
 <li><code>'r format(Sys.time(), '%d. %B %Y')'</code> verursacht LaTeX Probleme</li>
 <li>custom block icons und favicon werden online nicht angezeigt</li>
@@ -182,7 +181,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>Zukünftig:</p>
 <ul>
-<li>Grafik in custom block wird auf git pages nicht angezeigt</li>
 <li>LaTeX Text ist zentriert nach kaputter Tabelle</li>
 <li>auto create .zip RProject (vllt via makeZip.bat oder zip())</li>
 <li>autocompletion für <code>\@ref</code>
@@ -192,9 +190,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>xtable bzw. generell LaTeX-Tabellen in Word und co möglich? Per Screenshot?</li>
 <li>citr geht nicht mehr</li>
 <li>mehrere Literaturverzeichnisse</li>
-<li>Packrat offline restore</li>
+<li>Packrat offline restore
+<ul>
+<li><code>packrat::set_opts(local.repos = &quot;packrat/src/&quot;)</code> ?</li>
+<li>scheint noch offen zu sein <a href="https://github.com/rstudio/packrat/issues/287" class="uri">https://github.com/rstudio/packrat/issues/287</a></li>
+</ul></li>
+<li>[x] Packrat lib outside of project folder
+<ul>
+<li>enabled in developer version: <a href="https://github.com/rstudio/packrat/issues/338#issuecomment-320553343" class="uri">https://github.com/rstudio/packrat/issues/338#issuecomment-320553343</a></li>
+<li>packrat/packrat.opts see ?“packrat-options”</li>
+<li>packrat/lib/ verschiebbar? use.cache? -&gt; not enabled on windows!</li>
+<li><a href="https://stackoverflow.com/questions/44676570/how-does-the-use-cache-feature-of-packrat-work" class="uri">https://stackoverflow.com/questions/44676570/how-does-the-use-cache-feature-of-packrat-work</a>
+<ul>
+<li>“Somewhere in between these options might make the most sense - users currate their list of large but commonly used packages to be symlinked (i.e.packrat::set_opts(external.packages=c(‘tidyverse’, ‘data.table’)) ) and then put up with installing smaller packages on a project by project basis.” or all packges: installed.packages()[,“Package”]</li>
+</ul></li>
+</ul></li>
 <li>hunspell und Umlaute</li>
 <li>R-Code in Custom Block und umgekehrt</li>
+<li>was kann bookdownplus besser? <a href="https://github.com/pzhaonet/bookdownplus" class="uri">https://github.com/pzhaonet/bookdownplus</a></li>
+<li>interactive tutorial with <a href="https://rstudio.github.io/learnr/" class="uri">https://rstudio.github.io/learnr/</a></li>
 <li>github-Links zu statistify.de-Links wandeln/umleiten</li>
 </ul>
 <p>Im Moment noch nicht möglich:</p>

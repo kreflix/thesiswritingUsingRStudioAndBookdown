@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</title>
+  <title>Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a thesis in German.">
   <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
+  <meta property="og:title" content="Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="img/cover.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example" />
+  <meta name="twitter:title" content="Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a thesis in German." />
   <meta name="twitter:image" content="img/cover.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Felix Kretschmer">
 
 
-<meta name="date" content="2017-08-05">
+<meta name="date" content="2017-08-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -152,7 +152,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Abschlussarbeit in RStudio mit Bookdown - A Minimal Tech Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example</a>
           </h1>
         </div>
 
@@ -163,29 +163,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="abbildungen" class="section level2">
 <h2><span class="header-section-number">1.2</span> Abbildungen</h2>
 <p>Figures and tables with captions will be placed in <code>figure</code> and <code>table</code> environments, respectively.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, .<span class="dv">1</span>, .<span class="dv">1</span>))
-<span class="kw">plot</span>(pressure, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">pch =</span> <span class="dv">19</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:nice-fig"></span>
-<img src="_main_thesisBookdown_files/figure-html/nice-fig-1.png" alt="Here is a nice figure!" width="80%" />
+<img src="img/nice-fig-1.png" alt="Here is a nice figure!" width="80%" />
 <p class="caption">
 Abbildung 1.1: Here is a nice figure!
 </p>
 </div>
 <p>Reference a figure by its code chunk label with the <code>fig:</code> prefix, e.g., see Figure <a href="abbildungen.html#fig:nice-fig">1.1</a>.</p>
 <p>Externe Grafiken müssen über <code>knitr::include_graphics()</code> eingefügt werden, um in PDF, HTML etc. automatisch korrekt referenziert werden zu können. Fußnoten können überall per <code>^[Fußnotentext]</code> eingefügt werden – so wie hier in der Bildunterschrift.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr::<span class="kw">include_graphics</span>(<span class="st">&#39;img/important.png&#39;</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:externalImage"></span>
 <img src="img/important.png" alt="Zentriertes Bild aus externer PNG-Datei.^[http://statistify.de]" width="32.8%" />
 <p class="caption">
-Abbildung 1.2: Zentriertes Bild aus externer PNG-Datei.<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a>
+Abbildung 1.2: Zentriertes Bild aus externer PNG-Datei.<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a>
 </p>
 </div>
 <!----------------------------------------------------------------------------->
 </div>
 <div class="footnotes">
 <hr />
-<ol start="7">
-<li id="fn7"><p><a href="http://statistify.de" class="uri">http://statistify.de</a><a href="abbildungen.html#fnref7">↩</a></p></li>
+<ol start="8">
+<li id="fn8"><p><a href="http://statistify.de" class="uri">http://statistify.de</a><a href="abbildungen.html#fnref8">↩</a></p></li>
 </ol>
 </div>
             </section>
