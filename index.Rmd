@@ -151,7 +151,6 @@ Wenn du den Projektordner dieses Buches heruntergeladen hast (siehe [Links und T
 Da die Pakete auf jedem Computer neu installiert werden müssen, beinhaltet der Unterordner `/packrat` anfangs nur die Infos, welche Pakete du benötigst (einen sogenannten Snapshot). Der Ordner `/src` beinhaltet die package tarballs und sollte der Versionskontrolle unterliegen, wenn du z.B. Git verwendest, sodass das Projekt auch langfristig reproduzierbar bleibt, selbst dann, wenn die Pakete nicht mehr online zur Verfügung stehen. ^[_tbd_: Packrat lädt in meinem Falle trotz hinterlegter tarballs die Pakete aus dem Internet.] Die Pakete werden in den Ordner `/packrat/lib` installiert, sodass du bei jedem Umzug des Projektes auf einen neuen PC diesen Ordner zunächst löschen solltest.  
 
 **Tipp**: In der Developer-Version von `packrat` gibt es die Möglichkeit, die Pakete zu cachen, sodass sie außerhalb des Project Folders gespeichert werden und im private library nur ein Link zum jeweiligen Paket verweist^[https://github.com/rstudio/packrat/issues/338#issuecomment-320553343]. Dies kann den Ordner um mehrere 100mb leichter machen.   
-_tbd:_ Ich benutze für dieses Buchprojekt die `packrat`-developer version, weiß aber nicht, welche Version bei euch geladen wird, wenn ihr mein Projekt startet.
 
 ```
 install.packages("devtools")
@@ -160,7 +159,12 @@ devtools::install_github("rstudio/packrat")
 
 ```{block2, packratImportant, type='rmdcaution'}
 Beim erstmaligen Start des Projektes wird R versuchen, Packrat und alle notwendigen Pakete auf deinem Computer zu installieren. Dies kann einige Minuten dauern und eine Internetverbindung benötigen. Beobachte währenddessen die Meldungen in der Console.
-Sollte es nicht automatisch klappen, dann installiere Packrat manuell. Nutze anschließend folgende Befehle, um die Pakete zu installieren oder schaue in `_Auswertungsskript.r`, welche Pakete für dieses Buch geladen werden müssen.
+Sollte es nicht automatisch klappen, dann probiere
+
+a) `packrat::restore`
+a) packrat manuelle zu installieren
+a) oder schaue in `_Auswertungsskript.r`, welche Pakete für dieses Buch geladen werden müssen.
+
 ```
 
   <!-- R-Meldung, wenn packrat-lib erstellt wird:
@@ -184,6 +188,8 @@ Sollte es nicht automatisch klappen, dann installiere Packrat manuell. Nutze ans
   -->
 
 <!-- Mit den folgenden Packrat-Befehlen installierst du alle benötigten Pakete auf deinem Computer (aufgrund der dependencies der Pakete ist die Liste recht lang). -->
+
+Weitere `packrat`-Befehle:
 
 ```{r packrat, eval=FALSE}
 #packrat::set_opts(external.packages=installed.packages()[,"Package"])  #install all packages outside the project'S folder if you want a lightweight folder. But be aware: packages installed in this way aren't included in the packrat/src folder and so your project might become unreproducible in the future!
