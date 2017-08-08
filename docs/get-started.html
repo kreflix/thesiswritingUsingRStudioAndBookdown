@@ -195,13 +195,17 @@ Be patient while opening the project the first time. Also you might need an inte
 <h3>RStudio und Packrat</h3>
 <p>Wenn du den Projektordner dieses Buches heruntergeladen hast (siehe <a href="links-und-tipps.html#links-und-tipps">Links und Tipps</a>), verwendest du automatisch <a href="https://rstudio.github.io/packrat/">Packrat</a>, da die entsprechende Projekt-Option bereits aktiviert ist. Das bedeutet, dass sich die für dieses Buch verwendeten R-Pakete in einer private library direkt im Projektordner installieren (somit hat jedes Projekt seine eigenen Pakete).</p>
 <p>Da die Pakete auf jedem Computer neu installiert werden müssen, beinhaltet der Unterordner <code>/packrat</code> anfangs nur die Infos, welche Pakete du benötigst (einen sogenannten Snapshot). Der Ordner <code>/src</code> beinhaltet die package tarballs und sollte der Versionskontrolle unterliegen, wenn du z.B. Git verwendest, sodass das Projekt auch langfristig reproduzierbar bleibt, selbst dann, wenn die Pakete nicht mehr online zur Verfügung stehen.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> Die Pakete werden in den Ordner <code>/packrat/lib</code> installiert, sodass du bei jedem Umzug des Projektes auf einen neuen PC diesen Ordner zunächst löschen solltest.</p>
-<p><strong>Tipp</strong>: In der Developer-Version von <code>packrat</code> gibt es die Möglichkeit, die Pakete zu cachen, sodass sie außerhalb des Project Folders gespeichert werden und im private library nur ein Link zum jeweiligen Paket verweist<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>. Dies kann den Ordner um mehrere 100mb leichter machen.<br />
-<em>tbd:</em> Ich benutze für dieses Buchprojekt die <code>packrat</code>-developer version, weiß aber nicht, welche Version bei euch geladen wird, wenn ihr mein Projekt startet.</p>
+<p><strong>Tipp</strong>: In der Developer-Version von <code>packrat</code> gibt es die Möglichkeit, die Pakete zu cachen, sodass sie außerhalb des Project Folders gespeichert werden und im private library nur ein Link zum jeweiligen Paket verweist<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>. Dies kann den Ordner um mehrere 100mb leichter machen.</p>
 <pre><code>install.packages(&quot;devtools&quot;)
 devtools::install_github(&quot;rstudio/packrat&quot;)</code></pre>
 
 <div class="rmdcaution">
-Beim erstmaligen Start des Projektes wird R versuchen, Packrat und alle notwendigen Pakete auf deinem Computer zu installieren. Dies kann einige Minuten dauern und eine Internetverbindung benötigen. Beobachte währenddessen die Meldungen in der Console. Sollte es nicht automatisch klappen, dann installiere Packrat manuell. Nutze anschließend folgende Befehle, um die Pakete zu installieren oder schaue in <code>_Auswertungsskript.r</code>, welche Pakete für dieses Buch geladen werden müssen.
+<p>Beim erstmaligen Start des Projektes wird R versuchen, Packrat und alle notwendigen Pakete auf deinem Computer zu installieren. Dies kann einige Minuten dauern und eine Internetverbindung benötigen. Beobachte währenddessen die Meldungen in der Console. Sollte es nicht automatisch klappen, dann probiere</p>
+<ol style="list-style-type: lower-alpha">
+<li><code>packrat::restore</code></li>
+<li>packrat manuelle zu installieren</li>
+<li>oder schaue in <code>_Auswertungsskript.r</code>, welche Pakete für dieses Buch geladen werden müssen.</li>
+</ol>
 </div>
 <p></p>
 <p><!-- R-Meldung, wenn packrat-lib erstellt wird:
@@ -224,6 +228,7 @@ Beim erstmaligen Start des Projektes wird R versuchen, Packrat und alle notwendi
   > Restoring library
   --></p>
 <!-- Mit den folgenden Packrat-Befehlen installierst du alle benötigten Pakete auf deinem Computer (aufgrund der dependencies der Pakete ist die Liste recht lang). -->
+<p>Weitere <code>packrat</code>-Befehle:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#packrat::set_opts(external.packages=installed.packages()[,&quot;Package&quot;])  #install all packages outside the project&#39;S folder if you want a lightweight folder. But be aware: packages installed in this way aren&#39;t included in the packrat/src folder and so your project might become unreproducible in the future!</span>
 <span class="co">#packrat::set_opts(use.cache = TRUE)  #use.cache=TRUE might be useful, but only enabled under windows in the developer version of packrat</span>
 packrat::<span class="kw">get_opts</span>()  <span class="co">#aktuelle Packrat-Einstellungen</span>

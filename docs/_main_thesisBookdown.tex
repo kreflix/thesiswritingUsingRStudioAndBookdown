@@ -449,10 +449,7 @@ Projektes auf einen neuen PC diesen Ordner zunächst löschen solltest.
 Möglichkeit, die Pakete zu cachen, sodass sie außerhalb des Project
 Folders gespeichert werden und im private library nur ein Link zum
 jeweiligen Paket verweist\footnote{\url{https://github.com/rstudio/packrat/issues/338\#issuecomment-320553343}}.
-Dies kann den Ordner um mehrere 100mb leichter machen.\\
-\emph{tbd:} Ich benutze für dieses Buchprojekt die
-\texttt{packrat}-developer version, weiß aber nicht, welche Version bei
-euch geladen wird, wenn ihr mein Projekt startet.
+Dies kann den Ordner um mehrere 100mb leichter machen.
 
 \begin{verbatim}
 install.packages("devtools")
@@ -464,11 +461,22 @@ Beim erstmaligen Start des Projektes wird R versuchen, Packrat und alle
 notwendigen Pakete auf deinem Computer zu installieren. Dies kann einige
 Minuten dauern und eine Internetverbindung benötigen. Beobachte
 währenddessen die Meldungen in der Console. Sollte es nicht automatisch
-klappen, dann installiere Packrat manuell. Nutze anschließend folgende
-Befehle, um die Pakete zu installieren oder schaue in
-\texttt{\_Auswertungsskript.r}, welche Pakete für dieses Buch geladen
-werden müssen.
+klappen, dann probiere
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  \texttt{packrat::restore}
+\item
+  packrat manuelle zu installieren
+\item
+  oder schaue in \texttt{\_Auswertungsskript.r}, welche Pakete für
+  dieses Buch geladen werden müssen.
+\end{enumerate}
 \EndKnitrBlock{rmdcaution}
+
+Weitere \texttt{packrat}-Befehle:
 
 \begin{Shaded}
 \begin{Highlighting}[]
