@@ -1,5 +1,6 @@
 --- 
-title: "Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example"
+title: "Thesis Writing in RStudio Using Bookdown"
+subtile: "A Minimal Tech Example and Template"
 author: "Felix Kretschmer"
 date: "`r Sys.Date()`" #`r format(Sys.time(), '%d. %B %Y')`
 site: bookdown::bookdown_site
@@ -161,7 +162,7 @@ devtools::install_github("rstudio/packrat")
 Beim erstmaligen Start des Projektes wird R versuchen, Packrat und alle notwendigen Pakete auf deinem Computer zu installieren. Dies kann einige Minuten dauern und eine Internetverbindung benötigen. Beobachte währenddessen die Meldungen in der Console.
 Sollte es nicht automatisch klappen, dann probiere
 
-a) `packrat::restore`
+a) `packrat::restore()`
 a) packrat manuelle zu installieren
 a) oder schaue in `_Auswertungsskript.r`, welche Pakete für dieses Buch geladen werden müssen.
 
