@@ -10,6 +10,7 @@ Notwendig:
 - LaTeX nocite
 - LaTeX Code schreibt über Seitenränder -> manuell Zeilen ab Spalte 90 umbrechen
     - [x] auch wenn code chunk option `tidy`?
+- Word fig.height geht nicht
 - Word zentriertes Bild ist linksbündig
 - `'r format(Sys.time(), '%d. %B %Y')'` verursacht LaTeX Probleme
 - custom block icons und favicon werden online nicht angezeigt
@@ -17,11 +18,14 @@ Notwendig:
 
 Zukünftig:
 
+- nonbreaking space (geschützte Leerzeichen) wie in "z.\ B." via backslash escaped space `z.\ B.`
+    - hard line break via backslash at the end of a line (or multiple spaces) -> better to see and this backslash line break works in tables as well
 - LaTeX Text ist zentriert nach kaputter Tabelle
 - auto create .zip RProject (vllt via makeZip.bat oder zip())
 - autocompletion für `\@ref`
     - Atom-Editor kann das vielleicht https://discuss.atom.io/t/autocompletion-of-citeproc-references-in-markdown/28177 ?
 - xtable bzw. generell LaTeX-Tabellen in Word und co möglich? Per Screenshot?
+- vllt geht rowspan etc. doch: https://haozhu233.github.io/kableExtra/awesome_table_in_html.html#overview
 - citr geht nicht mehr
 - mehrere Literaturverzeichnisse
 - Packrat offline restore
@@ -33,6 +37,7 @@ Zukünftig:
     - packrat/lib/ verschiebbar? use.cache? -> not enabled on windows!
     - https://stackoverflow.com/questions/44676570/how-does-the-use-cache-feature-of-packrat-work
         - "Somewhere in between these options might make the most sense - users currate their list of large but commonly used packages to be symlinked (i.e.packrat::set_opts(external.packages=c('tidyverse', 'data.table')) ) and then put up with installing smaller packages on a project by project basis." or all packges: installed.packages()[,"Package"]
+- Warum werden der Ordner "libs" und "01-bestandteile_cache" im Projektordner erstellt beim Öffnen des Projekts?
 - hunspell und Umlaute
 - R-Code in Custom Block und umgekehrt
 - was kann bookdownplus besser? https://github.com/pzhaonet/bookdownplus
