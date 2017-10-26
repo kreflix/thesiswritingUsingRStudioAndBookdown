@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example</title>
+  <title>Thesis Writing in RStudio Using Bookdown</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a thesis in German.">
   <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example" />
+  <meta property="og:title" content="Thesis Writing in RStudio Using Bookdown" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="img/cover.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example" />
+  <meta name="twitter:title" content="Thesis Writing in RStudio Using Bookdown" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a thesis in German." />
   <meta name="twitter:image" content="img/cover.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Felix Kretschmer">
 
 
-<meta name="date" content="2017-08-08">
+<meta name="date" content="2017-10-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -152,7 +152,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Thesis Writing in RStudio Using Bookdown</a>
           </h1>
         </div>
 
@@ -165,8 +165,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <hr />
 <p><strong><em>tl;dr:</em></strong></p>
 <ul>
-<li><p>To open and use this book’s project just download it’s source files from GitHub <a href="http://statistify.de/thesiswritingUsingRStudioAndBookdown_repo" class="uri">http://statistify.de/thesiswritingUsingRStudioAndBookdown_repo</a> or the <code>zip</code> from the toolbar on top of the book’s html-version and open the <code>.Rproj</code>-file in RStudio (of course you need R and RStudio).</p></li>
-<li>After successfully installing bookdown (see <a href="get-started.html#rstudio-und-packrat">Rstudio und Packrat</a>) you should find the button “Build Book” in the “Build”-tab in RStudio. “Build Book” creates the book in all output formats. You can find the <code>index.html</code>, <code>pdf</code> etc. in the <code>docs</code>-folder.
+<li><p>To open and use this book’s project just download it’s source files from GitHub <a href="http://statistify.de/thesiswritingUsingRStudioAndBookdown_repo" class="uri">http://statistify.de/thesiswritingUsingRStudioAndBookdown_repo</a> <!--or the `zip` from the toolbar on top of the book's html-version-->, run <code>_installPackages.r</code> and then open the <code>.Rproj</code>-file in RStudio (of course you need R and RStudio).</p></li>
+<li>After successfully installing bookdown (see <a href="get-started.html#rstudio-und-packrat">Rstudio und Packrat</a>; maybe you need to restart RStudio) you should find the button “Build Book” in the “Build”-tab in RStudio. “Build Book” creates the book in all output formats. You can find the <code>index.html</code>, <code>pdf</code> etc. in the <code>docs</code>-folder.
 <ul>
 <li>For PDF-Output you also need to install LaTeX. Pandoc assumes some LaTeX packages to be availabe. See <a href="http://pandoc.org/MANUAL.html#creating-a-pdf" class="uri">http://pandoc.org/MANUAL.html#creating-a-pdf</a>.</li>
 </ul></li>
@@ -183,7 +183,9 @@ Be patient while opening the project the first time. Also you might need an inte
 </div>
 <p></p>
 <p><strong><em>stable:</em></strong></p>
-<p>You have to install the <code>bookdown</code>-package in R or could install the development versions of <strong>bookdown</strong> from Github:</p>
+<!--You have to install the `bookdown`-package in R or could install the development versions of **bookdown** from Github:-->
+<p>You have to install all required packages manually or run the <code>_installPackages.r</code>-file.</p>
+<p>Especially you have to install the <code>bookdown</code>-package in R or could install the development versions of <strong>bookdown</strong> from Github:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)
 <span class="kw">library</span>(bookdown)
 <span class="co">#devtools::install_github(&quot;rstudio/bookdown&quot;)</span></code></pre></div>
@@ -193,6 +195,12 @@ Be patient while opening the project the first time. Also you might need an inte
 <!----------------------------------------------------------------------------->
 <div id="rstudio-und-packrat" class="section level3 unnumbered">
 <h3>RStudio und Packrat</h3>
+<p><strong>Da Packrat in Vergangenheit Probleme bereitet hat, enthält diese Version ein Skript, das zunächst ausgeführt werden muss, um die notwendigen Pakete zu installieren. Die folgenden Infos zu Packrat sind interessant, betreffen aber die beta-Version dieses Templates.</strong></p>
+
+<div class="rmdcaution">
+Führe das Skript <code>_installPackages.r</code> aus, um alle Pakete zu laden und zu installieren, die zum Kompilieren dieses Buches/Templates notwendig sind.
+</div>
+<p></p>
 <p>Wenn du den Projektordner dieses Buches heruntergeladen hast (siehe <a href="links-und-tipps.html#links-und-tipps">Links und Tipps</a>), verwendest du automatisch <a href="https://rstudio.github.io/packrat/">Packrat</a>, da die entsprechende Projekt-Option bereits aktiviert ist. Das bedeutet, dass sich die für dieses Buch verwendeten R-Pakete in einer private library direkt im Projektordner installieren (somit hat jedes Projekt seine eigenen Pakete).</p>
 <p>Da die Pakete auf jedem Computer neu installiert werden müssen, beinhaltet der Unterordner <code>/packrat</code> anfangs nur die Infos, welche Pakete du benötigst (einen sogenannten Snapshot). Der Ordner <code>/src</code> beinhaltet die package tarballs und sollte der Versionskontrolle unterliegen, wenn du z.B. Git verwendest, sodass das Projekt auch langfristig reproduzierbar bleibt, selbst dann, wenn die Pakete nicht mehr online zur Verfügung stehen.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> Die Pakete werden in den Ordner <code>/packrat/lib</code> installiert, sodass du bei jedem Umzug des Projektes auf einen neuen PC diesen Ordner zunächst löschen solltest.</p>
 <p><strong>Tipp</strong>: In der Developer-Version von <code>packrat</code> gibt es die Möglichkeit, die Pakete zu cachen, sodass sie außerhalb des Project Folders gespeichert werden und im private library nur ein Link zum jeweiligen Paket verweist<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>. Dies kann den Ordner um mehrere 100mb leichter machen.</p>
@@ -202,7 +210,7 @@ devtools::install_github(&quot;rstudio/packrat&quot;)</code></pre>
 <div class="rmdcaution">
 <p>Beim erstmaligen Start des Projektes wird R versuchen, Packrat und alle notwendigen Pakete auf deinem Computer zu installieren. Dies kann einige Minuten dauern und eine Internetverbindung benötigen. Beobachte währenddessen die Meldungen in der Console. Sollte es nicht automatisch klappen, dann probiere</p>
 <ol style="list-style-type: lower-alpha">
-<li><code>packrat::restore</code></li>
+<li><code>packrat::restore()</code></li>
 <li>packrat manuelle zu installieren</li>
 <li>oder schaue in <code>_Auswertungsskript.r</code>, welche Pakete für dieses Buch geladen werden müssen.</li>
 </ol>

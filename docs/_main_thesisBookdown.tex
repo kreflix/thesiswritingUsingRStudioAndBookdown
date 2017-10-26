@@ -24,7 +24,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \hypersetup{unicode=true,
-            pdftitle={Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example},
+            pdftitle={Thesis Writing in RStudio Using Bookdown},
             pdfauthor={Felix Kretschmer},
             pdfborder={0 0 0},
             breaklinks=true}
@@ -116,7 +116,7 @@
 }
 
 \setlength{\droptitle}{-2em}
-  \title{Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example}
+  \title{Thesis Writing in RStudio Using Bookdown}
   \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
   \author{Felix Kretschmer}
@@ -124,7 +124,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2017-08-08}
+  \date{2017-10-26}
 
 %\usepackage[ngerman, english]{babel} % this is needed for umlauts and hyphenation
 %------- by Nils
@@ -348,17 +348,16 @@ findet ihr unter \protect\hyperlink{tbd}{To Be Done}.
 \item
   To open and use this book's project just download it's source files
   from GitHub
-  \url{http://statistify.de/thesiswritingUsingRStudioAndBookdown_repo}
-  or the \texttt{zip} from the toolbar on top of the book's html-version
-  and open the \texttt{.Rproj}-file in RStudio (of course you need R and
-  RStudio).
+  \url{http://statistify.de/thesiswritingUsingRStudioAndBookdown_repo} ,
+  run \texttt{\_installPackages.r} and then open the
+  \texttt{.Rproj}-file in RStudio (of course you need R and RStudio).
 \item
   After successfully installing bookdown (see
-  \protect\hyperlink{rstudio-und-packrat}{Rstudio und Packrat}) you
-  should find the button ``Build Book'' in the ``Build''-tab in RStudio.
-  ``Build Book'' creates the book in all output formats. You can find
-  the \texttt{index.html}, \texttt{pdf} etc. in the
-  \texttt{docs}-folder.
+  \protect\hyperlink{rstudio-und-packrat}{Rstudio und Packrat}; maybe
+  you need to restart RStudio) you should find the button ``Build Book''
+  in the ``Build''-tab in RStudio. ``Build Book'' creates the book in
+  all output formats. You can find the \texttt{index.html}, \texttt{pdf}
+  etc. in the \texttt{docs}-folder.
 
   \begin{itemize}
   \tightlist
@@ -399,8 +398,11 @@ an internet connection. Check R Console for what is happening.
 
 \textbf{\emph{stable:}}
 
-You have to install the \texttt{bookdown}-package in R or could install
-the development versions of \textbf{bookdown} from Github:
+You have to install all required packages manually or run the
+\texttt{\_installPackages.r}-file.
+
+Especially you have to install the \texttt{bookdown}-package in R or
+could install the development versions of \textbf{bookdown} from Github:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -424,6 +426,17 @@ install any other package this RProject may need (see
 \hypertarget{rstudio-und-packrat}{\subsection*{RStudio und
 Packrat}\label{rstudio-und-packrat}}
 \addcontentsline{toc}{subsection}{RStudio und Packrat}
+
+\textbf{Da Packrat in Vergangenheit Probleme bereitet hat, enthält diese
+Version ein Skript, das zunächst ausgeführt werden muss, um die
+notwendigen Pakete zu installieren. Die folgenden Infos zu Packrat sind
+interessant, betreffen aber die beta-Version dieses Templates.}
+
+\BeginKnitrBlock{rmdcaution}
+Führe das Skript \texttt{\_installPackages.r} aus, um alle Pakete zu
+laden und zu installieren, die zum Kompilieren dieses Buches/Templates
+notwendig sind.
+\EndKnitrBlock{rmdcaution}
 
 Wenn du den Projektordner dieses Buches heruntergeladen hast (siehe
 \protect\hyperlink{links-und-tipps}{Links und Tipps}), verwendest du
@@ -467,7 +480,7 @@ klappen, dann probiere
 \def\labelenumi{\alph{enumi})}
 \tightlist
 \item
-  \texttt{packrat::restore}
+  \texttt{packrat::restore()}
 \item
   packrat manuelle zu installieren
 \item
@@ -1121,6 +1134,8 @@ Notwendig:
     {[}x{]} auch wenn code chunk option \texttt{tidy}?
   \end{itemize}
 \item
+  Word fig.height geht nicht
+\item
   Word zentriertes Bild ist linksbündig
 \item
   \texttt{\textquotesingle{}r\ format(Sys.time(),\ \textquotesingle{}\%d.\ \%B\ \%Y\textquotesingle{})\textquotesingle{}}
@@ -1135,6 +1150,17 @@ Zukünftig:
 
 \begin{itemize}
 \tightlist
+\item
+  nonbreaking space (geschützte Leerzeichen) wie in ``z.~B.'' via
+  backslash escaped space \texttt{z.\textbackslash{}\ B.}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    hard line break via backslash at the end of a line (or multiple
+    spaces) -\textgreater{} better to see and this backslash line break
+    works in tables as well
+  \end{itemize}
 \item
   LaTeX Text ist zentriert nach kaputter Tabelle
 \item
@@ -1152,6 +1178,9 @@ Zukünftig:
 \item
   xtable bzw. generell LaTeX-Tabellen in Word und co möglich? Per
   Screenshot?
+\item
+  vllt geht rowspan etc. doch:
+  \url{https://haozhu233.github.io/kableExtra/awesome_table_in_html.html\#overview}
 \item
   citr geht nicht mehr
 \item
@@ -1194,6 +1223,9 @@ Zukünftig:
       installed.packages(){[},``Package''{]}
     \end{itemize}
   \end{itemize}
+\item
+  Warum werden der Ordner ``libs'' und ``01-bestandteile\_cache'' im
+  Projektordner erstellt beim Öffnen des Projekts?
 \item
   hunspell und Umlaute
 \item

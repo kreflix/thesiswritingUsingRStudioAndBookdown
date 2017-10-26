@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example</title>
+  <title>Thesis Writing in RStudio Using Bookdown</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a thesis in German.">
   <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example" />
+  <meta property="og:title" content="Thesis Writing in RStudio Using Bookdown" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="img/cover.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example" />
+  <meta name="twitter:title" content="Thesis Writing in RStudio Using Bookdown" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a thesis in German." />
   <meta name="twitter:image" content="img/cover.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Felix Kretschmer">
 
 
-<meta name="date" content="2017-08-08">
+<meta name="date" content="2017-10-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -152,7 +152,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Thesis Writing in RStudio Using Bookdown - A Minimal Tech Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Thesis Writing in RStudio Using Bookdown</a>
           </h1>
         </div>
 
@@ -174,6 +174,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>[x] auch wenn code chunk option <code>tidy</code>?</li>
 </ul></li>
+<li>Word fig.height geht nicht</li>
 <li>Word zentriertes Bild ist linksbündig</li>
 <li><code>'r format(Sys.time(), '%d. %B %Y')'</code> verursacht LaTeX Probleme</li>
 <li>custom block icons und favicon werden online nicht angezeigt</li>
@@ -181,6 +182,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>Zukünftig:</p>
 <ul>
+<li>nonbreaking space (geschützte Leerzeichen) wie in “z. B.” via backslash escaped space <code>z.\ B.</code>
+<ul>
+<li>hard line break via backslash at the end of a line (or multiple spaces) -&gt; better to see and this backslash line break works in tables as well</li>
+</ul></li>
 <li>LaTeX Text ist zentriert nach kaputter Tabelle</li>
 <li>auto create .zip RProject (vllt via makeZip.bat oder zip())</li>
 <li>autocompletion für <code>\@ref</code>
@@ -188,6 +193,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Atom-Editor kann das vielleicht <a href="https://discuss.atom.io/t/autocompletion-of-citeproc-references-in-markdown/28177" class="uri">https://discuss.atom.io/t/autocompletion-of-citeproc-references-in-markdown/28177</a> ?</li>
 </ul></li>
 <li>xtable bzw. generell LaTeX-Tabellen in Word und co möglich? Per Screenshot?</li>
+<li>vllt geht rowspan etc. doch: <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html#overview" class="uri">https://haozhu233.github.io/kableExtra/awesome_table_in_html.html#overview</a></li>
 <li>citr geht nicht mehr</li>
 <li>mehrere Literaturverzeichnisse</li>
 <li>Packrat offline restore
@@ -205,6 +211,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>“Somewhere in between these options might make the most sense - users currate their list of large but commonly used packages to be symlinked (i.e.packrat::set_opts(external.packages=c(‘tidyverse’, ‘data.table’)) ) and then put up with installing smaller packages on a project by project basis.” or all packges: installed.packages()[,“Package”]</li>
 </ul></li>
 </ul></li>
+<li>Warum werden der Ordner “libs” und “01-bestandteile_cache” im Projektordner erstellt beim Öffnen des Projekts?</li>
 <li>hunspell und Umlaute</li>
 <li>R-Code in Custom Block und umgekehrt</li>
 <li>was kann bookdownplus besser? <a href="https://github.com/pzhaonet/bookdownplus" class="uri">https://github.com/pzhaonet/bookdownplus</a></li>
