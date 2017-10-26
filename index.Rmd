@@ -107,9 +107,9 @@ As this book is written in order to prepare writing a thesis in German, you will
 
 __*tl;dr:*__
 
-- To open and use this book's project just download it's source files from GitHub http://statistify.de/thesiswritingUsingRStudioAndBookdown_repo or the `zip` from the toolbar on top of the book's html-version and open the `.Rproj`-file in RStudio (of course you need R and RStudio).
+- To open and use this book's project just download it's source files from GitHub http://statistify.de/thesiswritingUsingRStudioAndBookdown_repo <!--or the `zip` from the toolbar on top of the book's html-version-->, run `_installPackages.r` and then open the `.Rproj`-file in RStudio (of course you need R and RStudio).
 
-- After successfully installing bookdown (see [Rstudio und Packrat]) you should find the button "Build Book" in the "Build"-tab in RStudio. "Build Book" creates the book in all output formats. You can find the `index.html`, `pdf` etc. in the `docs`-folder.
+- After successfully installing bookdown (see [Rstudio und Packrat]; maybe you need to restart RStudio) you should find the button "Build Book" in the "Build"-tab in RStudio. "Build Book" creates the book in all output formats. You can find the `index.html`, `pdf` etc. in the `docs`-folder.
     - For PDF-Output you also need to install LaTeX. Pandoc assumes some LaTeX packages to be availabe. See http://pandoc.org/MANUAL.html#creating-a-pdf.
     
 ----
@@ -128,7 +128,11 @@ Be patient while opening the project the first time. Also you might need an inte
 
 __*stable:*__
 
-You have to install the `bookdown`-package in R or could install the development versions of **bookdown** from Github:
+<!--You have to install the `bookdown`-package in R or could install the development versions of **bookdown** from Github:-->
+
+You have to install all required packages manually or run the `_installPackages.r`-file.
+
+Especially you have to install the `bookdown`-package in R or could install the development versions of **bookdown** from Github:
 
 ```{r installBookdown, eval=FALSE}
 install.packages("bookdown")
@@ -146,6 +150,12 @@ I assume you have already installed R and RStudio and you know how to install an
 
 <!----------------------------------------------------------------------------->
 ### RStudio und Packrat {-}
+
+**Da Packrat in Vergangenheit Probleme bereitet hat, enthält diese Version ein Skript, das zunächst ausgeführt werden muss, um die notwendigen Pakete zu installieren. Die folgenden Infos zu Packrat sind interessant, betreffen aber die beta-Version dieses Templates.**
+
+```{block2, installPackagesWithoutPackrat, type='rmdcaution'}
+Führe das Skript `_installPackages.r` aus, um alle Pakete zu laden und zu installieren, die zum Kompilieren dieses Buches/Templates notwendig sind.
+```
 
 Wenn du den Projektordner dieses Buches heruntergeladen hast (siehe [Links und Tipps]), verwendest du automatisch [Packrat](https://rstudio.github.io/packrat/), da die entsprechende Projekt-Option bereits aktiviert ist. Das bedeutet, dass sich die für dieses Buch verwendeten R-Pakete in einer private library direkt im Projektordner installieren (somit hat jedes Projekt seine eigenen Pakete). 
 
